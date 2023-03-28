@@ -12,7 +12,6 @@ public class NetworkLocalHost : MonoBehaviour
     private void Start()
     {
         manager.networkAddress = GetLocalIPAddress();
-        
     }
     public string GetLocalIPAddress()
     {
