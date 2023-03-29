@@ -25,6 +25,7 @@ public class GlidingInput : MonoBehaviour
         //transform.rotation.Set(q.x,q.y,0,q.w);
 
         transform.eulerAngles = new Vector3(q.eulerAngles.x, -q.eulerAngles.y, 0);
+        //transform.position += transform.rotation * Vector3.forward;
         //rg.MoveRotation(Quaternion.Euler(new Vector3(q.x,q.y,0)));
         
         //Debug.Log(Input.gyro.attitude);

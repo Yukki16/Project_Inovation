@@ -111,50 +111,56 @@ public class CustomNetwork : NetworkManager
     {
         GameObject camObject = null;
         Camera cam = null;
+
         switch (numPlayers)
         {
             default: Debug.LogWarning("No players found");
                 break;
             case 1:
                 camObject = new GameObject();
+                camObject.name = "Camera_" + players[0].name;
                 cam = camObject.AddComponent<Camera>();
-                camObject.transform.parent = players[0].transform;
+                camObject.AddComponent<FollowPlayer>().target = players[0].transform;
+                //camObject.transform.parent = players[0].transform;
                 cam.rect = new Rect(0, 0, 1, 1);
                 break;
             case 2:
                 camObject = new GameObject();
+                camObject.name = "Camera_" + players[1].name;
                 cam = camObject.AddComponent<Camera>();
-                camObject.transform.parent = players[1].transform;
+                camObject.AddComponent<FollowPlayer>().target = players[0].transform;
                 cam.rect = new Rect(0.5f, 0, 0.5f, 1);
 
-                cam = players[0].GetComponentInChildren<Camera>();
+                cam = GameObject.Find("Camera_" + players[0].name).GetComponent<Camera>();
                 cam.rect = new Rect(0, 0, 0.5f, 1);
                 break;
             case 3:
                 camObject = new GameObject();
+                camObject.name = "Camera_" + players[2].name;
                 cam = camObject.AddComponent<Camera>();
-                camObject.transform.parent = players[2].transform;
+                camObject.AddComponent<FollowPlayer>().target = players[0].transform;
                 cam.rect = new Rect(0.25f, 0.5f, 0.5f, 0.5f);
 
-                cam = players[0].GetComponentInChildren<Camera>();
+                cam = GameObject.Find("Camera_" + players[0].name).GetComponent<Camera>();
                 cam.rect = new Rect(0, 0, 0.5f, 0.5f);
 
-                cam = players[1].GetComponentInChildren<Camera>();
+                cam = GameObject.Find("Camera_" + players[1].name).GetComponent<Camera>();
                 cam.rect = new Rect(0.5f, 0, 0.5f, 0.5f);
                 break;
             case 4:
                 camObject = new GameObject();
+                camObject.name = "Camera_" + players[3].name;
                 cam = camObject.AddComponent<Camera>();
-                camObject.transform.parent = players[3].transform;
+                camObject.AddComponent<FollowPlayer>().target = players[0].transform;
                 cam.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
 
-                cam = players[0].GetComponentInChildren<Camera>();
+                cam = GameObject.Find("Camera_" + players[0].name).GetComponent<Camera>();
                 cam.rect = new Rect(0, 0, 0.5f, 0.5f);
 
-                cam = players[1].GetComponentInChildren<Camera>();
+                cam = GameObject.Find("Camera_" + players[1].name).GetComponent<Camera>();
                 cam.rect = new Rect(0.5f, 0, 0.5f, 0.5f);
 
-                cam = players[2].GetComponentInChildren<Camera>();
+                cam = GameObject.Find("Camera_" + players[2].name).GetComponent<Camera>();
                 cam.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 break;
         }

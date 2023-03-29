@@ -826,12 +826,12 @@ MonoBehaviour:
   autoConnectClientBuild: 0
   sendRate: 30
   offlineScene: Assets/Scenes/MainMenu.unity
-  onlineScene: Assets/Scenes/Test.unity
+  onlineScene: Assets/Scenes/GlidingGame.unity
   transport: {fileID: 1017756213}
   networkAddress: localhost
   maxConnections: 4
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 1363042290242558313, guid: efab8ab1433bdb645be2bf937f9edd19,
+  playerPrefab: {fileID: 3863733285276849282, guid: c89dfc9525e9e5d4b979f828e0d2a491,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
@@ -841,13 +841,13 @@ MonoBehaviour:
   startPosition_2: {fileID: 0}
   startPosition_3: {fileID: 0}
   startPosition_4: {fileID: 0}
-  playerPrefab_1: {fileID: 1363042290242558313, guid: efab8ab1433bdb645be2bf937f9edd19,
+  playerPrefab_1: {fileID: 3863733285276849282, guid: c89dfc9525e9e5d4b979f828e0d2a491,
     type: 3}
-  playerPrefab_2: {fileID: 1363042290242558313, guid: efab8ab1433bdb645be2bf937f9edd19,
+  playerPrefab_2: {fileID: 3863733285276849282, guid: c89dfc9525e9e5d4b979f828e0d2a491,
     type: 3}
-  playerPrefab_3: {fileID: 1363042290242558313, guid: efab8ab1433bdb645be2bf937f9edd19,
+  playerPrefab_3: {fileID: 3863733285276849282, guid: c89dfc9525e9e5d4b979f828e0d2a491,
     type: 3}
-  playerPrefab_4: {fileID: 1363042290242558313, guid: efab8ab1433bdb645be2bf937f9edd19,
+  playerPrefab_4: {fileID: 3863733285276849282, guid: c89dfc9525e9e5d4b979f828e0d2a491,
     type: 3}
 --- !u!1 &1478248090
 GameObject:
