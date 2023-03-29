@@ -44,6 +44,10 @@ public class CustomNetwork : NetworkManager
         }
     }
 
+    public override void OnClientDisconnect()
+    {
+
+    }
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         Debug.Log("Connection in making");
@@ -95,12 +99,12 @@ public class CustomNetwork : NetworkManager
             player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
             players.Add(player);
             NetworkServer.AddPlayerForConnection(conn, player);
+            AddCameras();
         }
         else
         {
             Debug.LogWarning("Player is empty");
         }
-        AddCameras();
     }
 
     void AddCameras()
@@ -113,13 +117,13 @@ public class CustomNetwork : NetworkManager
                 break;
             case 1:
                 camObject = new GameObject();
-                camObject.AddComponent<Camera>();
+                cam = camObject.AddComponent<Camera>();
                 camObject.transform.parent = players[0].transform;
                 cam.rect = new Rect(0, 0, 1, 1);
                 break;
             case 2:
                 camObject = new GameObject();
-                camObject.AddComponent<Camera>();
+                cam = camObject.AddComponent<Camera>();
                 camObject.transform.parent = players[1].transform;
                 cam.rect = new Rect(0.5f, 0, 0.5f, 1);
 
@@ -128,9 +132,9 @@ public class CustomNetwork : NetworkManager
                 break;
             case 3:
                 camObject = new GameObject();
-                camObject.AddComponent<Camera>();
+                cam = camObject.AddComponent<Camera>();
                 camObject.transform.parent = players[2].transform;
-                cam.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                cam.rect = new Rect(0.25f, 0.5f, 0.5f, 0.5f);
 
                 cam = players[0].GetComponentInChildren<Camera>();
                 cam.rect = new Rect(0, 0, 0.5f, 0.5f);
@@ -140,7 +144,7 @@ public class CustomNetwork : NetworkManager
                 break;
             case 4:
                 camObject = new GameObject();
-                camObject.AddComponent<Camera>();
+                cam = camObject.AddComponent<Camera>();
                 camObject.transform.parent = players[3].transform;
                 cam.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
 
