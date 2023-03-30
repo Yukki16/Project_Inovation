@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
+using System;
 
-public class GlidingInput : MonoBehaviour
+public class GlidingInput : NetworkBehaviour
 {
     Rigidbody rg;
     private void Start()
@@ -10,29 +12,26 @@ public class GlidingInput : MonoBehaviour
         Input.gyro.enabled = true;
         rg = this.GetComponent<Rigidbody>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        ModifyRotation();
+       
+        ModifyRotation(Input.gyro.attitude);
     }
-    void ModifyRotation()
+    private void ModifyRotation(Quaternion qInput)
     {
-        //Debug.Log("Hallo");
-        //transform.rotation = //Quaternion.Euler(Input.gyro.userAcceleration);
-        Quaternion q = GyroToUnity(Input.gyro.attitude);
-        //q.y = 0;
-
-        //transform.rotation = q;
-        //transform.rotation.Set(q.x,q.y,0,q.w);
-
-        transform.eulerAngles = new Vector3(q.eulerAngles.x, -q.eulerAngles.y, 0);
-        //transform.position += transform.rotation * Vector3.forward;
-        //rg.MoveRotation(Quaternion.Euler(new Vector3(q.x,q.y,0)));
         
-        //Debug.Log(Input.gyro.attitude);
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                transform.position += Vector3.forward;
+            }
+            Quaternion q = GyroToUnity(qInput);
+            transform.eulerAngles = new Vector3(q.eulerAngles.x, -q.eulerAngles.y, 0);
+        
     }
 
     private static Quaternion GyroToUnity(Quaternion q)
     {
+        Debug.Log("Got Here");
         //Debug.Log(q);
         return new Quaternion(q.x, q.y, -q.z, -q.w);
     }

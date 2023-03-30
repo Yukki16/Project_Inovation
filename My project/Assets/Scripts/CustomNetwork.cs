@@ -8,6 +8,7 @@ using System;
 
 public class CustomNetwork : NetworkManager
 {
+    
     [SerializeField] Transform startPosition_1;
     [SerializeField] Transform startPosition_2;
     [SerializeField] Transform startPosition_3;
@@ -18,9 +19,20 @@ public class CustomNetwork : NetworkManager
     [SerializeField] GameObject playerPrefab_3;
     [SerializeField] GameObject playerPrefab_4;
 
+    [SerializeField] GlidingInput gliding;
+
     List<GameObject> players = new List<GameObject>();
 
-    
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        //gliding.SetupServer();
+    }
+
+    private void FixedUpdate()
+    {
+       
+    }
     private void OnEnable()
     {
         SceneManager.sceneLoaded += NewSceneLoaded;
@@ -46,53 +58,42 @@ public class CustomNetwork : NetworkManager
 
     public override void OnClientDisconnect()
     {
-
+        for (int i = players.Count; i > 0; i--)
+        {
+            if(players[i] == null)
+                players.RemoveAt(i);
+        }
     }
+
+
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         Debug.Log("Connection in making");
-        /* GameObject player = null;
-         switch (numPlayers)
-         {
-             case 0:
-                 player = startPosition_1 != null
-             ? Instantiate(playerPrefab_1, startPosition_1.position, startPosition_1.rotation)
-             : Instantiate(playerPrefab_1);
-                 break;
-             case 1:
-                 player = startPosition_2 != null
-             ? Instantiate(playerPrefab_2, startPosition_2.position, startPosition_2.rotation)
-             : Instantiate(playerPrefab_2);
-                 break;
-             case 2:
-                 player = startPosition_3 != null
-             ? Instantiate(playerPrefab_3, startPosition_3.position, startPosition_3.rotation)
-             : Instantiate(playerPrefab_3);
-                 break;
-             case 3:
-                 player = startPosition_4 != null
-             ? Instantiate(playerPrefab_4, startPosition_4.position, startPosition_4.rotation)
-             : Instantiate(playerPrefab_4);
-                 break;
-         }
 
-         if(player != null)
-         {
-             Debug.Log("Adding Player");
-             player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
-             players.Add(player);
-             NetworkServer.AddPlayerForConnection(conn, player);
-         }
-         else
-         {
-             Debug.LogWarning("Player is empty");
-         }
-
-         AddCameras();
-         //base.OnServerAddPlayer(conn);*/
-        GameObject player = startPosition_1 != null
-             ? Instantiate(playerPrefab_1, startPosition_1.position, startPosition_1.rotation)
-             : Instantiate(playerPrefab_1);
+        GameObject player = null;
+        switch (numPlayers)
+        {
+            case 0:
+                player = startPosition_1 != null
+            ? Instantiate(playerPrefab_1, startPosition_1.position, startPosition_1.rotation)
+            : Instantiate(playerPrefab_1);
+                break;
+            case 1:
+                player = startPosition_2 != null
+            ? Instantiate(playerPrefab_2, startPosition_2.position, startPosition_2.rotation)
+            : Instantiate(playerPrefab_2);
+                break;
+            case 2:
+                player = startPosition_3 != null
+            ? Instantiate(playerPrefab_3, startPosition_3.position, startPosition_3.rotation)
+            : Instantiate(playerPrefab_3);
+                break;
+            case 3:
+                player = startPosition_4 != null
+            ? Instantiate(playerPrefab_4, startPosition_4.position, startPosition_4.rotation)
+            : Instantiate(playerPrefab_4);
+                break;
+        }
         if (player != null)
         {
             Debug.Log("Adding Player");

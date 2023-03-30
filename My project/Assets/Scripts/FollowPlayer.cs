@@ -24,6 +24,13 @@ public class FollowPlayer : MonoBehaviour
 
     private void Gliding()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, target.position.z - 10);
+        if (target != null)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, target.position.z - 10);
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 }
