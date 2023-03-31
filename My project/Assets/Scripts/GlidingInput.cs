@@ -14,7 +14,7 @@ public class GlidingInput : NetworkBehaviour
     }
     private void FixedUpdate()
     {
-       
+       if(isLocalPlayer || isClient)
         ModifyRotation(Input.gyro.attitude);
     }
     private void ModifyRotation(Quaternion qInput)

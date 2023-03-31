@@ -8,18 +8,17 @@ using System;
 
 public class CustomNetwork : NetworkManager
 {
-    
+    [Header("Players Spawn")]
     [SerializeField] Transform startPosition_1;
     [SerializeField] Transform startPosition_2;
     [SerializeField] Transform startPosition_3;
     [SerializeField] Transform startPosition_4;
 
+    [Header("Prefabs of the players")]
     [SerializeField] GameObject playerPrefab_1;
     [SerializeField] GameObject playerPrefab_2;
     [SerializeField] GameObject playerPrefab_3;
     [SerializeField] GameObject playerPrefab_4;
-
-    [SerializeField] GlidingInput gliding;
 
     List<GameObject> players = new List<GameObject>();
 
