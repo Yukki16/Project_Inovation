@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class CountdownUI : MonoBehaviour
 {
-    [SerializeField] private Image background;
     [SerializeField] private TextMeshProUGUI text;
 
     private void Awake()
@@ -16,14 +15,14 @@ public class CountdownUI : MonoBehaviour
 
     private void Start()
     {
-        TCMiniGameManager.Instance.CountdownStopped += Instance_CountdownStopped;
+        TCMiniGameStateManager.Instance.CountdownStopped += Instance_CountdownStopped;
     }
 
     private void Update()
     {
-        if (TCMiniGameManager.Instance.GameIsInCountdown())
+        if (TCMiniGameStateManager.Instance.GameIsInCountdown())
         {
-            text.text = Mathf.Ceil(TCMiniGameManager.Instance.GetCountdown()).ToString();
+            text.text = Mathf.Ceil(TCMiniGameStateManager.Instance.GetCountdown()).ToString();
         }
     }
 

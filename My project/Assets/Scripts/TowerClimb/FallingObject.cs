@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class FallingObject : MonoBehaviour
 {
@@ -13,9 +15,9 @@ public class FallingObject : MonoBehaviour
     private void Update()
     {
         MoveDown();
-        if (GameManager.Instance.GetLowestHeightOfAllPlayers() - transform.position.y > 10)
+        if (GameManager.Instance.GetLowestHeightOfAllPlayers() - transform.position.y > 20)
         {
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 
@@ -24,15 +26,17 @@ public class FallingObject : MonoBehaviour
         Player player = other.GetComponentInParent<Player>();
         if (player)
         {
-            player.FreezeMovement();
+            player.HitPlayer(gameObject);
             Destroy();
         }
     }
 
     public void Destroy()
     {
-        Transform transformO = Instantiate(facturedObject.fallingObjectSO.prefab, transform.position, transform.rotation);
-        Destroy(gameObject);
+        GameObject newObj = new GameObject("Destroyed Falling Item");
+        Transform transformO = Instantiate(facturedObject.fallingObjectSO.prefab, newObj.transform);
+        transformO.localPosition = transform.position;
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
     private void MoveDown()

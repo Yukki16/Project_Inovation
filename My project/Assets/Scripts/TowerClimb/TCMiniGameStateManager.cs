@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TCMiniGameManager : MonoBehaviour
+public class TCMiniGameStateManager : MonoBehaviour
 {
-    public static TCMiniGameManager Instance { get; private set; }
+    public static TCMiniGameStateManager Instance { get; private set; }
     public class GameStateChangedArgs
     {
         public GameState gameState;
@@ -23,7 +23,7 @@ public class TCMiniGameManager : MonoBehaviour
     private GameState currentGameState;
 
     private float countdownTimer = 5;
-    private float playingTime = 60;
+    private float playingTime;
     private float stoppedWaitTime = 5;
     private float showingScoreWaitTime = 20;
 
@@ -31,6 +31,11 @@ public class TCMiniGameManager : MonoBehaviour
     {
         Instance = this;
         currentGameState = GameState.IN_COUNTDOWN;
+    }
+
+    private void Start()
+    {
+        playingTime = GameManager.Instance ? GameManager.Instance.GetMaxGameTime() : 60;
     }
 
     void Update()
@@ -41,7 +46,6 @@ public class TCMiniGameManager : MonoBehaviour
                 countdownTimer -= Time.deltaTime;
                 if (countdownTimer <= 0)
                 {
-                    Debug.Log("Changed");
                     currentGameState = GameState.PLAYING;
                     GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
                     CountdownStopped?.Invoke(this, EventArgs.Empty);
@@ -51,15 +55,14 @@ public class TCMiniGameManager : MonoBehaviour
                 playingTime -= Time.deltaTime;
                 if (playingTime <= 0)
                 {
-                    currentGameState = GameState.STOPPED;
-                    GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
+                    EndGame();
                 }
                 break;
             case GameState.STOPPED:
                 stoppedWaitTime -= Time.deltaTime;
                 if (stoppedWaitTime <= 0)
                 {
-                    currentGameState = GameState.SHOWING_SCORE;
+                    currentGameState = GameState.SHOWING_SCORE; 
                     GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
                 }
                 break;
@@ -77,7 +80,6 @@ public class TCMiniGameManager : MonoBehaviour
     {
         return currentGameState == GameState.IN_COUNTDOWN;
     }
-
     public float GetCountdown()
     {
         return countdownTimer;
@@ -85,5 +87,17 @@ public class TCMiniGameManager : MonoBehaviour
     public bool GameIsPlaying()
     {
         return currentGameState == GameState.PLAYING;
+    }
+    public bool GameIsFinished()
+    {
+        return currentGameState == GameState.STOPPED;
+    }
+    public void EndGame()
+    {
+        if (GameIsPlaying())
+        {
+            currentGameState = GameState.STOPPED;
+            GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
+        }
     }
 }

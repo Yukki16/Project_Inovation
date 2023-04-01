@@ -11,17 +11,17 @@ public class LevelProgressUI : MonoBehaviour
     [SerializeField] private Transform cat;
     [SerializeField] private TextMeshProUGUI progressInMeters;
 
-    void Start()
+    private void Start()
     {
-        TCMiniGameManager.Instance.GameStateChanged += Instance_GameStateChanged;
+        TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
         HideLevelProgress();
         slider.fillAmount= 0;
         progressInMeters.text = "0m";
     }
 
-    private void Instance_GameStateChanged(object sender, TCMiniGameManager.GameStateChangedArgs e)
+    private void Instance_GameStateChanged(object sender, TCMiniGameStateManager.GameStateChangedArgs e)
     {
-        if (e.gameState == TCMiniGameManager.GameState.PLAYING)
+        if (e.gameState == TCMiniGameStateManager.GameState.PLAYING)
         {
             ShowLevelProgress();
         }
@@ -34,7 +34,7 @@ public class LevelProgressUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TCMiniGameManager.Instance.GameIsPlaying())
+        if (TCMiniGameStateManager.Instance.GameIsPlaying())
         {
             float amountToAddToBar = player.position.y / GameManager.Instance.GetMaxGameLength();
             slider.fillAmount = amountToAddToBar;
