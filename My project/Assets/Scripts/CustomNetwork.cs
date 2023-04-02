@@ -25,12 +25,21 @@ public class CustomNetwork : NetworkManager
     public override void OnStartServer()
     {
         base.OnStartServer();
-        //gliding.SetupServer();
+
+        ServerChangeScene("GlidingGame");
     }
 
-    private void FixedUpdate()
+    public override void OnClientConnect()
     {
-       
+        //base.OnClientConnect();
+        /*if (!NetworkClient.ready)
+            NetworkClient.Ready();
+
+        if (autoCreatePlayer)
+            NetworkClient.AddPlayer();
+
+        Debug.Log("Hello?");*/
+        
     }
     private void OnEnable()
     {
@@ -123,6 +132,7 @@ public class CustomNetwork : NetworkManager
                 camObject.AddComponent<FollowPlayer>().target = players[0].transform;
                 //camObject.transform.parent = players[0].transform;
                 cam.rect = new Rect(0, 0, 1, 1);
+                //cam.gameObject.GetComponent<AudioListener>().enabled = true;
                 break;
             case 2:
                 camObject = new GameObject();
@@ -130,6 +140,7 @@ public class CustomNetwork : NetworkManager
                 cam = camObject.AddComponent<Camera>();
                 camObject.AddComponent<FollowPlayer>().target = players[0].transform;
                 cam.rect = new Rect(0.5f, 0, 0.5f, 1);
+                //cam.gameObject.GetComponent<AudioListener>().enabled = false;
 
                 cam = GameObject.Find("Camera_" + players[0].name).GetComponent<Camera>();
                 cam.rect = new Rect(0, 0, 0.5f, 1);
@@ -140,6 +151,7 @@ public class CustomNetwork : NetworkManager
                 cam = camObject.AddComponent<Camera>();
                 camObject.AddComponent<FollowPlayer>().target = players[0].transform;
                 cam.rect = new Rect(0.25f, 0.5f, 0.5f, 0.5f);
+                //cam.gameObject.GetComponent<AudioListener>().enabled = false;
 
                 cam = GameObject.Find("Camera_" + players[0].name).GetComponent<Camera>();
                 cam.rect = new Rect(0, 0, 0.5f, 0.5f);
@@ -153,6 +165,7 @@ public class CustomNetwork : NetworkManager
                 cam = camObject.AddComponent<Camera>();
                 camObject.AddComponent<FollowPlayer>().target = players[0].transform;
                 cam.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                //cam.gameObject.GetComponent<AudioListener>().enabled = false;
 
                 cam = GameObject.Find("Camera_" + players[0].name).GetComponent<Camera>();
                 cam.rect = new Rect(0, 0, 0.5f, 0.5f);
@@ -164,5 +177,10 @@ public class CustomNetwork : NetworkManager
                 cam.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 break;
         }
+
+        GameObject playerCanvasCam = (GameObject)Instantiate(Resources.Load("Cam_player"));
+        GameObject playerCanvas = (GameObject)Instantiate(Resources.Load("Canvas"));
+        NetworkServer.Spawn(playerCanvasCam, players[players.Count - 1]);
+        NetworkServer.Spawn(playerCanvas, players[players.Count - 1]);
     }
 }

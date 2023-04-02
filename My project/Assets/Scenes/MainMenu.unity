@@ -887,11 +887,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   runInBackground: 1
-  autoStartServerBuild: 1
+  autoStartServerBuild: 0
   autoConnectClientBuild: 0
   sendRate: 30
-  offlineScene: Assets/Scenes/MainMenu.unity
-  onlineScene: Assets/Scenes/GlidingGame.unity
+  offlineScene: 
+  onlineScene: 
   transport: {fileID: 1017756213}
   networkAddress: localhost
   maxConnections: 4
@@ -900,7 +900,9 @@ MonoBehaviour:
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 599354646448829613, guid: 2fee1516304781546b578c0b85f503dd, type: 3}
+  - {fileID: 2971182178719137970, guid: bae172b061ab4d642ba7991e12cc0c7a, type: 3}
   timeInterpolationGui: 0
   startPosition_1: {fileID: 0}
   startPosition_2: {fileID: 0}
@@ -914,7 +916,6 @@ MonoBehaviour:
     type: 3}
   playerPrefab_4: {fileID: 3863733285276849282, guid: c89dfc9525e9e5d4b979f828e0d2a491,
     type: 3}
-  gliding: {fileID: 0}
 --- !u!1 &1478248090
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class GlidingInput : NetworkBehaviour
         Input.gyro.enabled = true;
         rg = this.GetComponent<Rigidbody>();
     }
-    private void FixedUpdate()
+    private void Update()
     {
        if(isLocalPlayer || isClient)
         ModifyRotation(Input.gyro.attitude);
@@ -31,7 +31,7 @@ public class GlidingInput : NetworkBehaviour
 
     private static Quaternion GyroToUnity(Quaternion q)
     {
-        Debug.Log("Got Here");
+        //Debug.Log("Got Here");
         //Debug.Log(q);
         return new Quaternion(q.x, q.y, -q.z, -q.w);
     }
