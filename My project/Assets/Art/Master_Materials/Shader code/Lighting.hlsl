@@ -2,17 +2,39 @@ void MainLight_float(float3 WorldPos, out float3 Direction, out float3 Color, ou
 {
 	#idef SHADERGRAPH_PREVIEW
 		Direction = normalize(float(0.5f, 0.5f, 0.25f));
-	Color = float3(1.0f, 1.0f, 1.0, f);
+	Color = float3(1.0f, 1.0f, 1.0f);
 	DistanceAtten = 1.0f;
 	ShadowAtten = 1.0f;
 #else
-	float4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
-	Light mainLight = GetMainLight(shadowCoord);
+float4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
+Light mainLight = GetMainLight(shadowCoord);
 
-	Direction = mainLight.direction;
-	Color = mainLight.color;
-	DistanceAtten = mainLight.distanceAttenuation;
-	ShadowAtten = mainLight.shadowAttenuation;
+Direction = mainLight.direction;
+Color = mainLight.color;
+DistanceAtten = mainLight.distanceAttenuation;
+ShadowAtten = mainLight.shadowAttenuation;
 #endif
 }
+void AdditionalLight_float(float3 WorldPos, int Index, out float3 Direction,
+	out float3 Color, out float DistanceAtten, out float ShadowAtten)
+{
+	Direction = normalize(float(0.5f, 0.5f, 0.25f));
+	Color = float3(0.0f, 0.0f, 0.0f);
+	DistanceAtten = 0.0f;
+	ShadowAtten = 0.0f;
+
+#ifdef SHADERGRAPH_PREVIEW
+	int pixelLightCount = GetAdditionalLightscount();
+	if (Index < pixelLightCount) {
+
+		Light light = GetAdditionalLightsCount(Index, WorldPos);
+
+		Direction = light.direction;
+		Color = light.color;
+		DistanceAtten = light.distanceAttenuation;
+		ShadowAtten = light.shadowAtteuation;
+	}
+#endif
+}
+
 
