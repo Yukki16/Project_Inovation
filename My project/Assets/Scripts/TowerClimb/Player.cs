@@ -1,9 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public class PointsUpdateArgs
+    {
+        public enum UpdateTypes
+        {
+            POINTDECREASE,
+            POINTINCREASE
+        }
+
+        public UpdateTypes type;
+        public Player player;
+        public int pointAmount;
+    }
+
+    public event EventHandler<PointsUpdateArgs> PointsUpdated;
+
     public enum MovingDirections
     {
         ONLYUP,
@@ -29,8 +45,10 @@ public class Player : MonoBehaviour
     private bool isHitByOtherPlayer;
     private Vector3 hitByOtherPlayerDir;
 
-    private int score = 0;
-    private const int HITPOINTSDECREASE = 1000;
+    private float score = 0;
+    private const int DEFAULTPOINTSINCREASEAMOUNT = 1;
+    private const int HITPOINTSDECREASE = 5;
+    private const int HITCOINSPOINTSAMOUNT = 20;
 
     [SerializeField] private MovingDirections currentMovingDirection;
 
@@ -74,7 +92,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            AddScore(2);
+            AddScore(DEFAULTPOINTSINCREASEAMOUNT * Time.deltaTime);
             MoveUp();
             Vector2 inputVector = inputController.GetMovementFromInput();
             if (inputVector.x != 0)
@@ -90,7 +108,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void AddScore(int scoreToAdd)
+    private void AddScore(float scoreToAdd)
     {
         score += scoreToAdd;
     }
@@ -113,10 +131,19 @@ public class Player : MonoBehaviour
 
     public void HitPlayer(GameObject gameObject)
     {
-        if (gameObject.TryGetComponent<FallingObject>(out FallingObject fallingItem))
+        if (gameObject.TryGetComponent<DestructableFallingObject>(out DestructableFallingObject fallingItem))
         {
-            FreezeMovement();
-            DecreaseScore(HITPOINTSDECREASE);
+            if (fallingItem.GetObjectType() == DestructableFallingObject.ObjectType.ToAvoid)
+            {
+                FreezeMovement();
+                DecreaseScore(HITPOINTSDECREASE);
+                ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes.POINTDECREASE, HITPOINTSDECREASE);
+            }
+            else
+            {
+                AddScore(HITCOINSPOINTSAMOUNT);
+                ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes.POINTINCREASE, HITCOINSPOINTSAMOUNT);
+            }
         }
     }
 
@@ -127,6 +154,7 @@ public class Player : MonoBehaviour
             isHitByOtherPlayer = true;
             FreezeMovement();
             DecreaseScore(HITPOINTSDECREASE);
+            ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes.POINTDECREASE, HITPOINTSDECREASE);
             hitByOtherPlayerDir = moveDir;
         }
     }
@@ -138,7 +166,7 @@ public class Player : MonoBehaviour
 
     public int GetScore()
     {
-        return score;
+        return (int)score;
     }
 
     public MovingDirections GetCurrentMovingDirection()
@@ -150,7 +178,6 @@ public class Player : MonoBehaviour
     {
         if (-moveDir.y > 0)
         {
-            Debug.Log("test");
             currentMovingDirection = MovingDirections.RIGHT;
         }
         else
@@ -163,5 +190,15 @@ public class Player : MonoBehaviour
     public bool IsHitByOtherPlayer()
     {
         return isHitByOtherPlayer;
+    }
+
+    private void ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes updateType, int pointAmount)
+    {
+        PointsUpdated?.Invoke(this,new PointsUpdateArgs
+        {
+            player = this,
+            type = updateType,
+            pointAmount = pointAmount
+        });
     }
 }

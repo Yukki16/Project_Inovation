@@ -31,7 +31,6 @@ public class LevelProgressUI : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (TCMiniGameStateManager.Instance.GameIsPlaying())

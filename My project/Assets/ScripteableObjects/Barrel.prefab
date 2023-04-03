@@ -127,13 +127,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8172107362013275782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5aad316e0eb9d84c845c4b117e07a5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6809f745cc7a83746a0ee0d050f5f146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fallingObjectSO: {fileID: 11400000, guid: 03259fed3b6d5304d90111263af72867, type: 2}
+  rotationDir: 4
+  moveSpeedDown: 1.5
   facturedObject: {fileID: -8127928293973897218, guid: c6581b8ae7eb1cb48832ecdab37d1e82,
     type: 3}
-  moveSpeedDown: 1
+  objectType: 0
 --- !u!65 &3092279516231340103
 BoxCollider:
   m_ObjectHideFlags: 0

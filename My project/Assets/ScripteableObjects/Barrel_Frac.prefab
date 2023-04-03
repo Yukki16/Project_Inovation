@@ -10455,13 +10455,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8839776312353018870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5aad316e0eb9d84c845c4b117e07a5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 653643c4217711f49be918b919c1fc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fallingObjectSO: {fileID: 11400000, guid: 3405b68e7dc04dd45a76dbf2b38f2741, type: 2}
-  facturedObject: {fileID: -8127928293973897218}
   moveSpeedDown: 1.5
-  fracSpawnPoint: {fileID: 0}
 --- !u!1 &8966155308957513424
 GameObject:
   m_ObjectHideFlags: 0
