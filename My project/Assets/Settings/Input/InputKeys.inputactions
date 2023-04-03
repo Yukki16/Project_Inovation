@@ -1,0 +1,56 @@
+{
+    "name": "InputKeys",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "a8504647-8c16-4c13-b2d0-df72f5b4b408",
+            "actions": [
+                {
+                    "name": "TowerClimbMovement",
+                    "type": "Value",
+                    "id": "756bdaf7-9d2a-4298-9b52-ee17195d3cbb",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "QD",
+                    "id": "26321e26-7e15-4962-9b28-073eea00017c",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TowerClimbMovement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "0ff7aa9a-715a-4e09-ac17-8936ef0da8c8",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TowerClimbMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "3ee5741d-ff0d-40c9-a1e0-9f240b6fab5a",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TowerClimbMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
