@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    CustomNetwork networkVar;
     [SerializeField] private Transform[] players;
     [SerializeField] private ObjectSpawner objectSpawner;
 
@@ -25,11 +26,13 @@ public class GameManager : MonoBehaviour
         Instance = this;
         spawnModifierTimer = MAXSPAWNMODIFIERTIME;
         spawnRate = maxSpawnRate;
+
+        networkVar = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<CustomNetwork>();
     }
 
     public float GetLowestHeightOfAllPlayers()
     {
-        float lowestHeight = players[0].position.y;
+        float lowestHeight = networkVar.ReturnCurrentPlayers()[0].gameObject.transform.position.y;
         foreach (Transform player in players)
         {
             if (player.position.y <= lowestHeight) { 
@@ -41,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     public float GetHighestHeightOfAllPlayers()
     {
-        float highestHeight = players[0].position.y;
+        float highestHeight = networkVar.ReturnCurrentPlayers()[0].gameObject.transform.position.y;
         foreach (Transform player in players)
         {
             if (player.position.y >= highestHeight)
@@ -54,8 +57,8 @@ public class GameManager : MonoBehaviour
 
     public string GetNicknameOfHightestHightPlayer()
     {
-        float highestHeight = players[0].position.y;
-        string playerNicknameWithHighestHeight = players[0].GetComponentInParent<Player>().GetNickname();
+        float highestHeight = networkVar.ReturnCurrentPlayers()[0].gameObject.transform.position.y;
+        string playerNicknameWithHighestHeight = networkVar.ReturnCurrentPlayers()[0].gameObject.transform.GetComponentInParent<Player>().GetNickname();
         foreach (Transform player in players)
         {
             if (player.position.y >= highestHeight)

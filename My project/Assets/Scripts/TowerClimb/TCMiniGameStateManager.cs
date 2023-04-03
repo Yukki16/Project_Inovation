@@ -17,7 +17,8 @@ public class TCMiniGameStateManager : MonoBehaviour
         IN_COUNTDOWN,
         PLAYING,
         STOPPED,
-        SHOWING_SCORE
+        SHOWING_SCORE,
+        NOT_READY
     }
 
     private GameState currentGameState;
@@ -30,7 +31,7 @@ public class TCMiniGameStateManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        currentGameState = GameState.IN_COUNTDOWN;
+        currentGameState = GameState.NOT_READY;
     }
 
     private void Start()

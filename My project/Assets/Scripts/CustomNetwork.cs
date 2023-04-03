@@ -5,6 +5,9 @@ using Mirror;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using System;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class CustomNetwork : NetworkManager
 {
@@ -22,11 +25,37 @@ public class CustomNetwork : NetworkManager
 
     List<GameObject> players = new List<GameObject>();
 
+    public List<GameObject> ReturnCurrentPlayers()
+    {
+        return players;
+    }
     public override void OnStartServer()
     {
         base.OnStartServer();
 
-        ServerChangeScene("GlidingGame");
+        ServerChangeScene("TowerClimb");
+    }
+
+    public override void OnServerSceneChanged(string sceneName)
+    {
+        base.OnServerSceneChanged(sceneName);
+#if UNITY_EDITOR
+        switch(sceneName)
+        {
+            case "GlidingGame": 
+                playerPrefab_1 = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Cube.prefab", typeof(GameObject)) as GameObject;
+                playerPrefab_2 = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Cube.prefab", typeof(GameObject)) as GameObject;
+                playerPrefab_3 = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Cube.prefab", typeof(GameObject)) as GameObject;
+                playerPrefab_4 = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Cube.prefab", typeof(GameObject)) as GameObject;
+                break;
+            case "TowerClimb":
+                playerPrefab_1 = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(GameObject)) as GameObject;
+                playerPrefab_2 = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(GameObject)) as GameObject;
+                playerPrefab_3 = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(GameObject)) as GameObject;
+                playerPrefab_4 = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(GameObject)) as GameObject;
+                break;
+        }
+#endif
     }
 
     public override void OnClientConnect()
@@ -182,5 +211,6 @@ public class CustomNetwork : NetworkManager
         GameObject playerCanvas = (GameObject)Instantiate(Resources.Load("Canvas"));
         NetworkServer.Spawn(playerCanvasCam, players[players.Count - 1]);
         NetworkServer.Spawn(playerCanvas, players[players.Count - 1]);
+        playerCanvasCam.transform.position = new Vector3(0, 200, 0);
     }
 }

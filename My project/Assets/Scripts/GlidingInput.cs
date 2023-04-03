@@ -29,7 +29,7 @@ public class GlidingInput : NetworkBehaviour
         
     }
 
-    private static Quaternion GyroToUnity(Quaternion q)
+    public static Quaternion GyroToUnity(Quaternion q)
     {
         //Debug.Log("Got Here");
         //Debug.Log(q);

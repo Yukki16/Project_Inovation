@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     public class PointsUpdateArgs
     {
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Input.gyro.enabled = true;
         hitByOtherPlayerTimer = HITBYOTHERPLAYERTIMERMAX;
         frozenTimer = FROZENTIMERMAX;
         currentMovingDirection = MovingDirections.ONLYUP;
@@ -63,12 +65,12 @@ public class Player : MonoBehaviour
     {
         if (TCMiniGameStateManager.Instance.GameIsPlaying()) 
         {
-            HandleMovement();
-            _camera.LockCameraAtPlayer(transform);
+            HandleMovement(GlidingInput.GyroToUnity(Input.gyro.attitude));
+            //_camera.LockCameraAtPlayer(transform);
         } 
     }
 
-    public void HandleMovement()
+    public void HandleMovement(Quaternion q)
     {
         if (isHitByOtherPlayer)
         {
@@ -95,15 +97,16 @@ public class Player : MonoBehaviour
             AddScore(DEFAULTPOINTSINCREASEAMOUNT * Time.deltaTime);
             MoveUp();
             Vector2 inputVector = inputController.GetMovementFromInput();
-            if (inputVector.x != 0)
-            {
-                Vector3 moveDir = new Vector3(0, -inputVector.x, 0);
+            //if (inputVector.x != 0)
+            //{
+                Vector3 moveDir = new Vector3(0, (Mathf.Clamp(q.eulerAngles.x,0,360) > 180? Mathf.Clamp(q.eulerAngles.x,0,360) : -Mathf.Clamp(q.eulerAngles.x, 0, 360)) /100.0f, 0);
+                Debug.Log(moveDir);
                 RotatePlayer(moveDir);           
-            }
+            /*}
             else
             {
                 currentMovingDirection = MovingDirections.ONLYUP;
-            }
+            }*/
             
         }
     }
