@@ -49,6 +49,15 @@ public class CustomNetwork : NetworkManager
         ServerChangeScene("TowerClimb");
     }
 
+   /* public override void OnClientSceneChanged()
+    {
+        base.OnClientSceneChanged();
+        if (NetworkClient.localPlayer == null)
+        {
+            // add player if existing one is null
+            NetworkClient.AddPlayer();
+        }
+    }*/
     public override void OnServerSceneChanged(string sceneName)
     {
         base.OnServerSceneChanged(sceneName);

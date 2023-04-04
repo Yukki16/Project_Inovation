@@ -7,9 +7,10 @@ using Mirror;
 public class TCMiniGameStateManager : NetworkBehaviour
 {
     public static TCMiniGameStateManager Instance { get; private set; }
+    
     public class GameStateChangedArgs
     {
-        public GameState gameState;
+        [SyncVar] public GameState gameState;
     }
     public event EventHandler<GameStateChangedArgs> GameStateChanged;
     public event EventHandler CountdownStopped;
@@ -22,7 +23,7 @@ public class TCMiniGameStateManager : NetworkBehaviour
         NOT_READY
     }
 
-    private GameState currentGameState;
+    public GameState currentGameState;
 
     private float countdownTimer = 5;
     private float playingTime;
@@ -92,6 +93,8 @@ public class TCMiniGameStateManager : NetworkBehaviour
     {
         return countdownTimer;
     }
+
+    
     public bool GameIsPlaying()
     {
         return currentGameState == GameState.PLAYING;

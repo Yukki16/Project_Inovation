@@ -73,7 +73,7 @@ public class Player : NetworkBehaviour
         if(isLocalPlayer || isClient)
         {
             //Debug.Log("Hello from player input");
-            if (TCMiniGameStateManager.Instance.GameIsPlaying())
+            if (TCMiniGameStateManager.Instance.currentGameState == TCMiniGameStateManager.GameState.PLAYING)
             {
                 HandleMovement(GlidingInput.GyroToUnity(Input.gyro.attitude));
 
@@ -86,6 +86,7 @@ public class Player : NetworkBehaviour
     }
     public void HandleMovement(Quaternion q)
     {
+        Debug.Log("HandleMovement");
         if (isHitByOtherPlayer)
         {
             RotatePlayer(hitByOtherPlayerDir != default ? hitByOtherPlayerDir : Vector3.zero);
@@ -96,6 +97,7 @@ public class Player : NetworkBehaviour
                 hitByOtherPlayerTimer = HITBYOTHERPLAYERTIMERMAX;
                 isFrozen = false;
             }
+            Debug.Log("Hit by other");
         }
         else if (isFrozen)
         {
@@ -105,12 +107,13 @@ public class Player : NetworkBehaviour
                 isFrozen = false;
                 frozenTimer = FROZENTIMERMAX;
             }
+            Debug.Log("frozen");
         }
         else
         {
             AddScore(DEFAULTPOINTSINCREASEAMOUNT * Time.deltaTime);
             MoveUp();
-            Vector2 inputVector = inputController.GetMovementFromInput();
+            //Vector2 inputVector = inputController.GetMovementFromInput();
             //if (inputVector.x != 0)
             //{
                 Vector3 moveDir = new Vector3(0, (Mathf.Clamp(q.eulerAngles.x,0,360) > 180? Mathf.Clamp(q.eulerAngles.x,0,360) : -Mathf.Clamp(q.eulerAngles.x, 0, 360)) /100.0f, 0);
@@ -138,7 +141,8 @@ public class Player : NetworkBehaviour
     private void MoveUp()
     {
         Vector3 moveDir = new Vector3(0, moveSpeedUp, 0);
-        transform.position += moveDir * moveSpeedSide * Time.deltaTime;
+        transform.position = transform.position + moveDir * moveSpeedSide * Time.deltaTime;
+        Debug.Log("I am moving upward");
     }
 
     private void FreezeMovement()
