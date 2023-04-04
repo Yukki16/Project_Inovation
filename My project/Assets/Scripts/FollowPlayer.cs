@@ -21,6 +21,7 @@ public class FollowPlayer : MonoBehaviour
                 this.transform.gameObject.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX |
                                                RigidbodyConstraints.FreezeRotationZ;
                 this.GetComponent<Rigidbody>().useGravity = false;
+                this.transform.position = new Vector3(Mathf.Sin(target.rotation.eulerAngles.y) * 30, target.position.y + 6, target.rotation.eulerAngles.y < 180 ? -Mathf.Cos(target.rotation.eulerAngles.y) * 30 : Mathf.Cos(target.rotation.eulerAngles.y) * 30);
                 this.transform.parent = target;
                 break;
         }

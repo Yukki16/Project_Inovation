@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class TCMiniGameStateManager : MonoBehaviour
+public class TCMiniGameStateManager : NetworkBehaviour
 {
     public static TCMiniGameStateManager Instance { get; private set; }
     public class GameStateChangedArgs
@@ -41,6 +42,11 @@ public class TCMiniGameStateManager : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            currentGameState = GameState.IN_COUNTDOWN;
+            Debug.Log("Started Game");
+        }
         switch (currentGameState)
         {
             case GameState.IN_COUNTDOWN:
@@ -50,6 +56,7 @@ public class TCMiniGameStateManager : MonoBehaviour
                     currentGameState = GameState.PLAYING;
                     GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
                     CountdownStopped?.Invoke(this, EventArgs.Empty);
+                    Debug.Log("Countdown ended");
                 }
                 break;
             case GameState.PLAYING:

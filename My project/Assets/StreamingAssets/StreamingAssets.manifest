@@ -1,0 +1,15 @@
+ManifestFileVersion: 0
+CRC: 819627235
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: glidinggamebundle
+      Dependencies:
+        Dependency_0: materialsdependecies
+    Info_1:
+      Name: towerclimb
+      Dependencies:
+        Dependency_0: materialsdependecies
+    Info_2:
+      Name: materialsdependecies
+      Dependencies: {}

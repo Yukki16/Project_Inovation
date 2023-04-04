@@ -1,0 +1,42 @@
+ManifestFileVersion: 0
+CRC: 1730686389
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8fbb746f5f1de6cfe0c21a26628489b1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: a4eb9950454b498a4c874ec75546f1bd
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 75f922ad3577c68448827f9b40cc78b4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Player.prefab
+Dependencies:
+- C:/Users/bolde/Documents/GitKraken/Project_Inovation/My project/Assets/StreamingAssets/materialsdependecies

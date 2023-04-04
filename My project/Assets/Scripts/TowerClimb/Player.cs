@@ -53,9 +53,16 @@ public class Player : NetworkBehaviour
 
     [SerializeField] private MovingDirections currentMovingDirection;
 
-    private void Awake()
+
+    public bool ready = false;
+
+    private void Start()
     {
         Input.gyro.enabled = true;
+    }
+    private void Awake()
+    {
+        
         hitByOtherPlayerTimer = HITBYOTHERPLAYERTIMERMAX;
         frozenTimer = FROZENTIMERMAX;
         currentMovingDirection = MovingDirections.ONLYUP;
@@ -63,13 +70,20 @@ public class Player : NetworkBehaviour
 
     private void Update()
     {
-        if (TCMiniGameStateManager.Instance.GameIsPlaying()) 
+        if(isLocalPlayer || isClient)
         {
-            HandleMovement(GlidingInput.GyroToUnity(Input.gyro.attitude));
-            //_camera.LockCameraAtPlayer(transform);
-        } 
-    }
+            //Debug.Log("Hello from player input");
+            if (TCMiniGameStateManager.Instance.GameIsPlaying())
+            {
+                HandleMovement(GlidingInput.GyroToUnity(Input.gyro.attitude));
 
+                if (Input.GetKeyDown(KeyCode.P))
+                    ready = true;
+
+                //_camera.LockCameraAtPlayer(transform);
+            }
+        }  
+    }
     public void HandleMovement(Quaternion q)
     {
         if (isHitByOtherPlayer)
