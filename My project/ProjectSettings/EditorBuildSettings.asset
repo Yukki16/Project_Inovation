@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Test.unity
     guid: 86a60a5bc85cc1544bb3fe7d7f3f66f0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GlidingGame.unity
     guid: 1405ddae2d848a64ea5ac67762f7e492
   m_configObjects: {}

@@ -100,7 +100,8 @@ public class GameManager : NetworkBehaviour
     {
         foreach (GameObject player in networkVar.ReturnCurrentPlayers())
         {
-            objectSpawner.SpawnObject(player.transform.position);
+            Debug.Log(player.transform.Find("PlayerBody").transform.position);
+            objectSpawner.SpawnObject(player.transform.Find("PlayerBody").transform.position);
         }
         spawnRate = maxSpawnRate;
     }

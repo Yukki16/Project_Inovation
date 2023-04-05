@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class ObjectSpawner: MonoBehaviour
+public class ObjectSpawner: NetworkBehaviour
 {
     [SerializeField] private GameObject[] fallingObject;
     public void SpawnObject(Vector3 position)
     {
         GameObject objToSpawn = new GameObject("SpawnedFallingItem");
+        objToSpawn.AddComponent<NetworkIdentity>();
         Transform newObject = Instantiate(fallingObject[Random.Range(0,fallingObject.Length)].transform, objToSpawn.transform);
         newObject.localPosition += position + new Vector3(0, 30, 0);
 
@@ -27,6 +29,6 @@ public class ObjectSpawner: MonoBehaviour
             float rotateSpeed = 75;
             objToSpawn.transform.Rotate(moveDir, rotateSpeed);
         }
-        
+        NetworkServer.Spawn(objToSpawn);
     }
 }

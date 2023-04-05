@@ -1732,6 +1732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1781335228772628221}
   - component: {fileID: 9045745526027408846}
+  - component: {fileID: 6823473248692277550}
   m_Layer: 0
   m_Name: Coin_fractured
   m_TagString: Untagged
@@ -1850,7 +1851,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallingObjectSO: {fileID: 11400000, guid: 8d76c86bd34437d4b803710b39ee103a, type: 2}
+  rotationDir: 0
   moveSpeedDown: 1.5
+--- !u!114 &6823473248692277550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437565683902835783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 2233183654
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
 --- !u!1 &1683191195506686520
 GameObject:
   m_ObjectHideFlags: 0

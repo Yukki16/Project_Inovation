@@ -15,10 +15,11 @@ public class DestructableFallingObject : FallingObject
 
     private void OnTriggerEnter(Collider other)
     {
-        Player player = other.GetComponentInParent<Player>();
+        Player player = other.GetComponent<Player>();
         if (player)
         {
-            if (TCMiniGameStateManager.Instance.GameIsPlaying())
+            Debug.Log(TCMiniGameStateManager.Instance.currentGameState == TCMiniGameStateManager.GameState.PLAYING);
+            if (TCMiniGameStateManager.Instance.currentGameState == TCMiniGameStateManager.GameState.PLAYING)
             {
                 player.HitPlayer(gameObject);
             }  

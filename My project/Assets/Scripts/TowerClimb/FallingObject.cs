@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Mirror;
 
-public abstract class FallingObject : MonoBehaviour
+public abstract class FallingObject : NetworkBehaviour
 {
     public enum RotationDirection
     {

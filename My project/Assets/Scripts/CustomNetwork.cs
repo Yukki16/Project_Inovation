@@ -18,6 +18,11 @@ public class CustomNetwork : NetworkManager
     [SerializeField] Transform startPosition_3;
     [SerializeField] Transform startPosition_4;
 
+    [SerializeField] Transform cameraPosition_1;
+    [SerializeField] Transform cameraPosition_2;
+    [SerializeField] Transform cameraPosition_3;
+    [SerializeField] Transform cameraPosition_4;
+
     [Header("Prefabs of the players")]
     [SerializeField] GameObject playerPrefab_1;
     GameObject playerPrefab_2;
@@ -148,6 +153,11 @@ public class CustomNetwork : NetworkManager
             startPosition_2 = GameObject.Find("Spawn2").transform;
             startPosition_3 = GameObject.Find("Spawn3").transform;
             startPosition_4 = GameObject.Find("Spawn4").transform;
+
+            cameraPosition_1 = GameObject.Find("CamSpawn1").transform;
+            cameraPosition_2 = GameObject.Find("CamSpawn2").transform;
+            cameraPosition_3 = GameObject.Find("CamSpawn3").transform;
+            cameraPosition_4 = GameObject.Find("CamSpawn4").transform;
         }
         catch
         {
@@ -221,6 +231,8 @@ public class CustomNetwork : NetworkManager
                 break;
             case 1:
                 camObject = new GameObject();
+                Debug.Log(cameraPosition_1.transform.position);
+                camObject.transform.position = cameraPosition_1.transform.position;
                 camObject.name = "Camera_" + players[0].name;
                 cam = camObject.AddComponent<Camera>();
                 camObject.AddComponent<FollowPlayer>().target = players[0].transform;
@@ -230,6 +242,7 @@ public class CustomNetwork : NetworkManager
                 break;
             case 2:
                 camObject = new GameObject();
+                camObject.transform.position = cameraPosition_2.transform.position;
                 camObject.name = "Camera_" + players[1].name;
                 cam = camObject.AddComponent<Camera>();
                 camObject.AddComponent<FollowPlayer>().target = players[1].transform;
@@ -241,6 +254,7 @@ public class CustomNetwork : NetworkManager
                 break;
             case 3:
                 camObject = new GameObject();
+                camObject.transform.position = cameraPosition_3.transform.position;
                 camObject.name = "Camera_" + players[2].name;
                 cam = camObject.AddComponent<Camera>();
                 camObject.AddComponent<FollowPlayer>().target = players[2].transform;
@@ -256,6 +270,7 @@ public class CustomNetwork : NetworkManager
             case 4:
                 camObject = new GameObject();
                 camObject.name = "Camera_" + players[3].name;
+                camObject.transform.position = cameraPosition_4.transform.position;
                 cam = camObject.AddComponent<Camera>();
                 camObject.AddComponent<FollowPlayer>().target = players[3].transform;
                 cam.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);

@@ -35,6 +35,7 @@ public class Player : NetworkBehaviour
     [SerializeField] private CameraScript _camera;
     [SerializeField] private string nickname;
 
+    private Rigidbody rigidbodyrb;
     private const int ROTATEMOVESPEED = 75;
 
     private const float FROZENTIMERMAX = 2;
@@ -63,10 +64,10 @@ public class Player : NetworkBehaviour
     }
     private void Awake()
     {
-        
         hitByOtherPlayerTimer = HITBYOTHERPLAYERTIMERMAX;
         frozenTimer = FROZENTIMERMAX;
         currentMovingDirection = MovingDirections.ONLYUP;
+        rigidbodyrb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -142,7 +143,7 @@ public class Player : NetworkBehaviour
     private void MoveUp()
     {
         Vector3 moveDir = new Vector3(0, moveSpeedUp, 0);
-        transform.position = transform.position + moveDir * moveSpeedSide * Time.deltaTime;
+        rigidbodyrb.velocity = transform.position + moveDir * moveSpeedSide * Time.deltaTime;
         Debug.Log("I am moving upward");
     }
 
