@@ -89,7 +89,7 @@ MonoBehaviour:
     sRGB: 0
     IsVirtual: 0
     IsAlphaAssignable: 1
-    AlphaChannel: 
+    AlphaChannel: roughness
     InvertAssignedAlpha: 1
     Flags: 0
     MaterialTextureTarget: _MetallicGlossMap
@@ -131,9 +131,13 @@ MonoBehaviour:
   Thumbnail: 
   HasThumbnail: 0
   CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Project_Innovation_TreeBark\" label=\"\"
-    >\n  <presetinput identifier=\"$outputsize\" uid=\"3893592944\" type=\"8\" value=\"10,10\"
-    />\n  <presetinput identifier=\"$randomseed\" uid=\"3210843426\" type=\"4\" value=\"7815\"
+    >\n  <presetinput identifier=\"$outputsize\" uid=\"3893592944\" type=\"8\" value=\"9,9\"
+    />\n  <presetinput identifier=\"$randomseed\" uid=\"3210843426\" type=\"4\" value=\"1408\"
+    />\n  <presetinput identifier=\"Size_Var\" uid=\"2233135034\" type=\"0\" value=\"73.7\"
+    />\n  <presetinput identifier=\"Disorder\" uid=\"2233131539\" type=\"0\" value=\"37.5\"
     />\n  <presetinput identifier=\"Grid_Number\" uid=\"2233127047\" type=\"4\" value=\"3\"
+    />\n  <presetinput identifier=\"Rotation\" uid=\"2233128821\" type=\"0\" value=\"-329\"
+    />\n  <presetinput identifier=\"outputcolor\" uid=\"2233125634\" type=\"0\" value=\"1\"
     />\n </sbspreset>\n"
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
@@ -159,7 +163,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 5
           WidgetType: 0
-        Data: {x: 10, y: 10}
+        Data: {x: 9, y: 9}
         NumericalDescription:
           DefaultValue: {x: 8, y: 8}
           MinValue: {x: 0, y: 0}
@@ -178,7 +182,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 0
-        Data: 7815
+        Data: 1408
         NumericalDescription:
           DefaultValue: 0
           MinValue: 0
@@ -200,7 +204,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: 52.38
+        Data: 73.7
         NumericalDescription:
           DefaultValue: 52.38
           MinValue: 0
@@ -220,7 +224,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: 0
+        Data: 37.5
         NumericalDescription:
           DefaultValue: 0
           MinValue: 0
@@ -262,7 +266,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: -171.43
+        Data: -329
         NumericalDescription:
           DefaultValue: -171.43
           MinValue: -360
@@ -283,7 +287,7 @@ MonoBehaviour:
             output image
           Type: 0
           WidgetType: 3
-        Data: 0.72549
+        Data: 1
         NumericalDescription:
           DefaultValue: 0.72549
           MinValue: 0
