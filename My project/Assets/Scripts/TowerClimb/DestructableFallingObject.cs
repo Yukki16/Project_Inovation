@@ -7,10 +7,12 @@ public class DestructableFallingObject : FallingObject
     public enum ObjectType
     {
         ToAvoid,
-        EarnPoints
+        EarnPoints,
+        SlowDownTopPlayer,
+        Boost
     }
 
-    [SerializeField] private DestructedFallingObject facturedObject;
+    [SerializeField] private DestructedFallingObject fracturedObject;
     [SerializeField] private ObjectType objectType;
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +31,7 @@ public class DestructableFallingObject : FallingObject
     public void Destroy()
     {
         GameObject newObj = new GameObject("Destroyed Falling Item");
-        Transform transformO = Instantiate(facturedObject.GetFallingObjectSO().prefab, newObj.transform);
+        Transform transformO = Instantiate(fracturedObject.GetFallingObjectSO().prefab, newObj.transform);
         transformO.localPosition = transform.position;
         Destroy(gameObject.transform.parent.gameObject);
     }

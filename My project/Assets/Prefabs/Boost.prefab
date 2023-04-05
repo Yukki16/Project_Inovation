@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2529073180996035450}
   - component: {fileID: 6149456831926259792}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Boost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -3846018093981099296, guid: c5a079c120eb2df4fbd5206feb94902a, type: 3}
-  - {fileID: -6478536213147159724, guid: c5a079c120eb2df4fbd5206feb94902a, type: 3}
+  - {fileID: 2100000, guid: 022a3568ba634e347bc456edc4e9ed0a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,12 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6809f745cc7a83746a0ee0d050f5f146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingObjectSO: {fileID: 11400000, guid: 72a521cb0e0ebba408916f676d254ca1, type: 2}
+  fallingObjectSO: {fileID: 11400000, guid: adc132c56a7b0aa4ca0004f4a48a740b, type: 2}
   rotationDir: 1
   moveSpeedDown: 1.5
-  fracturedObject: {fileID: 9045745526027408846, guid: 0a07854dcd73c784ebbd58517358c019,
+  fracturedObject: {fileID: 9045745526027408846, guid: a1e717d79395c0a4fa5f39d6cc94ca85,
     type: 3}
-  objectType: 2
+  objectType: 3
 --- !u!65 &6149456831926259792
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -133,7 +133,7 @@ MonoBehaviour:
   fallingObjectSO: {fileID: 11400000, guid: 03259fed3b6d5304d90111263af72867, type: 2}
   rotationDir: 4
   moveSpeedDown: 1.5
-  facturedObject: {fileID: -8127928293973897218, guid: c6581b8ae7eb1cb48832ecdab37d1e82,
+  fracturedObject: {fileID: -8127928293973897218, guid: c6581b8ae7eb1cb48832ecdab37d1e82,
     type: 3}
   objectType: 0
 --- !u!65 &3092279516231340103

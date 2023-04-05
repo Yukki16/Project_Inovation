@@ -28,17 +28,29 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField] private float moveSpeedSide = 4f;
-    [SerializeField] private float moveSpeedUp = 0.5f;
+    [SerializeField] private const float DEFAULTACCELERATIONSPEED = 25;
+    [SerializeField] private float accelerationSpeed = 25;
+    [SerializeField] private const float MINMOVESPEEDUP = 1f;
+    [SerializeField] private const float MAXMOVESPEEDUP = 3f;
     [SerializeField] private InputController inputController;
     [SerializeField] private GameObject playerBody;
     [SerializeField] private CameraScript _camera;
     [SerializeField] private string nickname;
 
     private const int ROTATEMOVESPEED = 75;
+    private float moveSpeedUp;
 
     private const float FROZENTIMERMAX = 2;
     private float frozenTimer;
     private bool isFrozen;
+
+    private const float BOOSTTIMERMAX = 10;
+    private float boostTimer;
+    private bool isBoosted;
+
+    private const float SLOWEDTIMERMAX = 8;
+    private float slowedTimer;
+    private bool isSlowed;
 
     private const float HITBYOTHERPLAYERTIMERMAX = 1;
     private float hitByOtherPlayerTimer;
@@ -57,6 +69,21 @@ public class Player : MonoBehaviour
         hitByOtherPlayerTimer = HITBYOTHERPLAYERTIMERMAX;
         frozenTimer = FROZENTIMERMAX;
         currentMovingDirection = MovingDirections.ONLYUP;
+        moveSpeedUp = MINMOVESPEEDUP;
+        accelerationSpeed = DEFAULTACCELERATIONSPEED;
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.SlowDownPlayer += Instance_SlowDownPlayer;
+    }
+
+    private void Instance_SlowDownPlayer(object sender, GameManager.SlowDownPlayerArgs e)
+    {
+        if (e.player == this)
+        {
+            SlowDown();
+        }
     }
 
     private void Update()
@@ -68,7 +95,7 @@ public class Player : MonoBehaviour
         } 
     }
 
-    public void HandleMovement()
+    private void HandleMovement()
     {
         if (isHitByOtherPlayer)
         {
@@ -92,31 +119,38 @@ public class Player : MonoBehaviour
         }
         else
         {
-            AddScore(DEFAULTPOINTSINCREASEAMOUNT * Time.deltaTime);
+            //AddScore(DEFAULTPOINTSINCREASEAMOUNT * Time.deltaTime);
             MoveUp();
-            Vector2 inputVector = inputController.GetMovementFromInput();
-            if (inputVector.x != 0)
-            {
-                Vector3 moveDir = new Vector3(0, -inputVector.x, 0);
-                RotatePlayer(moveDir);           
-            }
-            else
-            {
-                currentMovingDirection = MovingDirections.ONLYUP;
-            }
-            
+            AccelerateCurrentSpeed();
+            HandleBoost();
+            HandleSlowedDown();
+            HandleSideMovement();
         }
     }
 
-    private void AddScore(float scoreToAdd)
+    private void HandleSideMovement()
     {
-        score += scoreToAdd;
+        Vector2 inputVector = inputController.GetMovementFromInput();
+        if (inputVector.x != 0)
+        {
+            Vector3 moveDir = new Vector3(0, -inputVector.x, 0);
+            RotatePlayer(moveDir);
+        }
+        else
+        {
+            currentMovingDirection = MovingDirections.ONLYUP;
+        }
     }
 
-    private void DecreaseScore(int pointsToDecrease)
-    {
-        score -= pointsToDecrease;
-    }
+    //private void AddScore(float scoreToAdd)
+    //{
+    //    score += scoreToAdd;
+    //}
+
+    //private void DecreaseScore(int pointsToDecrease)
+    //{
+    //    score -= pointsToDecrease;
+    //}
 
     private void MoveUp()
     {
@@ -127,6 +161,89 @@ public class Player : MonoBehaviour
     private void FreezeMovement()
     {
         isFrozen = true;
+        ResetSpeed();
+    }
+
+    private void ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes updateType, int pointAmount)
+    {
+        PointsUpdated?.Invoke(this, new PointsUpdateArgs
+        {
+            player = this,
+            type = updateType,
+            pointAmount = pointAmount
+        });
+    }
+
+    private void HandleBoost()
+    {
+        if (isBoosted)
+        {
+            boostTimer -= Time.deltaTime;
+            if (boostTimer <= 0)
+            {
+                ResetBoost();
+            }
+        }
+    }
+
+    private void ResetBoost()
+    {
+        isBoosted = false;
+        accelerationSpeed = DEFAULTACCELERATIONSPEED;
+        moveSpeedUp = Mathf.Max(moveSpeedUp - 0.5f, MINMOVESPEEDUP);
+    }
+
+    private void BoostPlayer()
+    {
+        if (!isBoosted && !isSlowed)
+        {
+            accelerationSpeed *= 0.25f;
+            boostTimer = BOOSTTIMERMAX;
+            isBoosted = true;
+        }
+    }
+
+    private void AccelerateCurrentSpeed()
+    {
+        if (!isSlowed)
+        {
+            if (moveSpeedUp <= MAXMOVESPEEDUP)
+            {
+                moveSpeedUp += Time.deltaTime / accelerationSpeed;
+            }
+            else
+            {
+                moveSpeedUp = MAXMOVESPEEDUP;
+            }
+        }
+    }
+
+    private void ResetSpeed()
+    {
+        moveSpeedUp = MINMOVESPEEDUP;
+    }
+
+    private void HandleSlowedDown()
+    {
+        if (isSlowed)
+        {
+            slowedTimer -= Time.deltaTime;
+            if (slowedTimer <= 0)
+            {
+                isSlowed = false;
+            }
+        }
+    }
+
+    private void SlowDown()
+    {
+        isSlowed = true;
+        slowedTimer = SLOWEDTIMERMAX;
+        moveSpeedUp = Mathf.Max(moveSpeedUp - 0.5f, MINMOVESPEEDUP);
+        if (isBoosted)
+        {
+            ResetBoost();
+        }
     }
 
     public void HitPlayer(GameObject gameObject)
@@ -136,13 +253,19 @@ public class Player : MonoBehaviour
             if (fallingItem.GetObjectType() == DestructableFallingObject.ObjectType.ToAvoid)
             {
                 FreezeMovement();
-                DecreaseScore(HITPOINTSDECREASE);
-                ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes.POINTDECREASE, HITPOINTSDECREASE);
+                //DecreaseScore(HITPOINTSDECREASE);
+                //ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes.POINTDECREASE, HITPOINTSDECREASE);
             }
-            else
+            else if (fallingItem.GetObjectType() == DestructableFallingObject.ObjectType.SlowDownTopPlayer)
             {
-                AddScore(HITCOINSPOINTSAMOUNT);
-                ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes.POINTINCREASE, HITCOINSPOINTSAMOUNT);
+                BoostPlayer();
+                GameManager.Instance.SlowDownTopPlayer();
+                //ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes.POINTINCREASE, HITCOINSPOINTSAMOUNT);
+            }
+            else if (fallingItem.GetObjectType() == DestructableFallingObject.ObjectType.Boost)
+            {
+                BoostPlayer();
+                //ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes.POINTINCREASE, HITCOINSPOINTSAMOUNT);
             }
         }
     }
@@ -153,7 +276,7 @@ public class Player : MonoBehaviour
         {
             isHitByOtherPlayer = true;
             FreezeMovement();
-            DecreaseScore(HITPOINTSDECREASE);
+            //DecreaseScore(HITPOINTSDECREASE);
             ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes.POINTDECREASE, HITPOINTSDECREASE);
             hitByOtherPlayerDir = moveDir;
         }
@@ -190,15 +313,5 @@ public class Player : MonoBehaviour
     public bool IsHitByOtherPlayer()
     {
         return isHitByOtherPlayer;
-    }
-
-    private void ExecutePointUpdateEvent(PointsUpdateArgs.UpdateTypes updateType, int pointAmount)
-    {
-        PointsUpdated?.Invoke(this,new PointsUpdateArgs
-        {
-            player = this,
-            type = updateType,
-            pointAmount = pointAmount
-        });
     }
 }

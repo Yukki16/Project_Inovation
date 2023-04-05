@@ -18,7 +18,7 @@ public class GameStoppedUI : MonoBehaviour
     {
         if (e.gameState == TCMiniGameStateManager.GameState.STOPPED)
         {
-            text.text = GameManager.Instance.GetNicknameOfHightestHightPlayer();
+            text.text = GameManager.Instance.GetHightestHeightPlayer().GetNickname();
             ShowGameOver();
         }
         else
