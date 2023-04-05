@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &424562080550442079
+--- !u!1 &802662605018214797
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3927794122524945313}
-  - component: {fileID: 1249094136523884490}
-  - component: {fileID: 3102416062151352319}
+  - component: {fileID: 1337123337271258896}
+  - component: {fileID: 8612817209009693320}
+  - component: {fileID: 4588762173004002374}
   m_Layer: 0
-  m_Name: SM_Trees_Wuyin_01_Bark_LOD1
+  m_Name: SM_Trees_Wuyin_03_Bark_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3927794122524945313
+--- !u!4 &1337123337271258896
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424562080550442079}
+  m_GameObject: {fileID: 802662605018214797}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5202463342855387386}
-  m_RootOrder: 1
+  m_Father: {fileID: 5922869175216054934}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1249094136523884490
+--- !u!33 &8612817209009693320
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424562080550442079}
-  m_Mesh: {fileID: 8040206704193366826, guid: 0139cabeda59bf243bf2c7d918df84d6, type: 3}
---- !u!23 &3102416062151352319
+  m_GameObject: {fileID: 802662605018214797}
+  m_Mesh: {fileID: -1596560298126867508, guid: e98013e30d941f64b8f4807d5015b65a, type: 3}
+--- !u!23 &4588762173004002374
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424562080550442079}
+  m_GameObject: {fileID: 802662605018214797}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -83,7 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &3409456150027384644
+--- !u!1 &1111546983494932154
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,46 +91,129 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7490500084460810746}
-  - component: {fileID: 4792512386323318550}
-  - component: {fileID: 3295517595167624121}
+  - component: {fileID: 5494785652233806560}
+  - component: {fileID: 2506798381511191751}
+  - component: {fileID: 2618351382544857095}
   m_Layer: 0
-  m_Name: SM_Trees_Wuyin_01_leaves_LOD1
+  m_Name: SM_Trees_Wuyin_03_Bark_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7490500084460810746
+--- !u!4 &5494785652233806560
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3409456150027384644}
+  m_GameObject: {fileID: 1111546983494932154}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5202463342855387386}
+  m_Father: {fileID: 5922869175216054934}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2506798381511191751
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111546983494932154}
+  m_Mesh: {fileID: 419688039187548779, guid: e98013e30d941f64b8f4807d5015b65a, type: 3}
+--- !u!23 &2618351382544857095
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111546983494932154}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: ba4d5c8c8e4ca8c49a324f423622a271, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1179207110013544857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2202194554626704158}
+  - component: {fileID: 8730710076994814617}
+  - component: {fileID: 575280109479429457}
+  m_Layer: 0
+  m_Name: SM_Trees_Wuyin_03_Leaves_LOD1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2202194554626704158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179207110013544857}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5922869175216054934}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4792512386323318550
+--- !u!33 &8730710076994814617
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3409456150027384644}
-  m_Mesh: {fileID: -5008642761479728452, guid: 0139cabeda59bf243bf2c7d918df84d6, type: 3}
---- !u!23 &3295517595167624121
+  m_GameObject: {fileID: 1179207110013544857}
+  m_Mesh: {fileID: -3862831264488807423, guid: e98013e30d941f64b8f4807d5015b65a, type: 3}
+--- !u!23 &575280109479429457
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3409456150027384644}
+  m_GameObject: {fileID: 1179207110013544857}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -144,7 +227,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1ce49e59cd4db6d4f937d9ffa8868d1d, type: 2}
+  - {fileID: 2100000, guid: 06377e7d479374042a7e850461bca621, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -166,7 +249,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &3487966172647961810
+--- !u!1 &5326115391670976064
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,46 +257,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8078096294664297159}
-  - component: {fileID: 7708753672822475546}
-  - component: {fileID: 7787778051130544885}
+  - component: {fileID: 3584726672089356010}
+  - component: {fileID: 3621100947360820695}
+  - component: {fileID: 6877571526053657282}
   m_Layer: 0
-  m_Name: SM_Trees_Wuyin_01_leaves_LOD2
+  m_Name: SM_Trees_Wuyin_03_Leaves_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8078096294664297159
+--- !u!4 &3584726672089356010
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3487966172647961810}
+  m_GameObject: {fileID: 5326115391670976064}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5202463342855387386}
+  m_Father: {fileID: 5922869175216054934}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7708753672822475546
+--- !u!33 &3621100947360820695
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3487966172647961810}
-  m_Mesh: {fileID: -3484017110768964284, guid: 0139cabeda59bf243bf2c7d918df84d6, type: 3}
---- !u!23 &7787778051130544885
+  m_GameObject: {fileID: 5326115391670976064}
+  m_Mesh: {fileID: 1083576795344112882, guid: e98013e30d941f64b8f4807d5015b65a, type: 3}
+--- !u!23 &6877571526053657282
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3487966172647961810}
+  m_GameObject: {fileID: 5326115391670976064}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -227,7 +310,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1ce49e59cd4db6d4f937d9ffa8868d1d, type: 2}
+  - {fileID: 2100000, guid: 06377e7d479374042a7e850461bca621, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -249,7 +332,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4861930965772182080
+--- !u!1 &6447345483587090476
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,48 +340,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5202463342855387386}
-  - component: {fileID: 1038294608102838155}
-  - component: {fileID: 5744453087500672787}
+  - component: {fileID: 5922869175216054934}
+  - component: {fileID: 1470528130120914407}
   m_Layer: 0
-  m_Name: SM_Trees_Wuyin_01
+  m_Name: SM_Trees_Wuyin_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5202463342855387386
+--- !u!4 &5922869175216054934
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861930965772182080}
+  m_GameObject: {fileID: 6447345483587090476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 164.35294, y: -0.0000076293945, z: -88.22419}
+  m_LocalPosition: {x: -35.037933, y: 123.415825, z: 6.667014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6044622008309818314}
-  - {fileID: 3927794122524945313}
-  - {fileID: 6803187517168076573}
-  - {fileID: 5539650884455981900}
-  - {fileID: 7490500084460810746}
-  - {fileID: 8078096294664297159}
-  - {fileID: 5242367675435729479}
+  - {fileID: 4038520868043025232}
+  - {fileID: 5494785652233806560}
+  - {fileID: 1337123337271258896}
+  - {fileID: 1361644260740510946}
+  - {fileID: 2202194554626704158}
+  - {fileID: 3584726672089356010}
+  - {fileID: 3366068669495627597}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &1038294608102838155
+--- !u!205 &1470528130120914407
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861930965772182080}
+  m_GameObject: {fileID: 6447345483587090476}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: -1.4366302, y: 6.7222157, z: -2.5252767}
-  m_Size: 17.405128
+  m_LocalReferencePoint: {x: 0.75270844, y: 4.602107, z: 0.93451023}
+  m_Size: 9.204214
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
@@ -306,34 +388,20 @@ LODGroup:
   - screenRelativeHeight: 0.25
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 6925959155917418048}
-    - renderer: {fileID: 221394190646864909}
+    - renderer: {fileID: 3117770788646090500}
+    - renderer: {fileID: 5115825539836193035}
   - screenRelativeHeight: 0.125
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 3102416062151352319}
-    - renderer: {fileID: 3295517595167624121}
-  - screenRelativeHeight: 0.01
+    - renderer: {fileID: 575280109479429457}
+    - renderer: {fileID: 2618351382544857095}
+  - screenRelativeHeight: 0.0163943
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 2379852061602550018}
-    - renderer: {fileID: 7787778051130544885}
+    - renderer: {fileID: 6877571526053657282}
+    - renderer: {fileID: 4588762173004002374}
   m_Enabled: 1
---- !u!64 &5744453087500672787
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861930965772182080}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!1 &5893244724053086069
+--- !u!1 &7492876292268565482
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,46 +409,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6044622008309818314}
-  - component: {fileID: 5436333600015209602}
-  - component: {fileID: 6925959155917418048}
+  - component: {fileID: 4038520868043025232}
+  - component: {fileID: 4194199200225852706}
+  - component: {fileID: 5115825539836193035}
   m_Layer: 0
-  m_Name: SM_Trees_Wuyin_01_Bark_LOD0
+  m_Name: SM_Trees_Wuyin_03_Bark_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6044622008309818314
+--- !u!4 &4038520868043025232
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893244724053086069}
+  m_GameObject: {fileID: 7492876292268565482}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5202463342855387386}
+  m_Father: {fileID: 5922869175216054934}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5436333600015209602
+--- !u!33 &4194199200225852706
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893244724053086069}
-  m_Mesh: {fileID: 4686411501066958483, guid: 0139cabeda59bf243bf2c7d918df84d6, type: 3}
---- !u!23 &6925959155917418048
+  m_GameObject: {fileID: 7492876292268565482}
+  m_Mesh: {fileID: -5654977100304489102, guid: e98013e30d941f64b8f4807d5015b65a, type: 3}
+--- !u!23 &5115825539836193035
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893244724053086069}
+  m_GameObject: {fileID: 7492876292268565482}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -416,7 +484,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &8370016955869224540
+--- !u!1 &8698137882261110801
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -424,46 +492,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5539650884455981900}
-  - component: {fileID: 201853078331070058}
-  - component: {fileID: 221394190646864909}
+  - component: {fileID: 1361644260740510946}
+  - component: {fileID: 9074165883601815170}
+  - component: {fileID: 3117770788646090500}
   m_Layer: 0
-  m_Name: SM_Trees_Wuyin_01_leaves_LOD0
+  m_Name: SM_Trees_Wuyin_03_Leaves_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5539650884455981900
+--- !u!4 &1361644260740510946
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8370016955869224540}
+  m_GameObject: {fileID: 8698137882261110801}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5202463342855387386}
+  m_Father: {fileID: 5922869175216054934}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &201853078331070058
+--- !u!33 &9074165883601815170
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8370016955869224540}
-  m_Mesh: {fileID: 4245534279732535425, guid: 0139cabeda59bf243bf2c7d918df84d6, type: 3}
---- !u!23 &221394190646864909
+  m_GameObject: {fileID: 8698137882261110801}
+  m_Mesh: {fileID: 560290392463382254, guid: e98013e30d941f64b8f4807d5015b65a, type: 3}
+--- !u!23 &3117770788646090500
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8370016955869224540}
+  m_GameObject: {fileID: 8698137882261110801}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -477,7 +545,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1ce49e59cd4db6d4f937d9ffa8868d1d, type: 2}
+  - {fileID: 2100000, guid: 06377e7d479374042a7e850461bca621, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -499,105 +567,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &8448065478762211206
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6803187517168076573}
-  - component: {fileID: 8004263185763673923}
-  - component: {fileID: 2379852061602550018}
-  m_Layer: 0
-  m_Name: SM_Trees_Wuyin_01_Bark_LOD2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6803187517168076573
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8448065478762211206}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5202463342855387386}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8004263185763673923
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8448065478762211206}
-  m_Mesh: {fileID: -4968240447682084597, guid: 0139cabeda59bf243bf2c7d918df84d6, type: 3}
---- !u!23 &2379852061602550018
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8448065478762211206}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ba4d5c8c8e4ca8c49a324f423622a271, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &1692952606911730821
+--- !u!1001 &8144935108789803407
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5202463342855387386}
+    m_TransformParent: {fileID: 5922869175216054934}
     m_Modifications:
     - target: {fileID: 2282474442279089443, guid: ad5026f49d3abf643915cffaa13c001d,
         type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282474442279089443, guid: ad5026f49d3abf643915cffaa13c001d,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 30.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282474442279089443, guid: ad5026f49d3abf643915cffaa13c001d,
+        type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 0.23
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 2282474442279089443, guid: ad5026f49d3abf643915cffaa13c001d,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5906984325786071159, guid: ad5026f49d3abf643915cffaa13c001d,
         type: 3}
@@ -612,17 +607,17 @@ PrefabInstance:
     - target: {fileID: 6899007535242401474, guid: ad5026f49d3abf643915cffaa13c001d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6899007535242401474, guid: ad5026f49d3abf643915cffaa13c001d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.05
+      value: 6.76
       objectReference: {fileID: 0}
     - target: {fileID: 6899007535242401474, guid: ad5026f49d3abf643915cffaa13c001d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.03
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: 6899007535242401474, guid: ad5026f49d3abf643915cffaa13c001d,
         type: 3}
@@ -661,9 +656,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad5026f49d3abf643915cffaa13c001d, type: 3}
---- !u!4 &5242367675435729479 stripped
+--- !u!4 &3366068669495627597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6899007535242401474, guid: ad5026f49d3abf643915cffaa13c001d,
     type: 3}
-  m_PrefabInstance: {fileID: 1692952606911730821}
+  m_PrefabInstance: {fileID: 8144935108789803407}
   m_PrefabAsset: {fileID: 0}

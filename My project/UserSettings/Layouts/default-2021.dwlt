@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -226,7 +226,7 @@ MonoBehaviour:
   - {fileID: 17}
   - {fileID: 18}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 5
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -407,25 +407,25 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 16710000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 1cfbffff
+      m_ExpandedIDs: 0cc0feff6c26ffffaef9ffffb0f9ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: SM_Trees_Wuyin_03_LOD1
+        m_OriginalName: SM_Trees_Wuyin_03_LOD1
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -81780
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 4
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 9}
+        m_ClientGUIView: {fileID: 8}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -725,9 +725,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -34.073418, y: 126.19692, z: 12.9605055}
+    m_Target: {x: -31.592201, y: 129.09052, z: 4.4850254}
     speed: 2
-    m_Value: {x: -34.073418, y: 126.19692, z: 12.9605055}
+    m_Value: {x: -31.592201, y: 129.09052, z: 4.4850254}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -774,13 +774,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.03256644, y: 0.9535863, z: -0.112124644, w: 0.27808338}
+    m_Target: {x: 0.040590573, y: -0.8259107, z: -0.060468998, w: -0.5590907}
     speed: 2
-    m_Value: {x: 0.032144845, y: 0.9536153, z: -0.11067804, w: 0.2780916}
+    m_Value: {x: 0.040680926, y: -0.82506496, z: -0.06040759, w: -0.56032467}
   m_Size:
-    m_Target: 8.634115
+    m_Target: 7.9633894
     speed: 2
-    m_Value: 8.634115
+    m_Value: 7.9633894
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -854,7 +854,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 290.4
+    x: 289.6
     y: 73.6
     width: 880.4
     height: 503
@@ -1224,7 +1224,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 290.4
+    x: 289.6
     y: 73.6
     width: 880.4
     height: 503
@@ -1479,7 +1479,7 @@ MonoBehaviour:
     true,\n    \"m_PreviewMode\": 0,\n    \"m_CustomColors\": {\n        \"m_SerializableColors\":
     []\n    },\n    \"m_Property\": {\n        \"m_Id\": \"e412e6dbe5bf4edfbd6bfde006189428\"\n   
     }\n}\n\n"
-  m_AssetMaybeChangedOnDisk: 0
+  m_AssetMaybeChangedOnDisk: 1
   m_AssetMaybeDeleted: 0
 --- !u!114 &18
 MonoBehaviour:
@@ -1676,6 +1676,16 @@ MonoBehaviour:
     2\n            },\n            \"m_InputSlot\": {\n                \"m_Node\":
     {\n                    \"m_Id\": \"38d9bfb46ebd4edfa573c26a36701118\"\n               
     },\n                \"m_SlotId\": 1\n            }\n        },\n        {\n           
+    \"m_OutputSlot\": {\n                \"m_Node\": {\n                    \"m_Id\":
+    \"3e9607d2e5ba4f4c8679dab8db552475\"\n                },\n                \"m_SlotId\":
+    2\n            },\n            \"m_InputSlot\": {\n                \"m_Node\":
+    {\n                    \"m_Id\": \"4fc0c9baa541441cb042af3ea8f38db9\"\n               
+    },\n                \"m_SlotId\": 0\n            }\n        },\n        {\n           
+    \"m_OutputSlot\": {\n                \"m_Node\": {\n                    \"m_Id\":
+    \"3e9607d2e5ba4f4c8679dab8db552475\"\n                },\n                \"m_SlotId\":
+    2\n            },\n            \"m_InputSlot\": {\n                \"m_Node\":
+    {\n                    \"m_Id\": \"9d679935e8db4a049cc5770f1f0620ef\"\n               
+    },\n                \"m_SlotId\": 0\n            }\n        },\n        {\n           
     \"m_OutputSlot\": {\n                \"m_Node\": {\n                    \"m_Id\":
     \"3e9607d2e5ba4f4c8679dab8db552475\"\n                },\n                \"m_SlotId\":
     2\n            },\n            \"m_InputSlot\": {\n                \"m_Node\":
@@ -2954,22 +2964,22 @@ MonoBehaviour:
     \"\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_UseCustomSlotLabel\":
     false,\n    \"m_CustomSlotLabel\": \"\",\n    \"m_Precision\": 0,\n    \"overrideHLSLDeclaration\":
     false,\n    \"hlslDeclarationOverride\": 0,\n    \"m_Hidden\": false,\n    \"m_Value\":
-    0.0,\n    \"m_FloatType\": 0,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n       
-    \"y\": 1.0\n    }\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.DynamicVectorMaterialSlot\",\n   
-    \"m_ObjectId\": \"7bf1d9ba680c4511a1b1caf30ce65f46\",\n    \"m_Id\": 0,\n   
-    \"m_DisplayName\": \"In\",\n    \"m_SlotType\": 0,\n    \"m_Hidden\": false,\n   
-    \"m_ShaderOutputName\": \"In\",\n    \"m_StageCapability\": 3,\n    \"m_Value\":
+    0.10000000149011612,\n    \"m_FloatType\": 0,\n    \"m_RangeValues\": {\n       
+    \"x\": 0.0,\n        \"y\": 1.0\n    }\n}\n\n{\n    \"m_SGVersion\": 0,\n   
+    \"m_Type\": \"UnityEditor.ShaderGraph.DynamicVectorMaterialSlot\",\n    \"m_ObjectId\":
+    \"7bf1d9ba680c4511a1b1caf30ce65f46\",\n    \"m_Id\": 0,\n    \"m_DisplayName\":
+    \"In\",\n    \"m_SlotType\": 0,\n    \"m_Hidden\": false,\n    \"m_ShaderOutputName\":
+    \"In\",\n    \"m_StageCapability\": 3,\n    \"m_Value\": {\n        \"x\": 0.0,\n       
+    \"y\": 0.0,\n        \"z\": 0.0,\n        \"w\": 0.0\n    },\n    \"m_DefaultValue\":
     {\n        \"x\": 0.0,\n        \"y\": 0.0,\n        \"z\": 0.0,\n        \"w\":
-    0.0\n    },\n    \"m_DefaultValue\": {\n        \"x\": 0.0,\n        \"y\": 0.0,\n       
-    \"z\": 0.0,\n        \"w\": 0.0\n    }\n}\n\n{\n    \"m_SGVersion\": 0,\n   
-    \"m_Type\": \"UnityEditor.ShaderGraph.PropertyNode\",\n    \"m_ObjectId\": \"7ca2e142a63b46a094a07e09e5fa0dcf\",\n   
-    \"m_Group\": {\n        \"m_Id\": \"\"\n    },\n    \"m_Name\": \"Property\",\n   
-    \"m_DrawState\": {\n        \"m_Expanded\": true,\n        \"m_Position\": {\n           
-    \"serializedVersion\": \"2\",\n            \"x\": -282.39996337890627,\n           
-    \"y\": 434.3999938964844,\n            \"width\": 122.4000244140625,\n           
-    \"height\": 33.5999755859375\n        }\n    },\n    \"m_Slots\": [\n       
-    {\n            \"m_Id\": \"89e89e7c284c471291fbdfe962d998a3\"\n        }\n   
-    ],\n    \"synonyms\": [],\n    \"m_Precision\": 0,\n    \"m_PreviewExpanded\":
+    0.0\n    }\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.PropertyNode\",\n   
+    \"m_ObjectId\": \"7ca2e142a63b46a094a07e09e5fa0dcf\",\n    \"m_Group\": {\n       
+    \"m_Id\": \"\"\n    },\n    \"m_Name\": \"Property\",\n    \"m_DrawState\": {\n       
+    \"m_Expanded\": true,\n        \"m_Position\": {\n            \"serializedVersion\":
+    \"2\",\n            \"x\": -282.39996337890627,\n            \"y\": 434.3999938964844,\n           
+    \"width\": 122.4000244140625,\n            \"height\": 33.5999755859375\n       
+    }\n    },\n    \"m_Slots\": [\n        {\n            \"m_Id\": \"89e89e7c284c471291fbdfe962d998a3\"\n       
+    }\n    ],\n    \"synonyms\": [],\n    \"m_Precision\": 0,\n    \"m_PreviewExpanded\":
     true,\n    \"m_PreviewMode\": 0,\n    \"m_CustomColors\": {\n        \"m_SerializableColors\":
     []\n    },\n    \"m_Property\": {\n        \"m_Id\": \"3ef4c88786b84069bcf5f5b83c6f321d\"\n   
     }\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.Vector4MaterialSlot\",\n   
@@ -4088,22 +4098,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_02
+    - Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_03
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_02
+  - Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_03
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\scott\Documents\GitHub\Project_Inovation\My project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 259}
-    m_SelectedIDs: cc710000
-    m_LastClickedID: 29132
-    m_ExpandedIDs: 00000000b8710000ba710000bc710000be710000c0710000c2710000c4710000c6710000c8710000ca710000cc71000000ca9a3b
+    scrollPos: {x: 0, y: 358.2}
+    m_SelectedIDs: 78770000
+    m_LastClickedID: 30584
+    m_ExpandedIDs: 00000000787500007a7500007c7500007e75000080750000827500008475000086750000887500008a7500008c750000787700007c77000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -4131,7 +4141,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b8710000ba710000bc710000be710000c0710000c2710000c4710000c6710000c8710000ca710000cc710000
+    m_ExpandedIDs: 00000000787500007a7500007c7500007e75000080750000827500008475000086750000887500008a7500008c750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -4159,7 +4169,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000
+    m_ExpandedInstanceIDs: c62300009c780000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

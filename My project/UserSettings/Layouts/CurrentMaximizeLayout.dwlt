@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 8314
+  controlID: 8198
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -46,8 +46,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 290.6
-    y: 19
+    x: 289.6
+    y: 73.6
     width: 880.4
     height: 503
   m_ViewDataDictionary: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 8315
+  controlID: 8172
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 8316
+  controlID: 8173
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -228,9 +228,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 567b0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 38efffff50efffff
+      m_ExpandedIDs: 9402ffff2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -246,7 +246,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 7}
+        m_ClientGUIView: {fileID: 5}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -506,7 +506,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 24.8}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -577,9 +577,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -28.178747, y: 134.65236, z: 14.398452}
+    m_Target: {x: -36.35227, y: 131.80495, z: 17.49483}
     speed: 2
-    m_Value: {x: -28.178747, y: 134.65236, z: 14.398452}
+    m_Value: {x: -36.35227, y: 131.80495, z: 17.49483}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -626,20 +626,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.015293373, y: 0.872306, z: -0.0275468, w: 0.488211}
+    m_Target: {x: -0.06907694, y: 0.81803733, z: 0.10103103, w: 0.56203485}
     speed: 2
-    m_Value: {x: 0.015208683, y: 0.87365294, z: -0.027588965, w: 0.48552868}
+    m_Value: {x: -0.06907531, y: 0.818018, z: 0.10102864, w: 0.56202155}
   m_Size:
-    m_Target: 6.4092245
+    m_Target: 9.41595
     speed: 2
-    m_Value: 6.4092245
+    m_Value: 9.41595
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 0.6009026
-    m_SpeedNormalized: 0.10000044
+    m_Speed: 2.5805728
+    m_SpeedNormalized: 0.43000045
     m_SpeedMin: 0.001
     m_SpeedMax: 6
     m_EasingEnabled: 1
@@ -706,7 +706,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 290.4
+    x: 289.6
     y: 73.6
     width: 880.4
     height: 503
@@ -1076,7 +1076,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 290.4
+    x: 289.6
     y: 73.6
     width: 880.4
     height: 503
@@ -1331,7 +1331,7 @@ MonoBehaviour:
     true,\n    \"m_PreviewMode\": 0,\n    \"m_CustomColors\": {\n        \"m_SerializableColors\":
     []\n    },\n    \"m_Property\": {\n        \"m_Id\": \"e412e6dbe5bf4edfbd6bfde006189428\"\n   
     }\n}\n\n"
-  m_AssetMaybeChangedOnDisk: 0
+  m_AssetMaybeChangedOnDisk: 1
   m_AssetMaybeDeleted: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -1528,6 +1528,16 @@ MonoBehaviour:
     2\n            },\n            \"m_InputSlot\": {\n                \"m_Node\":
     {\n                    \"m_Id\": \"38d9bfb46ebd4edfa573c26a36701118\"\n               
     },\n                \"m_SlotId\": 1\n            }\n        },\n        {\n           
+    \"m_OutputSlot\": {\n                \"m_Node\": {\n                    \"m_Id\":
+    \"3e9607d2e5ba4f4c8679dab8db552475\"\n                },\n                \"m_SlotId\":
+    2\n            },\n            \"m_InputSlot\": {\n                \"m_Node\":
+    {\n                    \"m_Id\": \"4fc0c9baa541441cb042af3ea8f38db9\"\n               
+    },\n                \"m_SlotId\": 0\n            }\n        },\n        {\n           
+    \"m_OutputSlot\": {\n                \"m_Node\": {\n                    \"m_Id\":
+    \"3e9607d2e5ba4f4c8679dab8db552475\"\n                },\n                \"m_SlotId\":
+    2\n            },\n            \"m_InputSlot\": {\n                \"m_Node\":
+    {\n                    \"m_Id\": \"9d679935e8db4a049cc5770f1f0620ef\"\n               
+    },\n                \"m_SlotId\": 0\n            }\n        },\n        {\n           
     \"m_OutputSlot\": {\n                \"m_Node\": {\n                    \"m_Id\":
     \"3e9607d2e5ba4f4c8679dab8db552475\"\n                },\n                \"m_SlotId\":
     2\n            },\n            \"m_InputSlot\": {\n                \"m_Node\":
@@ -2806,22 +2816,22 @@ MonoBehaviour:
     \"\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_UseCustomSlotLabel\":
     false,\n    \"m_CustomSlotLabel\": \"\",\n    \"m_Precision\": 0,\n    \"overrideHLSLDeclaration\":
     false,\n    \"hlslDeclarationOverride\": 0,\n    \"m_Hidden\": false,\n    \"m_Value\":
-    0.0,\n    \"m_FloatType\": 0,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n       
-    \"y\": 1.0\n    }\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.DynamicVectorMaterialSlot\",\n   
-    \"m_ObjectId\": \"7bf1d9ba680c4511a1b1caf30ce65f46\",\n    \"m_Id\": 0,\n   
-    \"m_DisplayName\": \"In\",\n    \"m_SlotType\": 0,\n    \"m_Hidden\": false,\n   
-    \"m_ShaderOutputName\": \"In\",\n    \"m_StageCapability\": 3,\n    \"m_Value\":
+    0.10000000149011612,\n    \"m_FloatType\": 0,\n    \"m_RangeValues\": {\n       
+    \"x\": 0.0,\n        \"y\": 1.0\n    }\n}\n\n{\n    \"m_SGVersion\": 0,\n   
+    \"m_Type\": \"UnityEditor.ShaderGraph.DynamicVectorMaterialSlot\",\n    \"m_ObjectId\":
+    \"7bf1d9ba680c4511a1b1caf30ce65f46\",\n    \"m_Id\": 0,\n    \"m_DisplayName\":
+    \"In\",\n    \"m_SlotType\": 0,\n    \"m_Hidden\": false,\n    \"m_ShaderOutputName\":
+    \"In\",\n    \"m_StageCapability\": 3,\n    \"m_Value\": {\n        \"x\": 0.0,\n       
+    \"y\": 0.0,\n        \"z\": 0.0,\n        \"w\": 0.0\n    },\n    \"m_DefaultValue\":
     {\n        \"x\": 0.0,\n        \"y\": 0.0,\n        \"z\": 0.0,\n        \"w\":
-    0.0\n    },\n    \"m_DefaultValue\": {\n        \"x\": 0.0,\n        \"y\": 0.0,\n       
-    \"z\": 0.0,\n        \"w\": 0.0\n    }\n}\n\n{\n    \"m_SGVersion\": 0,\n   
-    \"m_Type\": \"UnityEditor.ShaderGraph.PropertyNode\",\n    \"m_ObjectId\": \"7ca2e142a63b46a094a07e09e5fa0dcf\",\n   
-    \"m_Group\": {\n        \"m_Id\": \"\"\n    },\n    \"m_Name\": \"Property\",\n   
-    \"m_DrawState\": {\n        \"m_Expanded\": true,\n        \"m_Position\": {\n           
-    \"serializedVersion\": \"2\",\n            \"x\": -282.39996337890627,\n           
-    \"y\": 434.3999938964844,\n            \"width\": 122.4000244140625,\n           
-    \"height\": 33.5999755859375\n        }\n    },\n    \"m_Slots\": [\n       
-    {\n            \"m_Id\": \"89e89e7c284c471291fbdfe962d998a3\"\n        }\n   
-    ],\n    \"synonyms\": [],\n    \"m_Precision\": 0,\n    \"m_PreviewExpanded\":
+    0.0\n    }\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.PropertyNode\",\n   
+    \"m_ObjectId\": \"7ca2e142a63b46a094a07e09e5fa0dcf\",\n    \"m_Group\": {\n       
+    \"m_Id\": \"\"\n    },\n    \"m_Name\": \"Property\",\n    \"m_DrawState\": {\n       
+    \"m_Expanded\": true,\n        \"m_Position\": {\n            \"serializedVersion\":
+    \"2\",\n            \"x\": -282.39996337890627,\n            \"y\": 434.3999938964844,\n           
+    \"width\": 122.4000244140625,\n            \"height\": 33.5999755859375\n       
+    }\n    },\n    \"m_Slots\": [\n        {\n            \"m_Id\": \"89e89e7c284c471291fbdfe962d998a3\"\n       
+    }\n    ],\n    \"synonyms\": [],\n    \"m_Precision\": 0,\n    \"m_PreviewExpanded\":
     true,\n    \"m_PreviewMode\": 0,\n    \"m_CustomColors\": {\n        \"m_SerializableColors\":
     []\n    },\n    \"m_Property\": {\n        \"m_Id\": \"3ef4c88786b84069bcf5f5b83c6f321d\"\n   
     }\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.Vector4MaterialSlot\",\n   
@@ -3917,8 +3927,8 @@ MonoBehaviour:
     y: 524
     width: 1172
     height: 206.79999
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -3967,22 +3977,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_01/Materials
+    - Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_01
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_01/Materials
+  - Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_01
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\scott\Documents\GitHub\Project_Inovation\My project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 214.20001}
-    m_SelectedIDs: 74810000
-    m_LastClickedID: 33140
-    m_ExpandedIDs: 000000003e81000040810000428100004481000046810000488100006281000074810000768100007881000000ca9a3b
+    scrollPos: {x: 0, y: 222.20001}
+    m_SelectedIDs: 0c720000
+    m_LastClickedID: 29196
+    m_ExpandedIDs: 00000000fc710000fe71000000720000027200000472000006720000087200000a7200000c7200000e720000107200002a72000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -3998,7 +4008,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 13}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -4010,7 +4020,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003e81000040810000428100004481000046810000488100006281000074810000768100007881000000ca9a3b
+    m_ExpandedIDs: 00000000fc710000fe71000000720000027200000472000006720000087200000a7200000c7200000e720000107200002a72000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -4035,10 +4045,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 567b0000
-    m_LastClickedInstanceID: 31574
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000
+    m_ExpandedInstanceIDs: c62300009c780000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -4114,8 +4124,8 @@ MonoBehaviour:
     y: 0
     width: 364
     height: 730.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
