@@ -59,6 +59,7 @@ public class Player : NetworkBehaviour
     private void Start()
     {
         Input.gyro.enabled = true;
+        
     }
     private void Awake()
     {
@@ -75,7 +76,7 @@ public class Player : NetworkBehaviour
             //Debug.Log("Hello from player input");
             if (TCMiniGameStateManager.Instance.currentGameState == TCMiniGameStateManager.GameState.PLAYING)
             {
-                HandleMovement(GlidingInput.GyroToUnity(Input.gyro.attitude));
+                HandleMovement(GlidingInput.GyroToUnity(Input.gyro.attitude * new Quaternion(0, 0, 1, 0)));
 
                 if (Input.GetKeyDown(KeyCode.P))
                     ready = true;

@@ -34,10 +34,10 @@ public class GameManager : NetworkBehaviour
     public float GetLowestHeightOfAllPlayers()
     {
         float lowestHeight = networkVar.ReturnCurrentPlayers()[0].gameObject.transform.position.y;
-        foreach (Transform player in players)
+        foreach (GameObject player in networkVar.ReturnCurrentPlayers())
         {
-            if (player.position.y <= lowestHeight) { 
-                lowestHeight = player.position.y;
+            if (player.transform.position.y <= lowestHeight) { 
+                lowestHeight = player.transform.position.y;
             }
         }
         return lowestHeight;
@@ -46,11 +46,11 @@ public class GameManager : NetworkBehaviour
     public float GetHighestHeightOfAllPlayers()
     {
         float highestHeight = networkVar.ReturnCurrentPlayers()[0].gameObject.transform.position.y;
-        foreach (Transform player in players)
+        foreach (GameObject player in networkVar.ReturnCurrentPlayers())
         {
-            if (player.position.y >= highestHeight)
+            if (player.transform.position.y >= highestHeight)
             {
-                highestHeight = player.position.y;
+                highestHeight = player.transform.position.y;
             }
         }
         return highestHeight;
@@ -58,13 +58,14 @@ public class GameManager : NetworkBehaviour
 
     public string GetNicknameOfHightestHightPlayer()
     {
+        
         float highestHeight = networkVar.ReturnCurrentPlayers()[0].gameObject.transform.position.y;
         string playerNicknameWithHighestHeight = networkVar.ReturnCurrentPlayers()[0].gameObject.transform.GetComponentInParent<Player>().GetNickname();
-        foreach (Transform player in players)
+        foreach (GameObject player in networkVar.ReturnCurrentPlayers())
         {
-            if (player.position.y >= highestHeight)
+            if (player.transform.position.y >= highestHeight)
             {
-                highestHeight = player.position.y;
+                highestHeight = player.transform.position.y;
                 playerNicknameWithHighestHeight = player.GetComponentInParent<Player>().GetNickname();
             }
         }
@@ -97,9 +98,9 @@ public class GameManager : NetworkBehaviour
 
     private void SpawnFallingItems()
     {
-        foreach (Transform player in players)
+        foreach (GameObject player in networkVar.ReturnCurrentPlayers())
         {
-            objectSpawner.SpawnObject(player.position);
+            objectSpawner.SpawnObject(player.transform.position);
         }
         spawnRate = maxSpawnRate;
     }
@@ -126,7 +127,7 @@ public class GameManager : NetworkBehaviour
     public Dictionary<string,int> GetScoreboard()
     {
         Dictionary<string, int> scoreboardResults = new Dictionary<string,int>();
-        foreach (Transform player in players)
+        foreach (GameObject player in networkVar.ReturnCurrentPlayers())
         {
             Player currentPlayer = player.GetComponentInParent<Player>();
             scoreboardResults.Add(currentPlayer.GetNickname(), currentPlayer.GetScore());

@@ -23,7 +23,7 @@ public class TCMiniGameStateManager : NetworkBehaviour
         NOT_READY
     }
 
-    public GameState currentGameState;
+    [SyncVar] public GameState currentGameState;
 
     private float countdownTimer = 5;
     private float playingTime;
@@ -62,6 +62,7 @@ public class TCMiniGameStateManager : NetworkBehaviour
                 break;
             case GameState.PLAYING:
                 playingTime -= Time.deltaTime;
+                //Debug.Log("I am currently playing");
                 if (playingTime <= 0)
                 {
                     EndGame();
