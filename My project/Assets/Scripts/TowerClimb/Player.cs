@@ -36,7 +36,7 @@ public class Player : NetworkBehaviour
     [SerializeField] private string nickname;
 
     private Rigidbody rigidbodyrb;
-    private const int ROTATEMOVESPEED = 75;
+    private const int ROTATEMOVESPEED = 1;
 
     private const float FROZENTIMERMAX = 2;
     private float frozenTimer;
@@ -70,7 +70,7 @@ public class Player : NetworkBehaviour
         rigidbodyrb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(isLocalPlayer || isClient)
         {
@@ -114,13 +114,16 @@ public class Player : NetworkBehaviour
         else
         {
             AddScore(DEFAULTPOINTSINCREASEAMOUNT * Time.deltaTime);
-            MoveUp();
             //Vector2 inputVector = inputController.GetMovementFromInput();
             //if (inputVector.x != 0)
             //{
-                Vector3 moveDir = new Vector3(0, (Mathf.Clamp(q.eulerAngles.x,0,360) > 180? Mathf.Clamp(q.eulerAngles.x,0,360) : -Mathf.Clamp(q.eulerAngles.x, 0, 360)) /100.0f, 0);
-                Debug.Log(moveDir);
-                RotatePlayer(moveDir);           
+            //Vector3 moveDir = new Vector3(0, (Mathf.Clamp(q.eulerAngles.x,0,360) > 180? Mathf.Clamp(q.eulerAngles.x,0,360) : -Mathf.Clamp(q.eulerAngles.x, 0, 360)) /100.0f, 0);
+            Vector3 moveDir = new Vector3(0, 1, 0);
+            MoveUp();
+            RotatePlayer(moveDir);           
+
+
+            //Debug.Log(moveDir);
             /*}
             else
             {
@@ -143,7 +146,7 @@ public class Player : NetworkBehaviour
     private void MoveUp()
     {
         Vector3 moveDir = new Vector3(0, moveSpeedUp, 0);
-        rigidbodyrb.velocity = transform.position + moveDir * moveSpeedSide * Time.deltaTime;
+        rigidbodyrb.velocity = moveDir * moveSpeedSide;
         Debug.Log("I am moving upward");
     }
 
@@ -207,7 +210,8 @@ public class Player : NetworkBehaviour
         {
             currentMovingDirection = MovingDirections.LEFT;
         }
-        transform.Rotate(moveDir, rotateSpeed * Time.deltaTime);
+        Debug.Log(moveDir * rotateSpeed);
+        rigidbodyrb.angularVelocity = (moveDir * rotateSpeed);
     }
 
     public bool IsHitByOtherPlayer()

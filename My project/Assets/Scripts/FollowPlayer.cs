@@ -18,9 +18,9 @@ public class FollowPlayer : MonoBehaviour
                 this.GetComponent<Rigidbody>().useGravity = false;
                 break;
             case "TowerClimb":
-                this.transform.gameObject.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX |
-                                               RigidbodyConstraints.FreezeRotationZ;
-                this.GetComponent<Rigidbody>().useGravity = false;
+                //this.transform.gameObject.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX |
+                                           //    RigidbodyConstraints.FreezeRotationZ;
+               // this.GetComponent<Rigidbody>().useGravity = false;
                 //this.transform.position = new Vector3(Mathf.Cos(target.rotation.eulerAngles.y) * 30, target.position.y + 6, Mathf.Sin(target.rotation.eulerAngles.y) * 30);
                 this.transform.parent = target;
                 
@@ -66,7 +66,9 @@ public class FollowPlayer : MonoBehaviour
     {
         if (target != null)
         {
-            this.GetComponent<Rigidbody>().MovePosition(target.transform.position);
+            //this.GetComponent<Rigidbody>().MovePosition(target.transform.position);
+            //transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z);
+            //transform.LookAt(target);
         }
         else
         {
