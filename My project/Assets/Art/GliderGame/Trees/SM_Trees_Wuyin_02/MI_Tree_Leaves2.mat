@@ -123,7 +123,9 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Emit_Intensity: 0
     - _EnvironmentReflections: 1
+    - _Float: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -138,7 +140,7 @@ Material:
     - _Smoothness: 0.3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.05
+    - _Speed: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _WindScale: 1
@@ -150,6 +152,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorVar: {r: 0.83066016, g: 0.9245283, b: 0.08198643, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Emit: {r: 1, g: 1, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4447104971155667620
