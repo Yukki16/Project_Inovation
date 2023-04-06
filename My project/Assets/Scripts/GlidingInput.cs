@@ -7,7 +7,7 @@ using System;
 public class GlidingInput : MonoBehaviour
 {
     Rigidbody rg;
-    Quaternion offset;
+    public Quaternion offset = Quaternion.identity;
     private void Start()
     {
         Input.gyro.enabled = true;
@@ -21,13 +21,28 @@ public class GlidingInput : MonoBehaviour
     }
     private void ModifyRotation(Quaternion qInput)
     {
+        if (Input.GetMouseButtonDown(0) )
+        {
+            offset = GyroToUnity( qInput);
+            
+        }
+
         
             if(Input.GetKeyDown(KeyCode.A))
             {
                 transform.position += Vector3.forward;
             }
-            Quaternion q = offset * GyroToUnity(qInput);
-            transform.eulerAngles = new Vector3(q.eulerAngles.x, -q.eulerAngles.y, 0);
+
+        var q  = GyroToUnity(qInput);
+        
+        q.w = -q.w; // conjugate (inverse)
+
+
+        transform.rotation = q * offset;
+
+
+            //Quaternion q = offset * GyroToUnity(qInput);
+            //transform.eulerAngles = new Vector3(q.eulerAngles.y, -q.eulerAngles.x, 0);
         
     }
 
