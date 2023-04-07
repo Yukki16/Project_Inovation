@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class DestructableFallingObject : FallingObject
@@ -30,10 +31,11 @@ public class DestructableFallingObject : FallingObject
 
     public void Destroy()
     {
-        GameObject newObj = new GameObject("Destroyed Falling Item");
-        Transform transformO = Instantiate(fracturedObject.GetFallingObjectSO().prefab, newObj.transform);
+        Transform transformO = Instantiate(fracturedObject.GetFallingObjectSO().prefab, transform.position,transform.rotation);
         transformO.localPosition = transform.position;
-        Destroy(gameObject);
+        NetworkObject netObj = transformO.GetComponent<NetworkObject>();
+        netObj.Spawn(true);
+        gameObject.GetComponent<NetworkObject>().Despawn();
     }
 
     public ObjectType GetObjectType()

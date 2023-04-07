@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerCollision : MonoBehaviour
+public class PlayerCollision : NetworkBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         Player thisPlayer = GetComponentInParent<Player>();
         if (thisPlayer)
         {
             if (!thisPlayer.IsHitByOtherPlayer())
             {
-                Player otherPlayer = other.GetComponentInParent<Player>();
+                Player otherPlayer = other.gameObject.GetComponentInParent<Player>();
                 if (otherPlayer)
                 {
                     if (thisPlayer.GetCurrentMovingDirection() == Player.MovingDirections.LEFT)

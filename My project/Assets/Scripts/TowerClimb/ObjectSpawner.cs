@@ -39,6 +39,7 @@ public class ObjectSpawner: NetworkBehaviour
 
         NetworkObject newObjectNetworkObject = newObject.GetComponent<NetworkObject>();
         newObjectNetworkObject.Spawn(true);
+        Destroy(objToSpawn);
     }
 
     
@@ -67,5 +68,6 @@ public class ObjectSpawner: NetworkBehaviour
 
         NetworkObject newObjectNetworkObject = newObject.GetComponent<NetworkObject>();
         newObjectNetworkObject.Spawn(true);
+        Destroy(objToSpawn);
     }
 }
