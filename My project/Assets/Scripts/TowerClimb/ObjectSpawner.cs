@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class ObjectSpawner: MonoBehaviour
+public class ObjectSpawner: NetworkBehaviour
 {
     [SerializeField] private GameObject[] fallingObject;
     [SerializeField] private GameObject[] powerUpObject;
+
+    public static ObjectSpawner Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void SpawnObject(Vector3 position)
     {
         GameObject objToSpawn = new GameObject("SpawnedFallingItem");
@@ -28,6 +36,9 @@ public class ObjectSpawner: MonoBehaviour
             float rotateSpeed = Random.Range(60, 75);
             objToSpawn.transform.Rotate(moveDir, rotateSpeed);
         }
+
+        NetworkObject newObjectNetworkObject = newObject.GetComponent<NetworkObject>();
+        newObjectNetworkObject.Spawn(true);
     }
 
     
@@ -53,5 +64,8 @@ public class ObjectSpawner: MonoBehaviour
             float rotateSpeed = 75;
             objToSpawn.transform.Rotate(moveDir, rotateSpeed);
         }
+
+        NetworkObject newObjectNetworkObject = newObject.GetComponent<NetworkObject>();
+        newObjectNetworkObject.Spawn(true);
     }
 }

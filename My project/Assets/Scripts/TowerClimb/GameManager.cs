@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public class SlowDownPlayerArgs
     {
@@ -13,7 +14,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private List<Transform> players;
-    [SerializeField] private ObjectSpawner objectSpawner;
     [SerializeField] private Transform cameraPrefab;
 
     private const float MAXGAMELENGTH = 900;
@@ -106,13 +106,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (TCMiniGameStateManager.Instance.GameIsPlaying())
+        if (IsHost)
         {
-            HandleSpawningOfItems();
-            HandlePowerUps();
-            if (GetHighestHeightOfAllPlayers() >= GetMaxGameLength())
+            if (TCMiniGameStateManager.Instance.GameIsPlaying())
             {
-                TCMiniGameStateManager.Instance.EndGame();
+                HandleSpawningOfItems();
+                HandlePowerUps();
+                if (GetHighestHeightOfAllPlayers() >= GetMaxGameLength())
+                {
+                    TCMiniGameStateManager.Instance.EndGame();
+                }
             }
         }
     }
@@ -121,14 +124,14 @@ public class GameManager : MonoBehaviour
     {
         foreach (Transform player in players)
         {
-            objectSpawner.SpawnObject(player.position);
+            ObjectSpawner.Instance.SpawnObject(player.position);
         }
         spawnRate = maxSpawnRate;
     }
 
     private void SpawnPowerUps(Transform player)
     {
-        objectSpawner.SpawnPowerUpItem(player.position);
+        ObjectSpawner.Instance.SpawnPowerUpItem(player.position);
         powerUpTimer = MAXPOWERUPTIMER;
     }
 
@@ -195,9 +198,9 @@ public class GameManager : MonoBehaviour
             players.Add(playerBody);
         }
         
-        Transform spawnedCamera = Instantiate(cameraPrefab, transform.position, transform.rotation);
-        spawnedCamera.transform.Rotate(0, 90 * (players.Count - 1), 0);
-        player.ModifyCamera(spawnedCamera.gameObject);
+        //Transform spawnedCamera = Instantiate(cameraPrefab, transform.position, transform.rotation);
+        //spawnedCamera.transform.Rotate(0, 90 * (players.Count - 1), 0);
+        //player.ModifyCamera(spawnedCamera.gameObject);
         return 90 * (players.Count - 1);
     }
 }

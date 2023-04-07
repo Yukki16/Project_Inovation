@@ -33,7 +33,7 @@ public class DestructableFallingObject : FallingObject
         GameObject newObj = new GameObject("Destroyed Falling Item");
         Transform transformO = Instantiate(fracturedObject.GetFallingObjectSO().prefab, newObj.transform);
         transformO.localPosition = transform.position;
-        Destroy(gameObject.transform.parent.gameObject);
+        Destroy(gameObject);
     }
 
     public ObjectType GetObjectType()

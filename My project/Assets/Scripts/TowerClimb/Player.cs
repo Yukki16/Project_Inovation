@@ -62,7 +62,7 @@ public class Player : NetworkBehaviour
     private const int HITPOINTSDECREASE = 5;
     private const int HITCOINSPOINTSAMOUNT = 20;
 
-    private CameraScript _camera;
+    //private CameraScript _camera;
 
     [SerializeField] private MovingDirections currentMovingDirection;
 
@@ -91,15 +91,21 @@ public class Player : NetworkBehaviour
 
     private void Update()
     {
+        if (!IsLocalPlayer)
+        {
+            this.gameObject.GetComponentInChildren<Camera>().enabled = false;
+        }
+
         if (!IsOwner)
         {
             return;
         }
+        
 
         if (TCMiniGameStateManager.Instance.GameIsPlaying()) 
         {
             HandleMovement();
-            _camera.LockCameraAtPlayer(transform);
+            //_camera.LockCameraAtPlayer(transform);
         } 
     }
 
@@ -323,9 +329,9 @@ public class Player : NetworkBehaviour
         return isHitByOtherPlayer;
     }
 
-    public void ModifyCamera(GameObject camera)
-    {
-        _camera = camera.GetComponent<CameraScript>();
-        Debug.Log("Camera was modified");
-    }
+    //public void ModifyCamera(GameObject camera)
+    //{
+    //    _camera = camera.GetComponent<CameraScript>();
+    //    Debug.Log("Camera was modified");
+    //}
 }

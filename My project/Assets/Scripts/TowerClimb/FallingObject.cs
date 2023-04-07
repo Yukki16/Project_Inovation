@@ -48,7 +48,13 @@ public abstract class FallingObject : NetworkBehaviour
 
     protected void DestroyCurrentFallingObject()
     {
-        Destroy(gameObject.transform.parent.gameObject);
+        DestroyCurrentFallingObjectServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    protected void DestroyCurrentFallingObjectServerRpc()
+    {
+        Destroy(gameObject);
     }
 
     private void RotateFallingObject() 
