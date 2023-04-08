@@ -35,6 +35,15 @@ public partial class @InputKeys : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""55bcac4f-3b8b-411d-919a-ce90ebdc1661"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -70,6 +79,17 @@ public partial class @InputKeys : IInputActionCollection2, IDisposable
                     ""action"": ""TowerClimbMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b5d40bf-e2b9-4000-bfdb-bc874681cffe"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -79,6 +99,7 @@ public partial class @InputKeys : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_TowerClimbMovement = m_Player.FindAction("TowerClimbMovement", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,11 +160,13 @@ public partial class @InputKeys : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_TowerClimbMovement;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @InputKeys m_Wrapper;
         public PlayerActions(@InputKeys wrapper) { m_Wrapper = wrapper; }
         public InputAction @TowerClimbMovement => m_Wrapper.m_Player_TowerClimbMovement;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -156,6 +179,9 @@ public partial class @InputKeys : IInputActionCollection2, IDisposable
                 @TowerClimbMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTowerClimbMovement;
                 @TowerClimbMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTowerClimbMovement;
                 @TowerClimbMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTowerClimbMovement;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -163,6 +189,9 @@ public partial class @InputKeys : IInputActionCollection2, IDisposable
                 @TowerClimbMovement.started += instance.OnTowerClimbMovement;
                 @TowerClimbMovement.performed += instance.OnTowerClimbMovement;
                 @TowerClimbMovement.canceled += instance.OnTowerClimbMovement;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -170,5 +199,6 @@ public partial class @InputKeys : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnTowerClimbMovement(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

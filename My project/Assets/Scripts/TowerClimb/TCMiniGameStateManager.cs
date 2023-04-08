@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class TCMiniGameStateManager : MonoBehaviour
+public class TCMiniGameStateManager : NetworkBehaviour
 {
     public static TCMiniGameStateManager Instance { get; private set; }
     public class GameStateChangedArgs
@@ -11,93 +12,146 @@ public class TCMiniGameStateManager : MonoBehaviour
         public GameState gameState;
     }
     public event EventHandler<GameStateChangedArgs> GameStateChanged;
-    public event EventHandler CountdownStopped;
+    public event EventHandler OnLocalPlayerReadyEvent;
     public enum GameState
     {
+        WAITING,
         IN_COUNTDOWN,
         PLAYING,
         STOPPED,
         SHOWING_SCORE
     }
 
-    private GameState currentGameState;
+    private NetworkVariable<GameState> currentGameState = new NetworkVariable<GameState>(GameState.WAITING);
 
-    private float countdownTimer = 5;
-    private float playingTime;
-    private float stoppedWaitTime = 5;
-    private float showingScoreWaitTime = 20;
+    private NetworkVariable<float> countdownTimer = new NetworkVariable<float>(5);
+    private NetworkVariable<float> playingTime = new NetworkVariable<float>(120);
+    private NetworkVariable<float> stoppedWaitTime = new NetworkVariable<float>(5);
+    private NetworkVariable<float> showingScoreWaitTime = new NetworkVariable<float>(20);
+    private bool isLocalPlayerReady;
+    private Dictionary<ulong, bool> playerReadyDictionary;
 
     private void Awake()
     {
         Instance = this;
-        currentGameState = GameState.IN_COUNTDOWN;
+        playerReadyDictionary = new Dictionary<ulong, bool>();
     }
 
     private void Start()
     {
-        playingTime = GameManager.Instance ? GameManager.Instance.GetMaxGameTime() : 60;
+        InputController.Instance.OnIsReady += Instance_IsReadyEvent;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        currentGameState.OnValueChanged += CurrentGameState_OnValueChanged;
+    }
+
+    private void CurrentGameState_OnValueChanged(GameState previousValue, GameState newValue)
+    {
+        GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState.Value });
+    }
+
+    private void Instance_IsReadyEvent(object sender, EventArgs e)
+    {
+        if (GameIsWaiting())
+        {
+            isLocalPlayerReady = true;
+            OnLocalPlayerReadyEvent?.Invoke(this, EventArgs.Empty);
+            SetPlayerReadyServerRpc();
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetPlayerReadyServerRpc(ServerRpcParams serverRpcParams = default)
+    {
+        playerReadyDictionary[serverRpcParams.Receive.SenderClientId] = true;
+        bool allClientsReady = true;
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            if (!playerReadyDictionary.ContainsKey(clientId) || !playerReadyDictionary[clientId])
+            {
+                allClientsReady = false;
+                break;
+            }
+        }
+
+        if (allClientsReady)
+        {
+            currentGameState.Value = GameState.IN_COUNTDOWN;
+        }
     }
 
     void Update()
     {
-        switch (currentGameState)
+        if (!IsServer)
+        {
+            return;
+        }
+        switch (currentGameState.Value)
         {
             case GameState.IN_COUNTDOWN:
-                countdownTimer -= Time.deltaTime;
-                if (countdownTimer <= 0)
+                countdownTimer.Value -= Time.deltaTime;
+                if (countdownTimer.Value <= 0)
                 {
-                    currentGameState = GameState.PLAYING;
-                    GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
-                    CountdownStopped?.Invoke(this, EventArgs.Empty);
+                    currentGameState.Value = GameState.PLAYING;
                 }
                 break;
             case GameState.PLAYING:
-                playingTime -= Time.deltaTime;
-                if (playingTime <= 0)
+                playingTime.Value -= Time.deltaTime;
+                if (playingTime.Value <= 0)
                 {
                     EndGame();
                 }
                 break;
             case GameState.STOPPED:
-                stoppedWaitTime -= Time.deltaTime;
-                if (stoppedWaitTime <= 0)
+                stoppedWaitTime.Value -= Time.deltaTime;
+                if (stoppedWaitTime.Value <= 0)
                 {
-                    currentGameState = GameState.SHOWING_SCORE; 
-                    GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
+                    currentGameState.Value = GameState.SHOWING_SCORE; 
                 }
                 break;
             case GameState.SHOWING_SCORE:
-                showingScoreWaitTime -= Time.deltaTime;
-                if (showingScoreWaitTime <= 0)
+                showingScoreWaitTime.Value -= Time.deltaTime;
+                if (showingScoreWaitTime.Value <= 0)
                 {
                     //TODO
                 }
                 break;
         }
     }
-    
+
+    public bool GameIsWaiting()
+    {
+        return currentGameState.Value == GameState.WAITING;
+    }
+
     public bool GameIsInCountdown()
     {
-        return currentGameState == GameState.IN_COUNTDOWN;
+        return currentGameState.Value == GameState.IN_COUNTDOWN;
     }
     public float GetCountdown()
     {
-        return countdownTimer;
+        return countdownTimer.Value;
     }
     public bool GameIsPlaying()
     {
-        return currentGameState == GameState.PLAYING;
+        return currentGameState.Value == GameState.PLAYING;
     }
     public bool GameIsFinished()
     {
-        return currentGameState == GameState.STOPPED;
+        return currentGameState.Value == GameState.STOPPED;
     }
     public void EndGame()
     {
         if (GameIsPlaying())
         {
-            currentGameState = GameState.STOPPED;
-            GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
+            currentGameState.Value = GameState.STOPPED;
         }
+    }
+
+    public bool IsLocalPlayerReady()
+    {
+        return isLocalPlayerReady;
     }
 }

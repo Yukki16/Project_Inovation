@@ -8,14 +8,22 @@ public class CountdownUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
 
-    private void Awake()
-    {
-        ShowCountdown();
-    }
-
     private void Start()
     {
-        TCMiniGameStateManager.Instance.CountdownStopped += Instance_CountdownStopped;
+        HideCountdown();
+        TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
+    }
+
+    private void Instance_GameStateChanged(object sender, TCMiniGameStateManager.GameStateChangedArgs e)
+    {
+        if (e.gameState != TCMiniGameStateManager.GameState.IN_COUNTDOWN)
+        {
+            HideCountdown();
+        }
+        else
+        {
+            ShowCountdown();
+        }
     }
 
     private void Update()
@@ -24,11 +32,6 @@ public class CountdownUI : MonoBehaviour
         {
             text.text = Mathf.Ceil(TCMiniGameStateManager.Instance.GetCountdown()).ToString();
         }
-    }
-
-    private void Instance_CountdownStopped(object sender, System.EventArgs e)
-    {
-        HideCountdown();
     }
 
     private void ShowCountdown()

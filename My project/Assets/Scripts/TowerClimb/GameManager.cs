@@ -17,7 +17,6 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private Transform cameraPrefab;
 
     private const float MAXGAMELENGTH = 900;
-    private const float MAXGAMETIME = 120;
     private const float DIFFERENCEHEIGHTFORPOWERUP = 5;
 
     //Spawn
@@ -97,11 +96,6 @@ public class GameManager : NetworkBehaviour
     public float GetMaxGameLength()
     {
         return MAXGAMELENGTH;
-    }
-
-    public float GetMaxGameTime()
-    {
-        return MAXGAMETIME;
     }
 
     private void Update()
