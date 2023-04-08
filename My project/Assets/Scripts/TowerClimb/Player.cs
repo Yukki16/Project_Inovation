@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : NetworkBehaviour
@@ -20,6 +21,7 @@ public class Player : NetworkBehaviour
     }
 
     public event EventHandler<PointsUpdateArgs> PointsUpdated;
+    public static event EventHandler OnPlayerJoin;
 
     public enum MovingDirections
     {
@@ -77,8 +79,15 @@ public class Player : NetworkBehaviour
 
     private void Start()
     {
-        GameManager.Instance.SlowDownPlayer += Instance_SlowDownPlayer;
-        transform.Rotate(0,GameManager.Instance.AddPlayer(playerBody.transform, this),0);
+        GameManager.Instance.SlowDownPlayer += Instance_SlowDownPlayer; 
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        GameManager.Instance.AddPlayer(playerBody.transform);
+        transform.Rotate(0, 90 * (NetworkManager.Singleton.ConnectedClientsIds.Count - 1), 0);
+        OnPlayerJoin?.Invoke(this, EventArgs.Empty);
     }
 
     private void Instance_SlowDownPlayer(object sender, GameManager.SlowDownPlayerArgs e)

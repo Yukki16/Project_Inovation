@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using static TCMiniGameStateManager;
 
 public class GameManager : NetworkBehaviour
 {
@@ -100,7 +101,7 @@ public class GameManager : NetworkBehaviour
 
     private void Update()
     {
-        if (IsHost)
+        if (IsServer)
         {
             if (TCMiniGameStateManager.Instance.GameIsPlaying())
             {
@@ -185,16 +186,11 @@ public class GameManager : NetworkBehaviour
     /// <param name="playerBody"></param>
     /// <param name="player"></param>
     /// <returns>Amount of degrees the player should spawn at.</returns>
-    public int AddPlayer(Transform playerBody, Player player)
+    public void AddPlayer(Transform playerBody)
     {
         if (!players.Contains(playerBody))
         {
             players.Add(playerBody);
         }
-        
-        //Transform spawnedCamera = Instantiate(cameraPrefab, transform.position, transform.rotation);
-        //spawnedCamera.transform.Rotate(0, 90 * (players.Count - 1), 0);
-        //player.ModifyCamera(spawnedCamera.gameObject);
-        return 90 * (players.Count - 1);
     }
 }

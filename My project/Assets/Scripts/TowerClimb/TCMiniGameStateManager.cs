@@ -76,7 +76,7 @@ public class TCMiniGameStateManager : NetworkBehaviour
             }
         }
 
-        if (allClientsReady)
+        if (allClientsReady && NetworkManager.Singleton.ConnectedClientsIds.Count >= 2)
         {
             currentGameState.Value = GameState.IN_COUNTDOWN;
         }
