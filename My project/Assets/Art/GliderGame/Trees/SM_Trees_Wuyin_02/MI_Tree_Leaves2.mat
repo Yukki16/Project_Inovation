@@ -111,7 +111,7 @@ Material:
     - _AlphaClip: 0.1
     - _BUILTIN_QueueControl: -1
     - _BUILTIN_QueueOffset: 0
-    - _BillboardSize: 1.2
+    - _BillboardSize: 1.98
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -129,7 +129,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Inflate: 0.15
+    - _Inflate: -0.24
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -144,7 +144,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _WindScale: 1
-    - _WindStrength: 1
+    - _WindStrength: 0.5
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
