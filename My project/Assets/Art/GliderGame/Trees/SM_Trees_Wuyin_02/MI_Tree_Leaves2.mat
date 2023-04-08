@@ -150,7 +150,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorVar: {r: 0.83066016, g: 0.9245283, b: 0.08198643, a: 1}
+    - _ColorVar: {r: 0.8509831, g: 0.9528302, b: 0.04045032, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emit: {r: 1, g: 1, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
