@@ -15,7 +15,7 @@ public class PhoneScreenUI : NetworkBehaviour
 
     private void Instance_GameStateChanged(object sender, TCMiniGameStateManager.GameStateChangedArgs e)
     {
-        if (e.gameState == TCMiniGameStateManager.GameState.PLAYING)
+        if (e.gameState == TCMiniGameStateManager.GameState.IN_COUNTDOWN || e.gameState == TCMiniGameStateManager.GameState.PLAYING)
         {     
             if (!canNotBeShown)
             {

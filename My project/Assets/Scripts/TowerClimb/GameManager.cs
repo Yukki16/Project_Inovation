@@ -14,7 +14,7 @@ public class GameManager : NetworkBehaviour
     public event EventHandler<SlowDownPlayerArgs> SlowDownPlayer;
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private List<Transform> players;
+    private List<Transform> players;
     [SerializeField] private Transform cameraPrefab;
 
     private const float MAXGAMELENGTH = 900;
@@ -41,6 +41,7 @@ public class GameManager : NetworkBehaviour
 
     public float GetLowestHeightOfAllPlayers()
     {
+        GetAndUpdatePlayers();
         float lowestHeight = players[0].position.y;
         foreach (Transform player in players)
         {
@@ -53,6 +54,7 @@ public class GameManager : NetworkBehaviour
 
     public Transform GetLowestPlayer()
     {
+        GetAndUpdatePlayers();
         float lowestHeight = players[0].position.y;
         Transform lowestHeightPlayer = players[0];
         foreach (Transform player in players)
@@ -68,6 +70,7 @@ public class GameManager : NetworkBehaviour
 
     public float GetHighestHeightOfAllPlayers()
     {
+        GetAndUpdatePlayers();
         float highestHeight = players[0].position.y;
         foreach (Transform player in players)
         {
@@ -81,6 +84,7 @@ public class GameManager : NetworkBehaviour
 
     public Player GetHightestHeightPlayer()
     {
+        GetAndUpdatePlayers();
         float highestHeight = players[0].position.y;
         Player playerWithHighestHeight = players[0].GetComponentInParent<Player>();
         foreach (Transform player in players)
@@ -117,6 +121,7 @@ public class GameManager : NetworkBehaviour
 
     private void SpawnFallingItems()
     {
+        GetAndUpdatePlayers();
         foreach (Transform player in players)
         {
             ObjectSpawner.Instance.SpawnObject(player.position);
@@ -163,6 +168,7 @@ public class GameManager : NetworkBehaviour
 
     public Dictionary<string,int> GetScoreboard()
     {
+        GetAndUpdatePlayers();
         Dictionary<string, int> scoreboardResults = new Dictionary<string,int>();
         foreach (Transform player in players)
         {
@@ -180,17 +186,16 @@ public class GameManager : NetworkBehaviour
         });
     }
 
-    /// <summary>
-    /// Adds a player to the player list.
-    /// </summary>
-    /// <param name="playerBody"></param>
-    /// <param name="player"></param>
-    /// <returns>Amount of degrees the player should spawn at.</returns>
-    public void AddPlayer(Transform playerBody)
+    public void GetAndUpdatePlayers()
     {
-        if (!players.Contains(playerBody))
+        if (IsServer)
         {
-            players.Add(playerBody);
+            List<Transform> newPlayerList = new List<Transform>();
+            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+            {
+                newPlayerList.Add(client.PlayerObject.GetComponent<Player>().GetPlayerBody());
+            }
+            players = newPlayerList;
         }
     }
 }

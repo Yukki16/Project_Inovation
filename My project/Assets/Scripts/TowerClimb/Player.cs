@@ -22,6 +22,11 @@ public class Player : NetworkBehaviour
 
     public event EventHandler<PointsUpdateArgs> PointsUpdated;
     public static event EventHandler OnPlayerJoin;
+    public class OnPlayerLeaveArgs
+    {
+        public ulong clientId;
+    }
+    public static event EventHandler<OnPlayerLeaveArgs> OnPlayerLeave;
 
     public enum MovingDirections
     {
@@ -79,15 +84,33 @@ public class Player : NetworkBehaviour
 
     private void Start()
     {
-        GameManager.Instance.SlowDownPlayer += Instance_SlowDownPlayer; 
+        GameManager.Instance.SlowDownPlayer += Instance_SlowDownPlayer;
     }
 
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        GameManager.Instance.AddPlayer(playerBody.transform);
-        transform.Rotate(0, 90 * (NetworkManager.Singleton.ConnectedClientsIds.Count - 1), 0);
+        List<float> rotationPossibilties = new List<float> { 0, 90, 180, 270 };
+        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+        {
+            if (client.PlayerObject.GetComponent<Player>() != this)
+            {
+                rotationPossibilties.Remove(client.PlayerObject.GetComponent<Player>().transform.rotation.eulerAngles.y);
+            }       
+        }
+        transform.Rotate(0, rotationPossibilties[0], 0);
         OnPlayerJoin?.Invoke(this, EventArgs.Empty);
+
+        if (IsServer)
+        {
+            NetworkManager.Singleton.OnClientDisconnectCallback += Singleton_OnClientDisconnectCallback;
+        }
+        
+    }
+
+    private void Singleton_OnClientDisconnectCallback(ulong clientId)
+    {
+       OnPlayerLeave?.Invoke(this, new OnPlayerLeaveArgs { clientId = clientId} );
     }
 
     private void Instance_SlowDownPlayer(object sender, GameManager.SlowDownPlayerArgs e)
@@ -114,7 +137,6 @@ public class Player : NetworkBehaviour
         if (TCMiniGameStateManager.Instance.GameIsPlaying()) 
         {
             HandleMovement();
-            //_camera.LockCameraAtPlayer(transform);
         } 
     }
 
@@ -338,9 +360,8 @@ public class Player : NetworkBehaviour
         return isHitByOtherPlayer;
     }
 
-    //public void ModifyCamera(GameObject camera)
-    //{
-    //    _camera = camera.GetComponent<CameraScript>();
-    //    Debug.Log("Camera was modified");
-    //}
+    public Transform GetPlayerBody()
+    {
+        return playerBody.transform;
+    }
 }

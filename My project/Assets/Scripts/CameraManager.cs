@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -14,52 +15,70 @@ public class CameraManager : NetworkBehaviour
     private void Start()
     {
         Player.OnPlayerJoin += Player_OnPlayerJoin;
+        Player.OnPlayerLeave += Player_OnPlayerLeave;
+    }
+
+    private void Player_OnPlayerLeave(object sender, Player.OnPlayerLeaveArgs e)
+    {
+        UpdateScreenView(NetworkManager.Singleton.ConnectedClientsIds.Count - 1, e.clientId);
+
     }
 
     private void Player_OnPlayerJoin(object sender, System.EventArgs e)
     {
+        UpdateScreenView(NetworkManager.Singleton.ConnectedClientsIds.Count);
+    }
+
+    public void UpdateScreenView(int amountOfPlayersConnected, ulong disconnectedClient = default)
+    {
         if (IsServer)
         {
-            int amountOfPlayersConnected = NetworkManager.Singleton.ConnectedClientsIds.Count;
+            DeleteExistingScreens(amountOfPlayersConnected);
             if (amountOfPlayersConnected >= 2)
             {
                 switch (amountOfPlayersConnected)
                 {
                     case 2:
-                        Destroy(defaultCamera.gameObject);
-
-                        GameObject twoPlScreen = Instantiate(twoPlayerScreen,transform.position,transform.rotation);      
-                        for (int i = 1; i >= 0; i--)
+                        GameObject twoPlScreen = Instantiate(twoPlayerScreen, transform.position, transform.rotation);
+                        foreach (var connectedPlayer in NetworkManager.Singleton.ConnectedClientsList)
                         {
-                            twoPlScreen.GetComponentsInChildren<CameraScript>()[0].transform.SetParent(GameObject.FindObjectsOfType<Player>()[i].transform);
-                            Debug.Log("set" + i);
+                            if (connectedPlayer.ClientId != disconnectedClient || disconnectedClient == default)
+                            {
+                                CameraScript currentCamera = twoPlScreen.GetComponentsInChildren<CameraScript>()[0];
+                                currentCamera.transform.Rotate(0, connectedPlayer.PlayerObject.GetComponent<Player>().transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
+                                Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedPlayer.PlayerObject.GetComponent<Player>().transform.position.y, currentCamera.transform.position.z);
+                                currentCamera.transform.SetPositionAndRotation(newPosition,currentCamera.transform.rotation);
+                                currentCamera.transform.SetParent(connectedPlayer.PlayerObject.GetComponent<Player>().transform);
+                            }
                         }
                         break;
                     case 3:
-                        GameObject twoPlayerScreenGO = GameObject.FindGameObjectWithTag("TwoPlayerScreen");
-                        if (twoPlayerScreen)
-                        {
-                            Destroy(twoPlayerScreenGO);
-                        }
-
                         GameObject threePlScreen = Instantiate(threePlayerScreen, transform.position, transform.rotation);
-                        for (int i = 2; i >= 0; i--)
+                        foreach (var connectedPlayer in NetworkManager.Singleton.ConnectedClientsList)
                         {
-                            threePlScreen.GetComponentsInChildren<CameraScript>()[0].transform.SetParent(GameObject.FindObjectsOfType<Player>()[i].transform);
+                            Debug.Log(connectedPlayer.ClientId);
+                            if (connectedPlayer.ClientId != disconnectedClient || disconnectedClient == default)
+                            {
+                                CameraScript currentCamera = threePlScreen.GetComponentsInChildren<CameraScript>()[0];
+                                currentCamera.transform.Rotate(0, connectedPlayer.PlayerObject.GetComponent<Player>().transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
+                                Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedPlayer.PlayerObject.GetComponent<Player>().transform.position.y, currentCamera.transform.position.z);
+                                currentCamera.transform.SetPositionAndRotation(newPosition, currentCamera.transform.rotation);
+                                currentCamera.transform.SetParent(connectedPlayer.PlayerObject.GetComponent<Player>().transform);
+                            }
                         }
                         break;
                     case 4:
-                        GameObject threePlayerScreenGO = GameObject.FindGameObjectWithTag("ThreePlayerScreen");
-                        if (twoPlayerScreen)
-                        {
-                            Destroy(threePlayerScreenGO);
-                        }
-                        
-
                         GameObject fourPlScreen = Instantiate(fourPlayerScreen, transform.position, transform.rotation);
-                        for (int i = 3; i >= 4; i--)
+                        foreach (var connectedPlayer in NetworkManager.Singleton.ConnectedClientsList)
                         {
-                            fourPlScreen.GetComponentsInChildren<CameraScript>()[0].transform.SetParent(GameObject.FindObjectsOfType<Player>()[i].transform);
+                            if (connectedPlayer.ClientId != disconnectedClient || disconnectedClient == default)
+                            {
+                                CameraScript currentCamera = fourPlayerScreen.GetComponentsInChildren<CameraScript>()[0];
+                                currentCamera.transform.Rotate(0, connectedPlayer.PlayerObject.GetComponent<Player>().transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
+                                Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedPlayer.PlayerObject.GetComponent<Player>().transform.position.y, currentCamera.transform.position.z);
+                                currentCamera.transform.SetPositionAndRotation(newPosition, currentCamera.transform.rotation);
+                                currentCamera.transform.SetParent(connectedPlayer.PlayerObject.GetComponent<Player>().transform);
+                            }
                         }
                         break;
                 }
@@ -67,7 +86,49 @@ public class CameraManager : NetworkBehaviour
         }
         else if (IsClient)
         {
-            Destroy(defaultCamera.gameObject);
+            defaultCamera.gameObject.SetActive(false);
+        }
+    }
+
+    private void DeleteExistingScreens(int amountOfPlayersConnected)
+    {
+        if (amountOfPlayersConnected >= 2)
+        {
+            defaultCamera.gameObject.SetActive(false);
+        }
+        else
+        {
+            defaultCamera.gameObject.SetActive(true);
+        }
+
+        foreach (Player player in GameObject.FindObjectsOfType<Player>())
+        {
+            CameraScript[] playerCameras = player.GetComponentsInChildren<CameraScript>();
+            if (playerCameras.Length >= 1)
+            {
+                foreach (var playerCamera in playerCameras)
+                {
+                    Destroy(playerCamera.gameObject);
+                }
+            }       
+        }
+
+        GameObject twoPlayerScreenGO = GameObject.FindGameObjectWithTag("TwoPlayerScreen");
+        if (twoPlayerScreenGO)
+        {
+            Destroy(twoPlayerScreenGO);
+        }
+
+        GameObject threePlayerScreenGO = GameObject.FindGameObjectWithTag("ThreePlayerScreen");
+        if (threePlayerScreenGO)
+        {
+            Destroy(threePlayerScreenGO);
+        }
+
+        GameObject fourPlayerScreenGO = GameObject.FindGameObjectWithTag("FourPlayerScreen");
+        if (fourPlayerScreenGO)
+        {
+            Destroy(fourPlayerScreenGO);
         }
     }
 }
