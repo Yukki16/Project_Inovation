@@ -7,7 +7,7 @@ public class WaitingUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TCMiniGameStateManager.Instance.OnLocalPlayerReadyEvent += Instance_OnLocalPlayerReadyEvent;
+
         TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
         Show();
     }
@@ -18,15 +18,13 @@ public class WaitingUI : MonoBehaviour
         {
             Hide();
         }
-    }
-
-    private void Instance_OnLocalPlayerReadyEvent(object sender, System.EventArgs e)
-    {
-        if (TCMiniGameStateManager.Instance.IsLocalPlayerReady())
+        else
         {
             Show();
         }
     }
+
+    
 
     private void Show()
     {

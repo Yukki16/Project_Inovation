@@ -16,7 +16,7 @@ public class MainMenuUI : MonoBehaviour
     }
     private void PlayClick()
     {
-        Loader.Load(Loader.Scene.TowerClimb);
+        Loader.Load(Loader.Scene.Lobby);
     }
 
     private void QuitClick()

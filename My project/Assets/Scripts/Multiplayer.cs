@@ -11,6 +11,8 @@ public class Multiplayer : NetworkBehaviour
     private void Awake()
     {
         Instance = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void StartServer()
@@ -30,16 +32,17 @@ public class Multiplayer : NetworkBehaviour
 
     private void NetworkManager_ConnectionApprovalCallback(NetworkManager.ConnectionApprovalRequest arg1, NetworkManager.ConnectionApprovalResponse approvalResponse)
     {
-        if (TCMiniGameStateManager.Instance.GameIsWaiting())
-        {
-            approvalResponse.Approved= true;
-            approvalResponse.CreatePlayerObject = true;
-        }
-        else
-        {
-            approvalResponse.Approved = false;
-            approvalResponse.CreatePlayerObject = false;
-        }
+        approvalResponse.Approved = true;
+        //if (TCMiniGameStateManager.Instance.GameIsWaiting())
+        //{
+        //    approvalResponse.Approved= true;
+        //    approvalResponse.CreatePlayerObject = true;
+        //}
+        //else
+        //{
+        //    approvalResponse.Approved = false;
+        //    approvalResponse.CreatePlayerObject = false;
+        //}
     }
 
     public void StartClient()

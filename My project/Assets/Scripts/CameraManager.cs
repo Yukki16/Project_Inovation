@@ -14,7 +14,7 @@ public class CameraManager : NetworkBehaviour
 
     private void Start()
     {
-        Player.OnPlayerJoin += Player_OnPlayerJoin;
+        TCMiniGameStateManager.Instance.OnAllPlayersJoined += Player_OnPlayerJoin;
         Player.OnPlayerLeave += Player_OnPlayerLeave;
     }
 

@@ -21,7 +21,6 @@ public class Player : NetworkBehaviour
     }
 
     public event EventHandler<PointsUpdateArgs> PointsUpdated;
-    public static event EventHandler OnPlayerJoin;
     public class OnPlayerLeaveArgs
     {
         public ulong clientId;
@@ -93,13 +92,15 @@ public class Player : NetworkBehaviour
         List<float> rotationPossibilties = new List<float> { 0, 90, 180, 270 };
         foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
         {
-            if (client.PlayerObject.GetComponent<Player>() != this)
+            if (client.PlayerObject)
             {
-                rotationPossibilties.Remove(client.PlayerObject.GetComponent<Player>().transform.rotation.eulerAngles.y);
-            }       
+                if (client.PlayerObject.GetComponent<Player>() != this)
+                {
+                    rotationPossibilties.Remove(client.PlayerObject.GetComponent<Player>().transform.rotation.eulerAngles.y);
+                }
+            }              
         }
         transform.Rotate(0, rotationPossibilties[0], 0);
-        OnPlayerJoin?.Invoke(this, EventArgs.Empty);
 
         if (IsServer)
         {
@@ -136,8 +137,22 @@ public class Player : NetworkBehaviour
 
         if (TCMiniGameStateManager.Instance.GameIsPlaying()) 
         {
-            HandleMovement();
+            if (IsServer && IsLocalPlayer)
+            {
+                HandleMovement();
+            }
+            else if (IsClient && IsLocalPlayer)
+            {
+                HandleMovementServerRPC();
+            }
+            
         } 
+    }
+
+    [ServerRpc]
+    private void HandleMovementServerRPC()
+    {
+        HandleMovement();
     }
 
     private void HandleMovement()

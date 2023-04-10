@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class TCMiniGameStateManager : NetworkBehaviour
 {
+    [SerializeField] private Transform playerPrefab;
     public static TCMiniGameStateManager Instance { get; private set; }
+    public event EventHandler OnAllPlayersJoined;
     public class GameStateChangedArgs
     {
         public GameState gameState;
     }
     public event EventHandler<GameStateChangedArgs> GameStateChanged;
-    public event EventHandler OnLocalPlayerReadyEvent;
     public enum GameState
     {
         WAITING,
@@ -28,7 +29,7 @@ public class TCMiniGameStateManager : NetworkBehaviour
     private NetworkVariable<float> playingTime = new NetworkVariable<float>(120);
     private NetworkVariable<float> stoppedWaitTime = new NetworkVariable<float>(5);
     private NetworkVariable<float> showingScoreWaitTime = new NetworkVariable<float>(20);
-    private bool isLocalPlayerReady;
+
     private Dictionary<ulong, bool> playerReadyDictionary;
 
     private void Awake()
@@ -37,49 +38,29 @@ public class TCMiniGameStateManager : NetworkBehaviour
         playerReadyDictionary = new Dictionary<ulong, bool>();
     }
 
-    private void Start()
-    {
-        InputController.Instance.OnIsReady += Instance_IsReadyEvent;
-    }
-
     public override void OnNetworkSpawn()
     {
         currentGameState.OnValueChanged += CurrentGameState_OnValueChanged;
+        if (IsServer)
+        {
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
+        }
+    }
+
+    private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    {
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            Transform playerTransform = Instantiate(playerPrefab);
+            playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);  
+        }
+        OnAllPlayersJoined?.Invoke(this, EventArgs.Empty);
+        currentGameState.Value = GameState.IN_COUNTDOWN;
     }
 
     private void CurrentGameState_OnValueChanged(GameState previousValue, GameState newValue)
     {
         GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState.Value });
-    }
-
-    private void Instance_IsReadyEvent(object sender, EventArgs e)
-    {
-        if (GameIsWaiting())
-        {
-            isLocalPlayerReady = true;
-            OnLocalPlayerReadyEvent?.Invoke(this, EventArgs.Empty);
-            SetPlayerReadyServerRpc();
-        }
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    private void SetPlayerReadyServerRpc(ServerRpcParams serverRpcParams = default)
-    {
-        playerReadyDictionary[serverRpcParams.Receive.SenderClientId] = true;
-        bool allClientsReady = true;
-        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
-        {
-            if (!playerReadyDictionary.ContainsKey(clientId) || !playerReadyDictionary[clientId])
-            {
-                allClientsReady = false;
-                break;
-            }
-        }
-
-        if (allClientsReady && NetworkManager.Singleton.ConnectedClientsIds.Count >= 2)
-        {
-            currentGameState.Value = GameState.IN_COUNTDOWN;
-        }
     }
 
     void Update()
@@ -148,10 +129,5 @@ public class TCMiniGameStateManager : NetworkBehaviour
         {
             currentGameState.Value = GameState.STOPPED;
         }
-    }
-
-    public bool IsLocalPlayerReady()
-    {
-        return isLocalPlayerReady;
     }
 }
