@@ -4,14 +4,19 @@ using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System;
+using Unity.Services.Lobbies;
+using Unity.Netcode;
+using Unity.Services.Lobbies.Models;
 
-public class Lobby : MonoBehaviour
+public class GameLobby : MonoBehaviour
 {
-    public static Lobby Instance { get; private set; }
+    public static GameLobby Instance { get; private set; }
 
     int indexPlayer = 0;
 
     [SerializeField] const int maxLobbySize = 4;
+
+    private Lobby joinedLobby;
 
     private void Awake()
     {
@@ -24,7 +29,7 @@ public class Lobby : MonoBehaviour
 
     private async void InitializeUnityAuthentification()
     {
-        if(UnityServices.State != ServicesInitializationState.Initialized)
+        if (UnityServices.State != ServicesInitializationState.Initialized)
         {
             indexPlayer++;
             InitializationOptions options = new InitializationOptions();
@@ -35,4 +40,34 @@ public class Lobby : MonoBehaviour
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
     }
+
+    public async void CreateLobbby()
+    {
+        try
+        {
+            await LobbyService.Instance.CreateLobbyAsync("Lobby", maxLobbySize);
+
+            Debug.Log("SERVER");
+            NetworkManager.Singleton.StartServer();
+            Loader.Load(Loader.Scene.CharacterCreation);
+        }
+        catch (LobbyServiceException ex)
+        {
+            Debug.LogException(ex);
+        }
+    }
+
+    public async void QuickJoin()
+    {
+        try
+        {
+
+            joinedLobby = await LobbyService.Instance.QuickJoinLobbyAsync();
+        }
+        catch (LobbyServiceException ex)
+        {
+            Debug.Log(ex);
+        }
+    }
+
 }
