@@ -11,7 +11,8 @@ public static class Loader
         MainMenu,
         Lobby,
         TowerClimb,
-        Gliding
+        Gliding,
+        CharacterCreation
     }
 
     public static Scene targetScene;

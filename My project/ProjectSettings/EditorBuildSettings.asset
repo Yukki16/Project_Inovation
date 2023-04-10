@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TowerClimb.unity
     guid: 327216ba51be5f641a210b64eefa57f1
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: b02797f7ec9f8ef44a86b05b2d769921
+  - enabled: 1
+    path: Assets/Scenes/CharacterCreation.unity
+    guid: 0f7b66d1ceedb0c4b8ddbee203f5e22c
   m_configObjects: {}
