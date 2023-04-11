@@ -21,7 +21,7 @@ public class GameManager : NetworkBehaviour
     private const float DIFFERENCEHEIGHTFORPOWERUP = 5;
 
     //Spawn
-    private const float MINSPAWNRATE = 0.4f;
+    private const float MINSPAWNRATE = 1f;
     private const float MAXSPAWNMODIFIERTIME = 10;
     private const float MAXPOWERUPTIMER = 10;
     private const float SPAWNRATEDECREASE = 0.2f;
@@ -30,11 +30,13 @@ public class GameManager : NetworkBehaviour
     private float spawnRate = 1.5f;
     private float powerUpTimer;
 
+    bool isSpawningObjects = false;
+
     private void Awake()
     {
         Instance = this;
         spawnModifierTimer = MAXSPAWNMODIFIERTIME;
-        spawnRate = maxSpawnRate;
+        //spawnRate = maxSpawnRate;
         powerUpTimer = MAXPOWERUPTIMER;
         players = new List<Transform>();
     }
@@ -109,7 +111,12 @@ public class GameManager : NetworkBehaviour
         {
             if (TCMiniGameStateManager.Instance.GameIsPlaying())
             {
-                HandleSpawningOfItems();
+                if(!isSpawningObjects)
+                {
+                    StartCoroutine(HandleSpawningOfItems());
+                    isSpawningObjects = true;
+                }
+                //HandleSpawningOfItems();
                 HandlePowerUps();
                 if (GetHighestHeightOfAllPlayers() >= GetMaxGameLength())
                 {
@@ -147,7 +154,18 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    private void HandleSpawningOfItems()
+    IEnumerator HandleSpawningOfItems()
+    {
+        yield return new WaitForSeconds(spawnRate);
+        if(spawnModifierTimer > MINSPAWNRATE)
+        {
+            spawnModifierTimer -= 0.05f;
+        }
+        SpawnFallingItems();
+        StartCoroutine(HandleSpawningOfItems());
+        yield return null;
+    }
+/*    private void HandleSpawningOfItems()
     {
         spawnRate -= Time.deltaTime;
         if (spawnRate <= 0)
@@ -164,7 +182,7 @@ public class GameManager : NetworkBehaviour
                 spawnModifierTimer = MAXSPAWNMODIFIERTIME;
             }
         }
-    }
+    }*/
 
     public Dictionary<string,int> GetScoreboard()
     {

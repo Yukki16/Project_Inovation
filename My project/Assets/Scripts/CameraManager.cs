@@ -113,22 +113,33 @@ public class CameraManager : NetworkBehaviour
             }       
         }
 
-        GameObject twoPlayerScreenGO = GameObject.FindGameObjectWithTag("TwoPlayerScreen");
-        if (twoPlayerScreenGO)
+        GameObject[] twoPlayerScreenGO = GameObject.FindGameObjectsWithTag("TwoPlayerScreen");
+        
+        if (twoPlayerScreenGO != default)
         {
-            Destroy(twoPlayerScreenGO);
+            foreach (var twoPlScreen in twoPlayerScreenGO)
+            {
+                Destroy(twoPlScreen);
+            }
+            
         }
 
-        GameObject threePlayerScreenGO = GameObject.FindGameObjectWithTag("ThreePlayerScreen");
-        if (threePlayerScreenGO)
+        GameObject[] threePlayerScreenGO = GameObject.FindGameObjectsWithTag("ThreePlayerScreen");
+        if (threePlayerScreenGO != default)
         {
-            Destroy(threePlayerScreenGO);
+            foreach (var threePLS in threePlayerScreenGO)
+            {
+                Destroy(threePLS);
+            }
         }
 
-        GameObject fourPlayerScreenGO = GameObject.FindGameObjectWithTag("FourPlayerScreen");
-        if (fourPlayerScreenGO)
+        GameObject[] fourPlayerScreenGO = GameObject.FindGameObjectsWithTag("FourPlayerScreen");
+        if (fourPlayerScreenGO != default)
         {
-            Destroy(fourPlayerScreenGO);
+            foreach (var fourPLS in fourPlayerScreenGO)
+            {
+                Destroy(fourPLS);
+            }
         }
     }
 }

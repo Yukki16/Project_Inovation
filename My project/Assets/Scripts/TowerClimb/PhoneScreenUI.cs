@@ -6,11 +6,21 @@ using UnityEngine;
 public class PhoneScreenUI : NetworkBehaviour
 {
     private bool canNotBeShown;
-    private void Start()
+    private void Awake()
     {
-        Hide();
+        this.GetComponent<NetworkObject>().Spawn();
+        //Hide();
         TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
-        NetworkManager.Singleton.OnServerStarted += Singleton_OnServerStarted;
+
+        if (IsServer)
+        {
+            Hide();
+        }
+        else
+        {
+            Show();
+        }
+        //NetworkManager.Singleton.OnServerStarted += Singleton_OnServerStarted;
     }
 
     private void Instance_GameStateChanged(object sender, TCMiniGameStateManager.GameStateChangedArgs e)

@@ -13,6 +13,7 @@ public class CharactersSelectReady : NetworkBehaviour
     {
         Instance = this;
         playerReadyDictionary = new Dictionary<ulong, bool>();
+        this.GetComponent<NetworkObject>().Spawn();
     }
 
     public void SetPlayerReady()
