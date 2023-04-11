@@ -34,43 +34,73 @@ public class Player : NetworkBehaviour
         RIGHT
     }
 
+    #region SPEED_STATS
     [SerializeField] private float moveSpeedSide = 4f;
+    
     [SerializeField] private const float DEFAULTACCELERATIONSPEED = 25;
+    
     [SerializeField] private float accelerationSpeed = 25;
+    
     [SerializeField] private const float MINMOVESPEEDUP = 1f;
+    
     [SerializeField] private const float MAXMOVESPEEDUP = 3f;
+    
+    private float moveSpeedUp;
+    #endregion
+
     [SerializeField] private GameObject playerBody;
     
     [SerializeField] private string nickname;
 
+    #region TIMERS
     private const int ROTATEMOVESPEED = 75;
-    private float moveSpeedUp;
-
-    private const float FROZENTIMERMAX = 2;
-    private float frozenTimer;
-    private bool isFrozen;
-
-    private const float BOOSTTIMERMAX = 10;
-    private float boostTimer;
-    private bool isBoosted;
 
     private const float SLOWEDTIMERMAX = 8;
+
+    private const float FROZENTIMERMAX = 2;
+    
+    private const float BOOSTTIMERMAX = 10;
+    
+    private float frozenTimer;
+    
+    private float boostTimer;
+    
     private float slowedTimer;
+    
+    private const float HITBYOTHERPLAYERTIMERMAX = 1;
+    
+    private float hitByOtherPlayerTimer;
+    #endregion
+
+    #region BOOLS
+    private bool isFrozen;
+
+    private bool isBoosted;
+
     private bool isSlowed;
 
-    private const float HITBYOTHERPLAYERTIMERMAX = 1;
-    private float hitByOtherPlayerTimer;
     private bool isHitByOtherPlayer;
+
+    #endregion
     private Vector3 hitByOtherPlayerDir;
 
+    #region SCORE
     private float score = 0;
+    
     private const int DEFAULTPOINTSINCREASEAMOUNT = 1;
+    
     private const int HITPOINTSDECREASE = 5;
+    
     private const int HITCOINSPOINTSAMOUNT = 20;
-
+    #endregion
     //private CameraScript _camera;
 
     [SerializeField] private MovingDirections currentMovingDirection;
+
+
+    #region UI
+    MoveOnUI moveUIScript;
+    #endregion
 
     private void Awake()
     {
@@ -79,6 +109,8 @@ public class Player : NetworkBehaviour
         currentMovingDirection = MovingDirections.ONLYUP;
         moveSpeedUp = MINMOVESPEEDUP;
         accelerationSpeed = DEFAULTACCELERATIONSPEED;
+
+        moveUIScript = GameObject.FindGameObjectWithTag("PhoneUI").GetComponentInChildren<MoveOnUI>();
     }
 
     private void Start()
@@ -360,10 +392,12 @@ public class Player : NetworkBehaviour
         if (-moveDir.y > 0)
         {
             currentMovingDirection = MovingDirections.RIGHT;
+            moveUIScript.RotatePlayerUI(true);
         }
         else
         {
             currentMovingDirection = MovingDirections.LEFT;
+            moveUIScript.RotatePlayerUI(false);
         }
         transform.Rotate(moveDir, rotateSpeed * Time.deltaTime);
     }

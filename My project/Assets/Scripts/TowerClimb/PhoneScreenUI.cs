@@ -6,7 +6,7 @@ using UnityEngine;
 public class PhoneScreenUI : NetworkBehaviour
 {
     private bool canNotBeShown;
-    private void Awake()
+    private void Start()
     {
         this.GetComponent<NetworkObject>().Spawn();
         //Hide();

@@ -8,6 +8,7 @@ TagManager:
   - ThreePlayerScreen
   - FourPlayerScreen
   - UI
+  - PhoneUI
   layers:
   - Default
   - TransparentFX
