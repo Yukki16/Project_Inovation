@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.114580475, g: 0.3301212, b: 0.71203196, a: 1}
+  m_IndirectSpecularColor: {r: 0.114580505, g: 0.33012125, b: 0.71203196, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -367,7 +367,7 @@ PrefabInstance:
     - target: {fileID: 5202463342855387386, guid: bdc1c10d992613747bfae473f76f3115,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5202463342855387386, guid: bdc1c10d992613747bfae473f76f3115,
         type: 3}
@@ -1296,87 +1296,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8730cbcb4c0d621409e3ebab8bbb184d, type: 3}
---- !u!1001 &8858844880931914092
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -42.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 135.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 28.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7866645
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.6173808
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -76.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954196, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954201, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_Name
-      value: Ring
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954203, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
-      value: 2.9490197
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954203, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
-      value: 2.927149
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858844882304954203, guid: d693f52916391a344a69de6bbddd6c73,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
-      value: 0.7719946
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d693f52916391a344a69de6bbddd6c73, type: 3}

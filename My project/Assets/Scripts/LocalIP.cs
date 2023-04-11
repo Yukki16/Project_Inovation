@@ -9,7 +9,7 @@ using Unity.Netcode.Transports.UTP;
 
 public class LocalIP : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
             GetLocalIPAddress(),  // The IP address is a string

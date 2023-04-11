@@ -10,6 +10,7 @@ public static class Loader
     public enum Scene
     {
         MainMenu,
+        Loading,
         Lobby,
         TowerClimb,
         Gliding,
@@ -22,7 +23,7 @@ public static class Loader
     {
         Loader.targetScene = targetScene;
 
-        SceneManager.LoadScene(targetScene.ToString());
+        SceneManager.LoadScene(Scene.Loading.ToString());
     }
 
     public static void LoadNetwork(Scene targetScene)

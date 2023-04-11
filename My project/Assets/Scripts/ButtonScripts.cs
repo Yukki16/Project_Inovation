@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,14 @@ public class ButtonScripts : MonoBehaviour
 {
     public void LoadScene(string scene)
     {
-        SceneManager.LoadScene(scene);
+        if (Enum.TryParse(scene, out Loader.Scene newScene))
+        {
+            Loader.Load(newScene);
+        }
+        else
+        {
+            Debug.LogError("Scene couldn't be loaded because Parse failed.");
+        }
     }
 
     public void CreateLobby()

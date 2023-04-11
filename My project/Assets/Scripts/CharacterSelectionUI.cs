@@ -11,7 +11,7 @@ public class CharacterSelectionUI : NetworkBehaviour
     private void Start()
     {
         Hide();
-        if (IsServer)
+        if (NetworkManager.Singleton.IsServer)
         {
             Show();
             readyButton.onClick.AddListener(() =>
