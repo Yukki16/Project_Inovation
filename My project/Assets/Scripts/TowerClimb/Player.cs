@@ -137,26 +137,24 @@ public class Player : NetworkBehaviour
 
         if (TCMiniGameStateManager.Instance.GameIsPlaying()) 
         {
-            if (IsServer && IsLocalPlayer)
+            if (IsOwner)
             {
-                HandleMovement();
-            }
-            else if (IsClient && IsLocalPlayer)
-            {
-                HandleMovementServerRPC();
+                Vector2 inputVector = InputController.Instance.GetMovementFromInput();
+                HandleMovementServerRpc(inputVector);
             }
             
         } 
     }
 
-    [ServerRpc]
+    /*[ServerRpc]
     private void HandleMovementServerRPC()
     {
         HandleMovement();
-    }
-
-    private void HandleMovement()
+    }*/
+    [ServerRpc(RequireOwnership = false)]
+    private void HandleMovementServerRpc(Vector2 inputVector)
     {
+        Debug.Log("I am handling movement");
         if (isHitByOtherPlayer)
         {
             RotatePlayer(hitByOtherPlayerDir != default ? hitByOtherPlayerDir : Vector3.zero);
@@ -184,13 +182,13 @@ public class Player : NetworkBehaviour
             AccelerateCurrentSpeed();
             HandleBoost();
             HandleSlowedDown();
-            HandleSideMovement();
+            HandleSideMovement(inputVector);
         }
     }
 
-    private void HandleSideMovement()
+    private void HandleSideMovement(Vector2 inputVector)
     {
-        Vector2 inputVector = InputController.Instance.GetMovementFromInput();
+        
         if (inputVector.x != 0)
         {
             Vector3 moveDir = new Vector3(0, -inputVector.x, 0);

@@ -21,5 +21,9 @@ public class CharactersSelectReady : NetworkBehaviour
         {
             Loader.LoadNetwork(Loader.Scene.TowerClimb);
         }
+        if (IsClient || IsLocalPlayer)
+        {
+            Loader.LoadNetwork(Loader.Scene.TowerClimb);
+        }
     }
 }

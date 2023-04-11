@@ -45,7 +45,7 @@ public class GameLobby : MonoBehaviour
     {
         try
         {
-            //await LobbyService.Instance.CreateLobbyAsync("Lobby", maxLobbySize);
+            await LobbyService.Instance.CreateLobbyAsync("Lobby", maxLobbySize);
 
             Multiplayer.Instance.StartServer();
             Loader.LoadNetwork(Loader.Scene.CharacterCreation);
@@ -61,7 +61,7 @@ public class GameLobby : MonoBehaviour
         try
         {
             Multiplayer.Instance.StartClient();
-            //joinedLobby = await LobbyService.Instance.QuickJoinLobbyAsync();
+            joinedLobby = await LobbyService.Instance.QuickJoinLobbyAsync();
         }
         catch (LobbyServiceException ex)
         {
