@@ -226,6 +226,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
         type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
+        type: 3}
       propertyPath: m_NormalizedViewPortRect.y
       value: 0
       objectReference: {fileID: 0}
@@ -318,6 +323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 951099334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
         type: 3}
@@ -418,6 +428,11 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 951099334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
         type: 3}

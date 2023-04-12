@@ -7,6 +7,7 @@ public class PlayerCollision : NetworkBehaviour
 {
     private void OnCollisionEnter(Collision other)
     {
+        Debug.Log("I hit something");
         Player thisPlayer = GetComponentInParent<Player>();
         if (thisPlayer)
         {

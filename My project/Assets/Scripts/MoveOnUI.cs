@@ -7,26 +7,51 @@ public class MoveOnUI : MonoBehaviour
     private readonly float lerpDuration = 0.5f;
 
     IEnumerator coroutine = null;
-    public void RotatePlayerUI(bool moveRight)
+
+    [SerializeField] GameObject player;
+
+    bool isRunning;
+
+    public enum RotationDirection
     {
-        if(moveRight)
+        RIGHT,
+        LEFT,
+        NONE
+    }
+    public void RotatePlayerUI(RotationDirection rotation)
+    {
+        if (!isRunning)
         {
-            if (coroutine != null)
+            isRunning = true;
+            if (rotation == RotationDirection.NONE)
             {
-                StopCoroutine(coroutine);
+                if (coroutine != null)
+                {
+                    StopCoroutine(coroutine);
+                }
+                coroutine = Lerp(player.transform.rotation.eulerAngles);
+                StartCoroutine(coroutine);
             }
-            coroutine = Lerp(new Vector3(0, 45, 0));
-            StartCoroutine(coroutine);
-        }
-        else
-        {
-            if (coroutine != null)
+            //Debug.Log("I am rotating the cat");
+            if (rotation == RotationDirection.RIGHT)
             {
-                StopCoroutine(coroutine);
+                if (coroutine != null)
+                {
+                    StopCoroutine(coroutine);
+                }
+                coroutine = Lerp(player.transform.rotation.eulerAngles + new Vector3(0, 45, 0));
+                StartCoroutine(coroutine);
             }
-            coroutine = Lerp(new Vector3(0, -45, 0));
-            StartCoroutine(coroutine);
-        }
+            else if (rotation == RotationDirection.LEFT)
+            {
+                if (coroutine != null)
+                {
+                    StopCoroutine(coroutine);
+                }
+                coroutine = Lerp(player.transform.rotation.eulerAngles + new Vector3(0, -45, 0));
+                StartCoroutine(coroutine);
+            }
+        }  
     }
     IEnumerator Lerp(Vector3 endValue)
     {
@@ -41,6 +66,7 @@ public class MoveOnUI : MonoBehaviour
         transform.rotation = Quaternion.Euler(endValue);
 
         coroutine = null;
+        isRunning = false;
     }
 
 }

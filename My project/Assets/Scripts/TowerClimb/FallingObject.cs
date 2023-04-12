@@ -35,9 +35,12 @@ public abstract class FallingObject : NetworkBehaviour
 
     protected virtual void Update()
     {
-        MoveDown();
-        RotateFallingObject();
-        CheckIfFallingObjectCanBeDeleted();
+        if (IsServer)
+        {
+            MoveDown();
+            RotateFallingObject();
+            CheckIfFallingObjectCanBeDeleted();
+        }
     }
 
     private void MoveDown()
@@ -57,7 +60,7 @@ public abstract class FallingObject : NetworkBehaviour
         Destroy(gameObject);
     }
 
-    private void RotateFallingObject() 
+    private void RotateFallingObject()
     {
         if (rotationDir != RotationDirection.None)
         {

@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PhoneScreenUI : NetworkBehaviour
+public class PhoneScreenUI : MonoBehaviour
 {
     private bool canNotBeShown;
     private void Start()
     {
-        this.GetComponent<NetworkObject>().Spawn();
-        //Hide();
+       
+            //Hide();
         TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
 
-        if (IsServer)
-        {
-            Hide();
-        }
-        else
+        if(SceneManager.GetActiveScene().name == "TowerClimb")
         {
             Show();
         }
+        else
+        {
+            Hide();
+        }
+            
         //NetworkManager.Singleton.OnServerStarted += Singleton_OnServerStarted;
     }
 
@@ -38,7 +40,7 @@ public class PhoneScreenUI : NetworkBehaviour
         }
     }
 
-    private void Singleton_OnServerStarted()
+    /*private void Singleton_OnServerStarted()
     {
         if (IsServer)
         {
@@ -48,7 +50,7 @@ public class PhoneScreenUI : NetworkBehaviour
         {
             canNotBeShown = true;
         }
-    }
+    }*/
 
     public void Show()
     {

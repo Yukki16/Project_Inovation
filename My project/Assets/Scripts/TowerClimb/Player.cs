@@ -99,7 +99,8 @@ public class Player : NetworkBehaviour
 
 
     #region UI
-    MoveOnUI moveUIScript;
+    [SerializeField] GameObject phoneUI;
+    public MoveOnUI moveUIScript;
     #endregion
 
     private void Awake()
@@ -110,12 +111,24 @@ public class Player : NetworkBehaviour
         moveSpeedUp = MINMOVESPEEDUP;
         accelerationSpeed = DEFAULTACCELERATIONSPEED;
 
-        moveUIScript = GameObject.FindGameObjectWithTag("PhoneUI").GetComponentInChildren<MoveOnUI>();
+        //moveUIScript = GameObject.FindGameObjectWithTag("PhoneUI").GetComponentInChildren<MoveOnUI>();
     }
 
     private void Start()
     {
         GameManager.Instance.SlowDownPlayer += Instance_SlowDownPlayer;
+
+        if(!IsOwner)
+        {
+            phoneUI.SetActive(false);
+            GetComponentInChildren<Camera>().enabled = false;
+        }
+
+        if(IsServer)
+        {
+            phoneUI.SetActive(true);
+        }
+        //GameObject.FindGameObjectWithTag("PhoneUI").gameObject.GetComponent<Canvas>().worldCamera = this.GetComponentInChildren<Camera>();
     }
 
     public override void OnNetworkSpawn()
@@ -174,10 +187,21 @@ public class Player : NetworkBehaviour
                 Vector2 inputVector = InputController.Instance.GetMovementFromInput();
                 HandleMovementServerRpc(inputVector);
             }
-            
+            //MoveUIClientRpc();
         } 
     }
-
+    [ClientRpc]
+    void MoveUIClientRpc()
+    {
+        if(currentMovingDirection == MovingDirections.RIGHT)
+        {
+            moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.RIGHT);
+        }
+        else
+        {
+            moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.LEFT);
+        }
+    }
     /*[ServerRpc]
     private void HandleMovementServerRPC()
     {
@@ -186,7 +210,7 @@ public class Player : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void HandleMovementServerRpc(Vector2 inputVector)
     {
-        Debug.Log("I am handling movement");
+        //Debug.Log("I am handling movement");
         if (isHitByOtherPlayer)
         {
             RotatePlayer(hitByOtherPlayerDir != default ? hitByOtherPlayerDir : Vector3.zero);
@@ -210,11 +234,11 @@ public class Player : NetworkBehaviour
         else
         {
             //AddScore(DEFAULTPOINTSINCREASEAMOUNT * Time.deltaTime);
-            MoveUp();
             AccelerateCurrentSpeed();
             HandleBoost();
             HandleSlowedDown();
             HandleSideMovement(inputVector);
+            MoveUp();
         }
     }
 
@@ -229,6 +253,7 @@ public class Player : NetworkBehaviour
         else
         {
             currentMovingDirection = MovingDirections.ONLYUP;
+            moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.NONE);
         }
     }
 
@@ -392,12 +417,12 @@ public class Player : NetworkBehaviour
         if (-moveDir.y > 0)
         {
             currentMovingDirection = MovingDirections.RIGHT;
-            moveUIScript.RotatePlayerUI(true);
+            moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.RIGHT);
         }
         else
         {
             currentMovingDirection = MovingDirections.LEFT;
-            moveUIScript.RotatePlayerUI(false);
+            moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.LEFT);
         }
         transform.Rotate(moveDir, rotateSpeed * Time.deltaTime);
     }

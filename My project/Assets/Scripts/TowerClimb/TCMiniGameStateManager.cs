@@ -52,7 +52,7 @@ public class TCMiniGameStateManager : NetworkBehaviour
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             Transform playerTransform = Instantiate(playerPrefab);
-            GameObject.FindGameObjectWithTag("PhoneUI").gameObject.GetComponent<Canvas>().worldCamera = playerTransform.GetComponentInChildren<Camera>();
+            
             playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);  
         }
         OnAllPlayersJoined?.Invoke(this, EventArgs.Empty);
