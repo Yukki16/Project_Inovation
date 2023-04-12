@@ -99,7 +99,7 @@ public class Player : NetworkBehaviour
 
 
     #region GYROSCOPE
-    Quaternion offset;
+    Quaternion offset = Quaternion.identity;
     bool hasGyroScope;
     #endregion
 
@@ -122,6 +122,7 @@ public class Player : NetworkBehaviour
 
     private void Start()
     {
+        Input.gyro.enabled = true;
         GameManager.Instance.SlowDownPlayer += Instance_SlowDownPlayer;
 
         if(!IsOwner)
@@ -135,14 +136,14 @@ public class Player : NetworkBehaviour
             phoneUI.SetActive(true);
         }
 
-        if(SystemInfo.supportsGyroscope)
+        /*if(SystemInfo.supportsGyroscope)
         {
             hasGyroScope = true;
         }
         else
         {
             hasGyroScope = false;
-        }
+        }*/
         //GameObject.FindGameObjectWithTag("PhoneUI").gameObject.GetComponent<Canvas>().worldCamera = this.GetComponentInChildren<Camera>();
     }
 
@@ -200,15 +201,15 @@ public class Player : NetworkBehaviour
             if (IsOwner)
             {
                 Quaternion inputVector = new Quaternion();
-                if (!hasGyroScope)
+                /*if (!hasGyroScope)
                 {
                     inputVector = Quaternion.Euler(InputController.Instance.GetMovementFromInput());
                 }
                 else
-                {
-                    inputVector = GyroToUnity(Input.gyro.attitude * offset);
+                {*/
+                    inputVector = GyroToUnity(offset * Input.gyro.attitude);
                     inputVector.w = -inputVector.w;
-                }
+                //}
                 HandleMovementServerRpc(inputVector);
             }
             //MoveUIClientRpc();
@@ -256,7 +257,7 @@ public class Player : NetworkBehaviour
 
     private void HandleSideMovement(Quaternion inputVector)
     {
-        if (!hasGyroScope)
+       /* if (!hasGyroScope)
         {
             if (inputVector.eulerAngles.x != 0)
             {
@@ -270,7 +271,7 @@ public class Player : NetworkBehaviour
             }
         }
         else
-        {
+        {*/
             if (inputVector.eulerAngles.z != 0)
             {
                 Vector3 moveDir = new Vector3(0, inputVector.eulerAngles.z, 0);
@@ -281,7 +282,7 @@ public class Player : NetworkBehaviour
                 currentMovingDirection = MovingDirections.ONLYUP;
                 moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.NONE);
             }
-        }
+        //}
     }
 
     private void MoveUp()
