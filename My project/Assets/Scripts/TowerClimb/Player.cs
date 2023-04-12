@@ -98,6 +98,12 @@ public class Player : NetworkBehaviour
     [SerializeField] private MovingDirections currentMovingDirection;
 
 
+    #region GYROSCOPE
+    Quaternion offset;
+    bool hasGyroScope;
+    #endregion
+
+
     #region UI
     [SerializeField] GameObject phoneUI;
     public MoveOnUI moveUIScript;
@@ -127,6 +133,15 @@ public class Player : NetworkBehaviour
         if(IsServer)
         {
             phoneUI.SetActive(true);
+        }
+
+        if(SystemInfo.supportsGyroscope)
+        {
+            hasGyroScope = true;
+        }
+        else
+        {
+            hasGyroScope = false;
         }
         //GameObject.FindGameObjectWithTag("PhoneUI").gameObject.GetComponent<Canvas>().worldCamera = this.GetComponentInChildren<Camera>();
     }
@@ -184,31 +199,28 @@ public class Player : NetworkBehaviour
         {
             if (IsOwner)
             {
-                Vector2 inputVector = InputController.Instance.GetMovementFromInput();
+                Quaternion inputVector = new Quaternion();
+                if (!hasGyroScope)
+                {
+                    inputVector = Quaternion.Euler(InputController.Instance.GetMovementFromInput());
+                }
+                else
+                {
+                    inputVector = GyroToUnity(Input.gyro.attitude * offset);
+                    inputVector.w = -inputVector.w;
+                }
                 HandleMovementServerRpc(inputVector);
             }
             //MoveUIClientRpc();
         } 
     }
-    [ClientRpc]
-    void MoveUIClientRpc()
+    private static Quaternion GyroToUnity(Quaternion q)
     {
-        if(currentMovingDirection == MovingDirections.RIGHT)
-        {
-            moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.RIGHT);
-        }
-        else
-        {
-            moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.LEFT);
-        }
+        return new Quaternion(q.x, q.y, -q.z, -q.w);
     }
-    /*[ServerRpc]
-    private void HandleMovementServerRPC()
-    {
-        HandleMovement();
-    }*/
+
     [ServerRpc(RequireOwnership = false)]
-    private void HandleMovementServerRpc(Vector2 inputVector)
+    private void HandleMovementServerRpc(Quaternion inputVector)
     {
         //Debug.Log("I am handling movement");
         if (isHitByOtherPlayer)
@@ -242,30 +254,35 @@ public class Player : NetworkBehaviour
         }
     }
 
-    private void HandleSideMovement(Vector2 inputVector)
+    private void HandleSideMovement(Quaternion inputVector)
     {
-        
-        if (inputVector.x != 0)
+        if (!hasGyroScope)
         {
-            Vector3 moveDir = new Vector3(0, -inputVector.x, 0);
-            RotatePlayer(moveDir);
+            if (inputVector.eulerAngles.x != 0)
+            {
+                Vector3 moveDir = new Vector3(0, -inputVector.eulerAngles.x, 0);
+                RotatePlayer(moveDir);
+            }
+            else
+            {
+                currentMovingDirection = MovingDirections.ONLYUP;
+                moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.NONE);
+            }
         }
         else
         {
-            currentMovingDirection = MovingDirections.ONLYUP;
-            moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.NONE);
+            if (inputVector.eulerAngles.z != 0)
+            {
+                Vector3 moveDir = new Vector3(0, inputVector.eulerAngles.z, 0);
+                RotatePlayer(moveDir);
+            }
+            else
+            {
+                currentMovingDirection = MovingDirections.ONLYUP;
+                moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.NONE);
+            }
         }
     }
-
-    //private void AddScore(float scoreToAdd)
-    //{
-    //    score += scoreToAdd;
-    //}
-
-    //private void DecreaseScore(int pointsToDecrease)
-    //{
-    //    score -= pointsToDecrease;
-    //}
 
     private void MoveUp()
     {

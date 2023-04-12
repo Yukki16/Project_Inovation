@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 52
+  controlID: 89
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -68,8 +68,8 @@ MonoBehaviour:
     y: 0
     width: 488
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 264
     height: 723
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 53
+  controlID: 90
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 54
+  controlID: 91
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -268,8 +268,8 @@ MonoBehaviour:
     y: 0
     width: 1168
     height: 723
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -318,36 +318,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Art/Master_Materials
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 53
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Art/Master_Materials
   m_LastFoldersGridSize: 53
   m_LastProjectPath: C:\Users\bolde\Documents\GitKraken\Project_Inovation\My project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 153}
-    m_SelectedIDs: 90c40000
-    m_LastClickedID: 50320
-    m_ExpandedIDs: 000000006ec4000070c4000072c4000074c4000090c400009ec53800a0c53800a2c53800a8c5380000ca9a3b
+    scrollPos: {x: 0, y: 111}
+    m_SelectedIDs: e0910000
+    m_LastClickedID: 37344
+    m_ExpandedIDs: 00000000729100007491000076910000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: GlidingGame
-      m_OriginalName: GlidingGame
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 50326
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
@@ -361,7 +361,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: ac850000
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006ec4000070c4000072c4000074c40000
+    m_ExpandedIDs: 00000000729100007491000076910000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -392,18 +392,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000368f0000348f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Tower
-      m_OriginalName: Tower
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 50796
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_CreateAssetUtility:
@@ -491,23 +491,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 2c65a2ffec65a2ff9269a2ff9c69a2ff966ba2ff9e6ba2ff9c4fa4ff6699a4ff509aa4ff4e9ba4ff4aa2a4ff0aa3a4ffa6a6a4ffb0a6a4ffa8a8a4ffb0a8a4ffae8ca6ffdcdaa6ffc6dba6ffc4dca6ff24e4a6ffe8e4a6ff84e8a6ff8ee8a6ff86eaa6ff8eeaa6ff8ccea8ff90e8a8ff8ee9a8fff69ea9ffba9fa9ff56a3a9ff60a3a9ff58a5a9ff60a5a9ff5e89abff50f2abff0ef3abffb4f6abffbef6abffb8f8abffc0f8abffbedcadffbcfaadff7afbadff20ffadff2affadff2401aeff2c01aeff2ae5afffeaf4afffa8f5afff44f9afff4ef9afff46fbafff4efbafff4cdfb1ff08f7b1ffc6f7b1ff62fbb1ff6cfbb1ff64fdb1ff6cfdb1ff6ae1b3ff1412b4ffd212b4ff7816b4ff8216b4ff7c18b4ff8418b4ff82fcb5ffc66db6ff846eb6ff2072b6ff2a72b6ff2274b6ff2a74b6ff2858b8ff787ab9ff367bb9ffdc7eb9ffe67eb9ffe080b9ffe880b9ffe664bbffd8d2bbff96d3bbff3cd7bbff46d7bbff40d9bbff48d9bbff46bdbdff76d5bdff34d6bdffdad9bdffe4d9bdffdedbbdffe6dbbdffe4bfbfff0c45c0ffca45c0ff6649c0ff7049c0ff684bc0ff704bc0ff6e2fc2ff5c00c3ff6a00c3ff7400c3ff9600c3ff3801c3ff4601c3ff5001c3ff7201c3ff7002c3ff8409c3ff420ac3ffe80dc3fff20dc3ffec0fc3fff40fc3fff2f3c4ff8cfcc4ff9afcc4ffa4fcc4ffc6fcc4ff68fdc4ff76fdc4ff80fdc4ffa2fdc4ffa0fec4ff8e1ac5ff4c1bc5ffe81ec5fff21ec5ffea20c5fff220c5fff004c7ff9614c7ff7215c7ff7016c7ff9860c7ff5a61c7ff0465c7ff1265c7ff1067c7ff1c67c7ff1e4bc9ffbc5ccbff5e64cbff1e65cbff9e68cbffa868cbff9e6acbffa46acbffae4ecdff6c64cdff6e64cdffb86acdffd26acdffb471cdff7272cdff1876cdff2276cdff1c78cdff2478cdff225ccfff92d6cfff50d7cffff6dacfff00dbcffffadccfff02ddcfff00c1d1ff264cd2ffe44cd2ffa44dd2ffaa4dd2ff9c4fd2ffa04fd2ff9e33d4ff881fd6ffd021d6ff8e22d6ff0e26d6ff1826d6ff0e28d6ff1428d6ff1e0cd8ffdc38d8ff1c89d8ffda89d8ff808dd8ff8a8dd8ff848fd8ff8c8fd8ff8a73daffec82daffee82daff2a39dbff5e39dbff8039dbff7e3adbff8c23ddffc628ddff8429ddff042dddff0e2dddff042fddff0a2fddff1413dfff0a3edfff0c3edfff0091dfffbe91dfff6295dfff7095dfff6c97dfff7897dfff7a7be1ff9460e3ffa071e3ffd091e3ffd291e3ffe29be3fff084e5ff968ae5ff548be5ffd88ee5ffe28ee5ffd890e5ffde90e5ffe874e7ff6485e7ff7c86e7ff9a89e7ff1073e9ffaa77e9ff6878e9ffec7be9fff67be9ffec7de9fff27de9fffc61ebff9077ebffec7aebff3682ebfff482ebff9a86ebffa486ebff9e88ebffa688ebffa46cedff2a8aedff2891edfff891edff9e95edffa895edffa297edffaa97edffa87befffa6a4efff6eabefff2cacefffd2afefffdcafefffd6b1efffdeb1efffdc95f1ff76aaf1ffc0b1f1ff7eb2f1ff28b6f1ff36b6f1ff34b8f1ff40b8f1ff429cf3ff5e81f5ff568ef5ff9693f5ffa87df7ffda81f7ff9882f7ff1c86f7ff2686f7ff1c88f7ff2288f7ff2c6cf9ffba93f9ff9e94f9ffa0daf9ffc0dbf9ff4ae4f9ff08e5f9ffaae8f9ffb8e8f9ff14ebf9ff20ebf9ff22cffbff3eb4fdffa4cafdffe2affffff4ffffffe2c5000000c6000018b0040036b004001eed1700f8aa1d007eac1d00a0ac1d0026a91f0046a91f00f0a52100ec8f23000c902300ae912300c6562900ce562900ec402d0036d436003ed4360090d43600
+      m_SelectedIDs: 38d41d00
+      m_LastClickedID: 1954872
+      m_ExpandedIDs: 5ad2edffc4d8edffc4dfedff84e0edff2ae4edff34e4edff2ee6edff36e6edff34caefff6cd5efff7ad6efff24daefff32daefff30dcefff3cdcefff3ec0f1ff20a7f3ff50acf3ff44b9f3ff52baf3fff8bdf3ff02bef3fffcbff3ff04c0f3ff02a4f5ff42baf5ff6cedf5ffb4f6f5ff70f7f5ff16fbf5ff20fbf5ff74fdf5ff26fef5ff24e2f7ff8cf6f7ff4af7f7fff4faf7ff02fbf7ff00fdf7ff0cfdf7ff0ee1f9ffd21afcff18fffdff6401feff2602feffb005feffbe05feffb807feffc207feffd0ebffffaef9fffff4ffffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: PlayerHitBoxForOtherPlayers
-        m_OriginalName: PlayerHitBoxForOtherPlayers
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 12626404
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -809,9 +809,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -16.956167, y: 159.1056, z: 12.234502}
+    m_Target: {x: 779.66284, y: 394.41034, z: -1249.5189}
     speed: 2
-    m_Value: {x: -16.956167, y: 159.1056, z: 12.234502}
+    m_Value: {x: 779.66284, y: 394.41034, z: -1249.5189}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -858,13 +858,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.06701198, y: 0.9258271, z: -0.18773463, w: 0.32107344}
+    m_Target: {x: -0.11081151, y: 0.069112055, z: -0.0077422783, w: -0.9914138}
     speed: 2
-    m_Value: {x: 0.06701269, y: 0.9258369, z: -0.18773663, w: 0.32107684}
+    m_Value: {x: -0.11081057, y: 0.06911147, z: -0.0077422126, w: -0.99140537}
   m_Size:
-    m_Target: 1.3503389
+    m_Target: 12.124355
     speed: 2
-    m_Value: 1.3503389
+    m_Value: 12.124355
   m_Ortho:
     m_Target: 0
     speed: 2
