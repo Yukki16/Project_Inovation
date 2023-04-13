@@ -99,7 +99,7 @@ public class Player : NetworkBehaviour
 
 
     #region GYROSCOPE
-    Quaternion offset = Quaternion.identity;
+    Quaternion offset = Quaternion.Euler(90f,0,0);
     bool hasGyroScope;
     #endregion
 
