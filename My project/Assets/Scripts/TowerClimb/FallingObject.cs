@@ -26,8 +26,12 @@ public abstract class FallingObject : NetworkBehaviour
 
     public FallingObjectSO GetFallingObjectSO() { return fallingObjectSO; }
 
+    Renderer rend;
+    float timerToDespawn = 0f;
+
     private void Start()
     {
+        rend = GetComponent<Renderer>();
         xRotDir = ChooseANumber(-1, 1);
         yRotDir = ChooseANumber(-1, 1);
         zRotDir = ChooseANumber(-1, 1);
@@ -40,6 +44,7 @@ public abstract class FallingObject : NetworkBehaviour
             MoveDown();
             RotateFallingObject();
             CheckIfFallingObjectCanBeDeleted();
+            DestroyIfNotOnScreen();
         }
     }
 
@@ -103,4 +108,16 @@ public abstract class FallingObject : NetworkBehaviour
         else return number2;
     }
 
+    void DestroyIfNotOnScreen()
+    {
+        if (!rend.isVisible)
+        {
+            timerToDespawn += Time.deltaTime;
+        }
+
+        if (timerToDespawn > 15f)
+        {
+            this.GetComponent<NetworkObject>().Despawn();
+        }
+    }
 }

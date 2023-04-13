@@ -70,6 +70,9 @@ public class Player : NetworkBehaviour
     private const float HITBYOTHERPLAYERTIMERMAX = 1;
     
     private float hitByOtherPlayerTimer;
+
+    float sendingRotationTimer = 0.07f;
+    const float sendingRotationTimerReset = 0.07f;
     #endregion
 
     #region BOOLS
@@ -190,28 +193,22 @@ public class Player : NetworkBehaviour
             this.gameObject.GetComponentInChildren<Camera>().enabled = false;
         }
 
-        if (!IsOwner)
+        /*if (!IsOwner)
         {
             return;
-        }
+        }*/
         
 
         if (TCMiniGameStateManager.Instance.GameIsPlaying()) 
         {
+            Quaternion inputVector = new Quaternion();
             if (IsOwner)
             {
-                Quaternion inputVector = new Quaternion();
-                /*if (!hasGyroScope)
-                {
-                    inputVector = Quaternion.Euler(InputController.Instance.GetMovementFromInput());
-                }
-                else
-                {*/
-                    inputVector = GyroToUnity(offset * Input.gyro.attitude);
+                    inputVector = GyroToUnity(Input.gyro.attitude);
                     inputVector.w = -inputVector.w;
-                //}
-                HandleMovementServerRpc(inputVector);
+                    inputVector = inputVector * offset;
             }
+            HandleMovement(inputVector);
             //MoveUIClientRpc();
         } 
     }
@@ -220,8 +217,8 @@ public class Player : NetworkBehaviour
         return new Quaternion(q.x, q.y, -q.z, -q.w);
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void HandleMovementServerRpc(Quaternion inputVector)
+    //[ServerRpc(RequireOwnership = false)]
+    private void HandleMovement(Quaternion inputVector)
     {
         //Debug.Log("I am handling movement");
         if (isHitByOtherPlayer)
@@ -250,18 +247,21 @@ public class Player : NetworkBehaviour
             AccelerateCurrentSpeed();
             HandleBoost();
             HandleSlowedDown();
-            HandleSideMovement(inputVector);
             MoveUp();
+            if(IsOwner)
+            HandleSideMovementServerRpc(inputVector);
         }
     }
-
-    private void HandleSideMovement(Quaternion inputVector)
+    [ServerRpc(RequireOwnership = false)]
+    private void HandleSideMovementServerRpc(Quaternion inputVector)
     {
-       /* if (!hasGyroScope)
+        if(sendingRotationTimer <= 0)
         {
-            if (inputVector.eulerAngles.x != 0)
+            sendingRotationTimer = sendingRotationTimerReset;
+            Debug.Log(inputVector.eulerAngles.y);
+            if (!(inputVector.eulerAngles.z < 185 && inputVector.eulerAngles.y > 175))
             {
-                Vector3 moveDir = new Vector3(0, -inputVector.eulerAngles.x, 0);
+                Vector3 moveDir = new Vector3(0, (inputVector.eulerAngles.z > 180) ? 10 : -10, 0);
                 RotatePlayer(moveDir);
             }
             else
@@ -271,22 +271,15 @@ public class Player : NetworkBehaviour
             }
         }
         else
-        {*/
-            if (inputVector.eulerAngles.z != 0)
-            {
-                Vector3 moveDir = new Vector3(0, inputVector.eulerAngles.z, 0);
-                RotatePlayer(moveDir);
-            }
-            else
-            {
-                currentMovingDirection = MovingDirections.ONLYUP;
-                moveUIScript.RotatePlayerUI(MoveOnUI.RotationDirection.NONE);
-            }
-        //}
+        {
+            sendingRotationTimer -= Time.deltaTime;
+        }
+        
     }
 
     private void MoveUp()
     {
+        
         Vector3 moveDir = new Vector3(0, moveSpeedUp, 0);
         transform.position += moveDir * moveSpeedSide * Time.deltaTime;
     }
