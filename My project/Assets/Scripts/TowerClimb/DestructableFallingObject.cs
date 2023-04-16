@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 
 public class DestructableFallingObject : FallingObject
@@ -18,7 +17,7 @@ public class DestructableFallingObject : FallingObject
 
     private void OnTriggerEnter(Collider other)
     {
-        Player player = other.GetComponentInParent<Player>();
+        TCPLayer player = other.GetComponentInParent<TCPLayer>();
         if (player)
         {
             if (TCMiniGameStateManager.Instance.GameIsPlaying())
@@ -31,11 +30,10 @@ public class DestructableFallingObject : FallingObject
 
     public void Destroy()
     {
-        Transform transformO = Instantiate(fracturedObject.GetFallingObjectSO().prefab, transform.position,transform.rotation);
+        GameObject newObj = new GameObject("Destroyed Falling Item");
+        Transform transformO = Instantiate(fracturedObject.GetFallingObjectSO().prefab, newObj.transform);
         transformO.localPosition = transform.position;
-        NetworkObject netObj = transformO.GetComponent<NetworkObject>();
-        netObj.Spawn(true);
-        gameObject.GetComponent<NetworkObject>().Despawn();
+        DestroyCurrentFallingObject();
     }
 
     public ObjectType GetObjectType()

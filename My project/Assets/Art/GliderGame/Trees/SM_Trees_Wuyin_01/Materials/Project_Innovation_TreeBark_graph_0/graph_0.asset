@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: graph_0
   m_EditorClassIdentifier: 
   AssetPath: Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_01/Materials/Project_Innovation_TreeBark.sbsar
-  OutputPath: Assets\Art\GliderGame\Trees\SM_Trees_Wuyin_01\Materials\Project_Innovation_TreeBark_graph_0
+  OutputPath: Assets/Art/GliderGame/Trees/SM_Trees_Wuyin_01/Materials/Project_Innovation_TreeBark_graph_0
   RawData: {fileID: -244192453324840774, guid: 373fd6c622951714696e535ab053ba5c, type: 3}
   Name: graph_0
   IsRoot: 1
   FlagedForDelete: 0
-  GUID: 992007c0-a8f7-48f2-994a-299f263a5655
+  GUID: 0fe5d8e4-3d8c-430e-a290-d3dc961f30b0
   Index: 0
   Input:
-  - rid: 1252248392430780430
-  - rid: 1252248392430780431
-  - rid: 1252248392430780432
-  - rid: 1252248392430780433
-  - rid: 1252248392430780434
-  - rid: 1252248392430780435
-  - rid: 1252248392430780436
+  - rid: 2121120746617700352
+  - rid: 2121120746617700353
+  - rid: 2121120746617700354
+  - rid: 2121120746617700355
+  - rid: 2121120746617700356
+  - rid: 2121120746617700357
+  - rid: 2121120746617700358
   Output:
   - Index: 0
     VirtualOutputIndex: 6
@@ -117,7 +117,7 @@ MonoBehaviour:
       Index: 5
       Type: 8
       Channel: ambientOcclusion
-    OutputTexture: {fileID: 0}
+    OutputTexture: {fileID: 2800000, guid: b7117a3137323e249b27b6dfbbb76d0c, type: 3}
     sRGB: 0
     IsVirtual: 0
     IsAlphaAssignable: 1
@@ -130,7 +130,15 @@ MonoBehaviour:
   EnablePhysicalSize: 0
   Thumbnail: 
   HasThumbnail: 0
-  CurrentStatePreset: 
+  CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Project_Innovation_TreeBark\" label=\"\"
+    >\n  <presetinput identifier=\"$outputsize\" uid=\"3893592944\" type=\"8\" value=\"9,9\"
+    />\n  <presetinput identifier=\"$randomseed\" uid=\"3210843426\" type=\"4\" value=\"1408\"
+    />\n  <presetinput identifier=\"Size_Var\" uid=\"2233135034\" type=\"0\" value=\"73.7\"
+    />\n  <presetinput identifier=\"Disorder\" uid=\"2233131539\" type=\"0\" value=\"37.5\"
+    />\n  <presetinput identifier=\"Grid_Number\" uid=\"2233127047\" type=\"4\" value=\"3\"
+    />\n  <presetinput identifier=\"Rotation\" uid=\"2233128821\" type=\"0\" value=\"-329\"
+    />\n  <presetinput identifier=\"outputcolor\" uid=\"2233125634\" type=\"0\" value=\"1\"
+    />\n </sbspreset>\n"
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
   GenerateAllMipmaps: 1
@@ -138,13 +146,13 @@ MonoBehaviour:
   DefaultPreset: " <sbspreset pkgurl=\"pkg://Project_Innovation_TreeBark\" label=\"\"
     >\n  <presetinput identifier=\"$outputsize\" uid=\"3893592944\" type=\"8\" value=\"10,10\"
     />\n </sbspreset>\n"
-  MaterialShader: Lpk/LightModel/ToonLightBase
+  MaterialShader: Universal Render Pipeline/Lit
   RenderTextures: 0
   OutputRemaped: 0
   references:
     version: 2
     RefIds:
-    - rid: 1252248392430780430
+    - rid: 2121120746617700352
       type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 0
@@ -155,7 +163,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 5
           WidgetType: 0
-        Data: {x: 10, y: 10}
+        Data: {x: 9, y: 9}
         NumericalDescription:
           DefaultValue: {x: 8, y: 8}
           MinValue: {x: 0, y: 0}
@@ -163,7 +171,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 1252248392430780431
+    - rid: 2121120746617700353
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 1
@@ -174,7 +182,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 0
-        Data: 0
+        Data: 1408
         NumericalDescription:
           DefaultValue: 0
           MinValue: 0
@@ -185,7 +193,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 1252248392430780432
+    - rid: 2121120746617700354
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 2
@@ -196,7 +204,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: 52.38
+        Data: 73.7
         NumericalDescription:
           DefaultValue: 52.38
           MinValue: 0
@@ -205,7 +213,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 1252248392430780433
+    - rid: 2121120746617700355
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 3
@@ -216,7 +224,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: 0
+        Data: 37.5
         NumericalDescription:
           DefaultValue: 0
           MinValue: 0
@@ -225,7 +233,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 1252248392430780434
+    - rid: 2121120746617700356
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 4
@@ -236,7 +244,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 1
-        Data: 4
+        Data: 3
         NumericalDescription:
           DefaultValue: 4
           MinValue: 0
@@ -247,7 +255,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 1252248392430780435
+    - rid: 2121120746617700357
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 5
@@ -258,7 +266,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 0
           WidgetType: 1
-        Data: -171.43
+        Data: -329
         NumericalDescription:
           DefaultValue: -171.43
           MinValue: -360
@@ -267,7 +275,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 1252248392430780436
+    - rid: 2121120746617700358
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 6
@@ -279,7 +287,7 @@ MonoBehaviour:
             output image
           Type: 0
           WidgetType: 3
-        Data: 0.72549
+        Data: 1
         NumericalDescription:
           DefaultValue: 0.72549
           MinValue: 0

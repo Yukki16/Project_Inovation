@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 6f3f3b0fef1cc9e40b7f14eb3ee106ac
@@ -15,12 +18,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: cc9732b613f4800439269afb33692ed1
   - enabled: 1
-    path: Assets/Scenes/CharacterCreation.unity
-    guid: 0f7b66d1ceedb0c4b8ddbee203f5e22c
+    path: Assets/Scenes/Waiting.unity
+    guid: 423ebe87b20e9cb428d5e61f61c8146b
+  - enabled: 1
+    path: Assets/Scenes/GameSelecting.unity
+    guid: f1586dd3583d1e14e8e4b7124f2234e2
   - enabled: 1
     path: Assets/Scenes/TowerClimb.unity
     guid: 327216ba51be5f641a210b64eefa57f1
-  - enabled: 1
-    path: Assets/Scenes/Gliding.unity
-    guid: a0dd152680c4d5b43b298f1ee4130e89
+  - enabled: 0
+    path: Assets/Scenes/MainMenu_old.unity
+    guid: 99f200f3fb9b8a14dacd8f7274df9021
+  - enabled: 0
+    path: Assets/Scenes/Lobby_old.unity
+    guid: b02797f7ec9f8ef44a86b05b2d769921
   m_configObjects: {}

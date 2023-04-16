@@ -2,37 +2,29 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Netcode;
 using UnityEngine;
 
-public class CameraManager : NetworkBehaviour
+public class CameraManager : MonoBehaviour
 {
     [SerializeField] private CameraScript defaultCamera;
     [SerializeField] private GameObject twoPlayerScreen;
     [SerializeField] private GameObject threePlayerScreen;
     [SerializeField] private GameObject fourPlayerScreen;
 
-    private void Start()
+    private void Awake()
     {
-        TCMiniGameStateManager.Instance.OnAllPlayersJoined += Player_OnPlayerJoin;
-        Player.OnPlayerLeave += Player_OnPlayerLeave;
+        Debug.Log("Subscribe");
+        NetworkManager.Instance.OnAllPlayersJoined += Instance_OnAllPlayersJoined;
+        
     }
 
-    private void Player_OnPlayerLeave(object sender, Player.OnPlayerLeaveArgs e)
+    private void Instance_OnAllPlayersJoined(object sender, System.EventArgs e)
     {
-        UpdateScreenView(NetworkManager.Singleton.ConnectedClientsIds.Count - 1, e.clientId);
-
-    }
-
-    private void Player_OnPlayerJoin(object sender, System.EventArgs e)
-    {
-        UpdateScreenView(NetworkManager.Singleton.ConnectedClientsIds.Count);
+        UpdateScreenView(NetworkManager.Instance.GetAmountOfConnectedPlayers());
     }
 
     public void UpdateScreenView(int amountOfPlayersConnected, ulong disconnectedClient = default)
     {
-        if (IsServer)
-        {
             DeleteExistingScreens(amountOfPlayersConnected);
             if (amountOfPlayersConnected >= 2)
             {
@@ -40,54 +32,40 @@ public class CameraManager : NetworkBehaviour
                 {
                     case 2:
                         GameObject twoPlScreen = Instantiate(twoPlayerScreen, transform.position, transform.rotation);
-                        foreach (var connectedPlayer in NetworkManager.Singleton.ConnectedClientsList)
+                        foreach (var connectedPlayer in NetworkManager.Instance.GetTowerClimbPlayers())
                         {
-                            if (connectedPlayer.ClientId != disconnectedClient || disconnectedClient == default)
-                            {
-                                CameraScript currentCamera = twoPlScreen.GetComponentsInChildren<CameraScript>()[0];
-                                currentCamera.transform.Rotate(0, connectedPlayer.PlayerObject.GetComponent<Player>().transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
-                                Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedPlayer.PlayerObject.GetComponent<Player>().transform.position.y, currentCamera.transform.position.z);
-                                currentCamera.transform.SetPositionAndRotation(newPosition,currentCamera.transform.rotation);
-                                currentCamera.transform.SetParent(connectedPlayer.PlayerObject.GetComponent<Player>().transform);
-                            }
+                            CameraScript currentCamera = twoPlScreen.GetComponentsInChildren<CameraScript>()[0];
+                            currentCamera.transform.Rotate(0, connectedPlayer.transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
+                            Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedPlayer.transform.position.y, currentCamera.transform.position.z);
+                            currentCamera.transform.SetPositionAndRotation(newPosition, currentCamera.transform.rotation);
+                            currentCamera.transform.SetParent(connectedPlayer.transform);
+                        
                         }
                         break;
                     case 3:
                         GameObject threePlScreen = Instantiate(threePlayerScreen, transform.position, transform.rotation);
-                        foreach (var connectedPlayer in NetworkManager.Singleton.ConnectedClientsList)
+                        foreach (var connectedPlayer in NetworkManager.Instance.GetTowerClimbPlayers())
                         {
-                            Debug.Log(connectedPlayer.ClientId);
-                            if (connectedPlayer.ClientId != disconnectedClient || disconnectedClient == default)
-                            {
-                                CameraScript currentCamera = threePlScreen.GetComponentsInChildren<CameraScript>()[0];
-                                currentCamera.transform.Rotate(0, connectedPlayer.PlayerObject.GetComponent<Player>().transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
-                                Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedPlayer.PlayerObject.GetComponent<Player>().transform.position.y, currentCamera.transform.position.z);
-                                currentCamera.transform.SetPositionAndRotation(newPosition, currentCamera.transform.rotation);
-                                currentCamera.transform.SetParent(connectedPlayer.PlayerObject.GetComponent<Player>().transform);
-                            }
+                            CameraScript currentCamera = threePlScreen.GetComponentsInChildren<CameraScript>()[0];
+                            currentCamera.transform.Rotate(0, connectedPlayer.transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
+                            Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedPlayer.transform.position.y, currentCamera.transform.position.z);
+                            currentCamera.transform.SetPositionAndRotation(newPosition, currentCamera.transform.rotation);
+                            currentCamera.transform.SetParent(connectedPlayer.transform);
                         }
                         break;
                     case 4:
                         GameObject fourPlScreen = Instantiate(fourPlayerScreen, transform.position, transform.rotation);
-                        foreach (var connectedPlayer in NetworkManager.Singleton.ConnectedClientsList)
+                        foreach (var connectedPlayer in NetworkManager.Instance.GetTowerClimbPlayers())
                         {
-                            if (connectedPlayer.ClientId != disconnectedClient || disconnectedClient == default)
-                            {
-                                CameraScript currentCamera = fourPlayerScreen.GetComponentsInChildren<CameraScript>()[0];
-                                currentCamera.transform.Rotate(0, connectedPlayer.PlayerObject.GetComponent<Player>().transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
-                                Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedPlayer.PlayerObject.GetComponent<Player>().transform.position.y, currentCamera.transform.position.z);
-                                currentCamera.transform.SetPositionAndRotation(newPosition, currentCamera.transform.rotation);
-                                currentCamera.transform.SetParent(connectedPlayer.PlayerObject.GetComponent<Player>().transform);
-                            }
+                            CameraScript currentCamera = fourPlScreen.GetComponentsInChildren<CameraScript>()[0];
+                            currentCamera.transform.Rotate(0, connectedPlayer.transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
+                            Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedPlayer.transform.position.y, currentCamera.transform.position.z);
+                            currentCamera.transform.SetPositionAndRotation(newPosition, currentCamera.transform.rotation);
+                            currentCamera.transform.SetParent(connectedPlayer.transform);
                         }
                         break;
                 }
             }
-        }
-        else if (IsClient)
-        {
-            defaultCamera.gameObject.SetActive(false);
-        }
     }
 
     private void DeleteExistingScreens(int amountOfPlayersConnected)
@@ -101,7 +79,7 @@ public class CameraManager : NetworkBehaviour
             defaultCamera.gameObject.SetActive(true);
         }
 
-        foreach (Player player in GameObject.FindObjectsOfType<Player>())
+        foreach (TCPLayer player in GameObject.FindObjectsOfType<TCPLayer>())
         {
             CameraScript[] playerCameras = player.GetComponentsInChildren<CameraScript>();
             if (playerCameras.Length >= 1)
