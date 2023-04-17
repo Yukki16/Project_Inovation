@@ -1,15 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
-using static GeneralGameManager;
 using static TCMiniGameStateManager;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public class SlowDownPlayerArgs
     {
-        public TCPLayer player;
+        public Player player;
     }
     public event EventHandler<SlowDownPlayerArgs> SlowDownPlayer;
     public static GameManager Instance { get; private set; }
@@ -30,19 +30,15 @@ public class GameManager : MonoBehaviour
     private float spawnRate = 1.5f;
     private float powerUpTimer;
 
+    bool isSpawningObjects = false;
+
     private void Awake()
     {
         Instance = this;
         spawnModifierTimer = MAXSPAWNMODIFIERTIME;
-        spawnRate = maxSpawnRate;
+        //spawnRate = maxSpawnRate;
         powerUpTimer = MAXPOWERUPTIMER;
         players = new List<Transform>();
-        NetworkManager.Instance.OnAllPlayersJoined += Instance_OnAllPlayersJoined;
-    }
-
-    private void Instance_OnAllPlayersJoined(object sender, EventArgs e)
-    {
-        TCMiniGameStateManager.Instance.StartGame();
     }
 
     public float GetLowestHeightOfAllPlayers()
@@ -88,17 +84,17 @@ public class GameManager : MonoBehaviour
         return highestHeight;
     }
 
-    public TCPLayer GetHightestHeightPlayer()
+    public Player GetHightestHeightPlayer()
     {
         GetAndUpdatePlayers();
         float highestHeight = players[0].position.y;
-        TCPLayer playerWithHighestHeight = players[0].GetComponentInParent<TCPLayer>();
+        Player playerWithHighestHeight = players[0].GetComponentInParent<Player>();
         foreach (Transform player in players)
         {
             if (player.position.y >= highestHeight)
             {
                 highestHeight = player.position.y;
-                playerWithHighestHeight = player.GetComponentInParent<TCPLayer>();
+                playerWithHighestHeight = player.GetComponentInParent<Player>();
             }
         }
         return playerWithHighestHeight;
@@ -111,13 +107,21 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (TCMiniGameStateManager.Instance.GameIsPlaying())
+        if (IsServer)
         {
-            HandleSpawningOfItems();
-            HandlePowerUps();
-            if (GetHighestHeightOfAllPlayers() >= GetMaxGameLength())
+            if (TCMiniGameStateManager.Instance.GameIsPlaying())
             {
-                TCMiniGameStateManager.Instance.EndGame();
+                if(!isSpawningObjects)
+                {
+                    StartCoroutine(HandleSpawningOfItems());
+                    isSpawningObjects = true;
+                }
+                //HandleSpawningOfItems();
+                HandlePowerUps();
+                if (GetHighestHeightOfAllPlayers() >= GetMaxGameLength())
+                {
+                    TCMiniGameStateManager.Instance.EndGame();
+                }
             }
         }
     }
@@ -150,7 +154,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void HandleSpawningOfItems()
+    IEnumerator HandleSpawningOfItems()
+    {
+        yield return new WaitForSeconds(spawnRate);
+        if(spawnModifierTimer > MINSPAWNRATE)
+        {
+            spawnModifierTimer -= 0.05f;
+        }
+        SpawnFallingItems();
+        StartCoroutine(HandleSpawningOfItems());
+        yield return null;
+    }
+/*    private void HandleSpawningOfItems()
     {
         spawnRate -= Time.deltaTime;
         if (spawnRate <= 0)
@@ -167,7 +182,7 @@ public class GameManager : MonoBehaviour
                 spawnModifierTimer = MAXSPAWNMODIFIERTIME;
             }
         }
-    }
+    }*/
 
     public Dictionary<string,int> GetScoreboard()
     {
@@ -191,11 +206,14 @@ public class GameManager : MonoBehaviour
 
     public void GetAndUpdatePlayers()
     {
-        List<Transform> newPlayerList = new List<Transform>();
-        foreach (var client in NetworkManager.Instance.GetTowerClimbPlayers())
+        if (IsServer)
         {
-            newPlayerList.Add(client.GetPlayerBody());
+            List<Transform> newPlayerList = new List<Transform>();
+            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+            {
+                newPlayerList.Add(client.PlayerObject.GetComponent<Player>().GetPlayerBody());
+            }
+            players = newPlayerList;
         }
-        players = newPlayerList;
     }
 }

@@ -180,6 +180,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ring
       objectReference: {fileID: 0}
+    - target: {fileID: 8858844882304954202, guid: d693f52916391a344a69de6bbddd6c73,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8858844882304954203, guid: d693f52916391a344a69de6bbddd6c73,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d693f52916391a344a69de6bbddd6c73, type: 3}
 --- !u!4 &6792154783890365341 stripped

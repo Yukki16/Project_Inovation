@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class FallingObject : MonoBehaviour
+public abstract class FallingObject : NetworkBehaviour
 {
-    Renderer rend;
-
-    float timerToDespawn = 0f;
     public enum RotationDirection
     {
         None,
@@ -28,32 +26,25 @@ public abstract class FallingObject : MonoBehaviour
 
     public FallingObjectSO GetFallingObjectSO() { return fallingObjectSO; }
 
+    Renderer rend;
+    float timerToDespawn = 0f;
+
     private void Start()
     {
+        rend = GetComponent<Renderer>();
         xRotDir = ChooseANumber(-1, 1);
         yRotDir = ChooseANumber(-1, 1);
         zRotDir = ChooseANumber(-1, 1);
-        rend = GetComponent<Renderer>();
     }
 
     protected virtual void Update()
     {
-        MoveDown();
-        RotateFallingObject();
-        CheckIfFallingObjectCanBeDeleted();
-        DestroyIfNotOnScreen();
-    }
-
-    void DestroyIfNotOnScreen()
-    {
-        if (!rend.isVisible)
+        if (IsServer)
         {
-            timerToDespawn += Time.deltaTime;
-        }
-
-        if (timerToDespawn > 10f)
-        {
-            DestroyCurrentFallingObject();
+            MoveDown();
+            RotateFallingObject();
+            CheckIfFallingObjectCanBeDeleted();
+            DestroyIfNotOnScreen();
         }
     }
 
@@ -65,10 +56,16 @@ public abstract class FallingObject : MonoBehaviour
 
     protected void DestroyCurrentFallingObject()
     {
-        Destroy(gameObject.transform.parent.gameObject);
+        DestroyCurrentFallingObjectServerRpc();
     }
 
-    private void RotateFallingObject() 
+    [ServerRpc(RequireOwnership = false)]
+    protected void DestroyCurrentFallingObjectServerRpc()
+    {
+        Destroy(gameObject);
+    }
+
+    private void RotateFallingObject()
     {
         if (rotationDir != RotationDirection.None)
         {
@@ -111,4 +108,16 @@ public abstract class FallingObject : MonoBehaviour
         else return number2;
     }
 
+    void DestroyIfNotOnScreen()
+    {
+        if (!rend.isVisible)
+        {
+            timerToDespawn += Time.deltaTime;
+        }
+
+        if (timerToDespawn > 15f)
+        {
+            this.GetComponent<NetworkObject>().Despawn();
+        }
+    }
 }

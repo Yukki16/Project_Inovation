@@ -22,9 +22,9 @@ public class InputController : MonoBehaviour
         OnIsReady?.Invoke(this, EventArgs.Empty);
     }
 
-    public Vector2 GetMovementFromInput()
+    public Vector3 GetMovementFromInput()
     {
-        Vector2 inputVector = inputKeys.Player.TowerClimbMovement.ReadValue<Vector2>();
+        Vector3 inputVector = inputKeys.Player.TowerClimbMovement.ReadValue<Vector3>();
         inputVector = inputVector.normalized;
         return inputVector;
     }

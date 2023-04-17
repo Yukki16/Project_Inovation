@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.4433962, g: 0.25624844, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -224,15 +224,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 951099334
       objectReference: {fileID: 0}
-    - target: {fileID: 1821268799772809733, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
+    - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821268799772809733, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -25
+      propertyPath: m_CullingMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
         type: 3}
@@ -329,15 +324,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 951099334
       objectReference: {fileID: 0}
-    - target: {fileID: 1821268799772809733, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
+    - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821268799772809733, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -25
+      propertyPath: m_CullingMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
         type: 3}
@@ -439,15 +429,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 951099334
       objectReference: {fileID: 0}
-    - target: {fileID: 1821268799772809733, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
+    - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821268799772809733, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -25
+      propertyPath: m_CullingMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1821268799772809734, guid: 4615fa997cb8f4142aa8a5415c9ec78c,
         type: 3}

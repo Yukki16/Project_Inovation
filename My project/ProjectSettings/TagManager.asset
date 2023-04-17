@@ -8,7 +8,7 @@ TagManager:
   - ThreePlayerScreen
   - FourPlayerScreen
   - UI
-  - cat
+  - PhoneUI
   layers:
   - Default
   - TransparentFX
@@ -16,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Client
   - 
   - 
   - 
