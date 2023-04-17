@@ -22,7 +22,7 @@ public class ScoreBoard : MonoBehaviour
 
     IEnumerator DysplayScoreBoard()
     {
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
         foreach(var client in GeneralGameManager.Instance.GetClientsWithTheirCharacterColor())
         {
@@ -80,5 +80,15 @@ public class ScoreBoard : MonoBehaviour
             }
         }
         yield return null;
+    }
+
+    private void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void Show()
+    {
+        gameObject.SetActive(true);
     }
 }

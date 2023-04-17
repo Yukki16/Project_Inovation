@@ -15,12 +15,25 @@ public class ProgressBar : MonoBehaviour
     private Dictionary<GeneralGameManager.CharacterColors, Transform> players = new Dictionary<GeneralGameManager.CharacterColors, Transform>();
     public void GetAndUpdatePlayers()
     {
-        Dictionary<GeneralGameManager.CharacterColors, Transform> newPlayerList = new Dictionary<GeneralGameManager.CharacterColors, Transform>();
-        foreach (var client in NetworkManager.Instance.GetAllPlayers())
+        if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.TOWER_CLIMB)
         {
-            newPlayerList.Add((client as TCPLayer).GetCharacterColor(), (client as TCPLayer).GetPlayerBody());
+            Dictionary<GeneralGameManager.CharacterColors, Transform> newPlayerList = new Dictionary<GeneralGameManager.CharacterColors, Transform>();
+            foreach (var client in NetworkManager.Instance.GetAllPlayers())
+            {
+                newPlayerList.Add((client as TCPLayer).GetCharacterColor(), (client as TCPLayer).GetPlayerBody());
+            }
+            players = newPlayerList;
         }
-        players = newPlayerList;
+        else if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.LETSGLIDE)
+        {
+            Dictionary<GeneralGameManager.CharacterColors, Transform> newPlayerList = new Dictionary<GeneralGameManager.CharacterColors, Transform>();
+            foreach (var client in NetworkManager.Instance.GetAllPlayers())
+            {
+                newPlayerList.Add((client as PlayerCharacter).GetCharacterColor(), (client as PlayerCharacter).transform);
+            }
+            players = newPlayerList;
+        }
+        
     }
 
     private void Start()
@@ -108,8 +121,7 @@ public class ProgressBar : MonoBehaviour
                 }
             }
         }
-
-        if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.LETSGLIDE)
+        else if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.LETSGLIDE)
         {
             if (GlidingGameManager.Instance.ReturnCurrentGameState() == GlidingGameManager.GameState.PLAYING)
             {

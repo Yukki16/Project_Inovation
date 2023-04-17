@@ -1,11 +1,14 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GlidingGameManager : MonoBehaviour
 {
     [SerializeField] private int gameLength;
+    private List<Transform> players;
     public static GlidingGameManager Instance { get; private set; }
     public class GameStateChangedArgs
     {
@@ -31,15 +34,20 @@ public class GlidingGameManager : MonoBehaviour
     {
         Instance = this;
         currentGameState = GameState.WAITING;
+        NetworkManager.Instance.OnAllPlayersJoined += Instance_OnAllPlayersJoined;
     }
 
-    public GameState ReturnCurrentGameState()
+    private void Instance_OnAllPlayersJoined(object sender, EventArgs e)
     {
-        return currentGameState;
+        StartGame();
     }
 
     void Update()
     {
+        if (GetFurthestDistanceOfAllPlayers() >= -65 && GameIsPlaying())
+        {
+            EndGame();
+        }
         switch (currentGameState)
         {
             case GameState.SHOWING_TUTORIAL:
@@ -119,5 +127,46 @@ public class GlidingGameManager : MonoBehaviour
     public int GetGameLengthInMeters()
     {
         return gameLength;
+    }
+    public float GetFurthestDistanceOfAllPlayers()
+    {
+        GetAndUpdatePlayers();
+        float furthestDistance = players[0].position.x;
+        foreach (Transform player in players)
+        {
+            if (player.position.x >= furthestDistance)
+            {
+                furthestDistance = player.position.x;
+            }
+        }
+        return furthestDistance;
+    }
+
+
+    public List<IPlayer> GetScoreboard()
+    {
+        GetAndUpdatePlayers();
+        var winners = players.OrderByDescending(player => player.transform.position.y).ToList();
+        List<IPlayer> playerWinners = new List<IPlayer>();
+        foreach (var winner in winners)
+        {
+            playerWinners.Add(winner.GetComponent<IPlayer>());
+        }
+        return playerWinners;
+    }
+
+    private void GetAndUpdatePlayers()
+    {
+        List<Transform> newPlayerList = new List<Transform>();
+        foreach (var client in NetworkManager.Instance.GetAllPlayers())
+        {
+            newPlayerList.Add((client as PlayerCharacter).transform);
+        }
+        players = newPlayerList;
+    }
+
+    public GameState ReturnCurrentGameState()
+    {
+        return currentGameState;
     }
 }

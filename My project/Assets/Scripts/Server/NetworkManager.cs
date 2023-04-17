@@ -24,8 +24,8 @@ public class NetworkManager : MonoBehaviour
 
     private const int MIN_NETWORK_CLIENTS = 2;
     private const int MAX_NETWORK_CLIENTS = 4;
-    
-    private readonly static List<string> possibleActions = new List<string> { "/moveright", "/moveleft", "/leave" };
+
+    private readonly static List<string> possibleActions = new List<string> { "/moveright", "/moveleft", "/moveup", "/movedown", "/leave" };
     private static Dictionary<TcpClient, IPlayer> _clients = new Dictionary<TcpClient, IPlayer>();
 
     private TcpListener _listener;
@@ -83,11 +83,6 @@ public class NetworkManager : MonoBehaviour
                                 if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == Minigames.TOWER_CLIMB)
                                 {
                                     TCPLayer playerToRemove = (_clients[client] as TCPLayer);
-                                    
-                                    if(ProgressBar.Instance != null)
-                                    {
-                                        ProgressBar.Instance.UpdateProgressBarOnDisconect();
-                                    }
                                     _clients.Remove(client);
                                     CameraManager.Instance.UpdateScreenView(GetAmountOfConnectedPlayers());
                                     Destroy(playerToRemove.gameObject);
@@ -216,7 +211,14 @@ public class NetworkManager : MonoBehaviour
                         {
                             handleMovement(client.Key, Vector2.left);
                         }
-                    }                    
+                    }
+                    else if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == Minigames.LETSGLIDE)
+                    {
+                        if (GlidingGameManager.Instance.GameIsPlaying())
+                        {
+                            handleMovement(client.Key, Vector3.forward);
+                        }
+                    }
                 }           
                 break;
             case "/moveright":
@@ -227,6 +229,37 @@ public class NetworkManager : MonoBehaviour
                         if (TCMiniGameStateManager.Instance.GameIsPlaying())
                         {
                             handleMovement(client.Key, Vector2.right);
+                        }
+                    }
+                    else if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == Minigames.LETSGLIDE)
+                    {
+                        if (GlidingGameManager.Instance.GameIsPlaying())
+                        {
+                            handleMovement(client.Key, Vector3.back);
+                        }
+                    }
+                }
+                break;
+            case "/moveup":
+                if (GeneralGameManager.Instance.GetCurrentServerState() == ServerStates.IN_GAME)
+                {
+                    if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == Minigames.LETSGLIDE)
+                    {
+                        if (GlidingGameManager.Instance.GameIsPlaying())
+                        {
+                            handleMovement(client.Key, Vector3.up);
+                        }
+                    }
+                }
+                break;
+            case "/movedown":
+                if (GeneralGameManager.Instance.GetCurrentServerState() == ServerStates.IN_GAME)
+                {
+                    if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == Minigames.LETSGLIDE)
+                    {
+                        if (GlidingGameManager.Instance.GameIsPlaying())
+                        {
+                            handleMovement(client.Key, Vector3.down);
                         }
                     }
                 }
@@ -263,11 +296,15 @@ public class NetworkManager : MonoBehaviour
         _clients.Remove(client);
     }
 
-    private static void handleMovement(TcpClient clientToMove, Vector2 moveDir)
+    private static void handleMovement(TcpClient clientToMove, Vector3 moveDir)
     {
         if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == Minigames.TOWER_CLIMB)
         {
             (_clients[clientToMove] as TCPLayer).HandleSideMovement(moveDir);
+        }
+        else if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == Minigames.LETSGLIDE)
+        {
+            (_clients[clientToMove] as PlayerCharacter).HandlePlayerMovement(moveDir);
         }
         
     }
@@ -365,7 +402,38 @@ public class NetworkManager : MonoBehaviour
                 
                 break;
             case Minigames.LETSGLIDE:
-                //TODO
+                if (SceneManager.GetActiveScene().name == "Gliding")
+                {
+                    List<PlayerCharacter> allPlayers = GameObject.FindObjectsOfType<PlayerCharacter>().ToList();
+                    Dictionary<CharacterColors, TcpClient> clientsWithColor = GeneralGameManager.Instance.GetClientsWithTheirCharacterColor();
+                    Dictionary<TcpClient, IPlayer> clients2 = CreateDirectoryCopy(_clients);
+                    foreach (var color in clientsWithColor.Keys)
+                    {
+                        if (clientsWithColor[color] != null)
+                        {
+                            foreach (var player in allPlayers)
+                            {
+                                if (color == player.GetCharacterColor())
+                                {
+                                    _clients[clientsWithColor[color]] = player;
+                                    allPlayers.Remove(player);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    foreach (var player in allPlayers)
+                    {
+                        Destroy(player.gameObject);
+                    }
+                    OnAllPlayersJoined?.Invoke(this, EventArgs.Empty);
+                    SendToAllClients("/loadgame:letsglide");
+                }
+                else
+                {
+                    Debug.LogError("Method was called before glidinggame scene was loaded.");
+                }
                 break;
         }
     }
@@ -373,6 +441,11 @@ public class NetworkManager : MonoBehaviour
     public void NotifyClientsForGameStart()
     {
         SendToAllClients("/startgame");
+    }
+
+    public void NotifyClientsForScoreboard()
+    {
+        SendToAllClients("/loadscene:scoreboard");
     }
 
     public List<IPlayer> GetAllPlayers()
@@ -383,5 +456,13 @@ public class NetworkManager : MonoBehaviour
     public Dictionary<TcpClient,IPlayer> GetClientWithAssociatedPlayers()
     {
         return _clients;
+    }
+
+    public void ClearAssociatedPlayers()
+    {
+        foreach (var client in _clients.Keys)
+        {
+            _clients[client] = null;
+        }
     }
 }

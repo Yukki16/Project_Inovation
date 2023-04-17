@@ -10,7 +10,26 @@ public class TutorialUI : MonoBehaviour
     void Start()
     {
         Show();
-        TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged; 
+        if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.TOWER_CLIMB)
+        {
+            TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
+        }
+        else if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.LETSGLIDE)
+        {
+            GlidingGameManager.Instance.GameStateChanged += Instance_GameStateChanged1; ;
+        }
+    }
+
+    private void Instance_GameStateChanged1(object sender, GlidingGameManager.GameStateChangedArgs e)
+    {
+        if (e.gameState == GlidingGameManager.GameState.WAITING)
+        {
+            Show();
+        }
+        else
+        {
+            Hide();
+        }
     }
 
     private void Instance_GameStateChanged(object sender, TCMiniGameStateManager.GameStateChangedArgs e)

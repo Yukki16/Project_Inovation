@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TowerClimb.unity
     guid: 327216ba51be5f641a210b64eefa57f1
   - enabled: 1
+    path: Assets/Scenes/Gliding.unity
+    guid: a0dd152680c4d5b43b298f1ee4130e89
+  - enabled: 1
     path: Assets/Scenes/Scoreboard.unity
     guid: fb766e58b10ea554db61ef5d82a2d9b3
   - enabled: 1

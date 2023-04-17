@@ -21,10 +21,10 @@ public class PlayerCharacter : MonoBehaviour, IPlayer
 
     private void Update()
     {
-        //if (GlidingGameManager.Instance.GameIsPlaying())
-        //{
+        if (GlidingGameManager.Instance.GameIsPlaying())
+        {
             MoveForward();
-        //}
+        }
     }
 
     private void MoveForward()
@@ -58,8 +58,8 @@ public class PlayerCharacter : MonoBehaviour, IPlayer
         return characterColor;
     }
 
-    public Transform GetTransform()
+    public void HandlePlayerMovement(Vector3 moveDir)
     {
-        return transform;
+        transform.position += moveDir * Time.deltaTime * 15;
     }
 }

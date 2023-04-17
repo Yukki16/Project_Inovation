@@ -49,10 +49,21 @@ public class CountdownUI : MonoBehaviour
 
     private void Update()
     {
-        if (TCMiniGameStateManager.Instance.GameIsInCountdown())
+        if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.TOWER_CLIMB)
         {
-            text.text = Mathf.Ceil(TCMiniGameStateManager.Instance.GetCountdown()).ToString();
+            if (TCMiniGameStateManager.Instance.GameIsInCountdown())
+            {
+                text.text = Mathf.Ceil(TCMiniGameStateManager.Instance.GetCountdown()).ToString();
+            }
         }
+        else if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.LETSGLIDE)
+        {
+            if (GlidingGameManager.Instance.GameIsInCountdown())
+            {
+                text.text = Mathf.Ceil(GlidingGameManager.Instance.GetCountdown()).ToString();
+            }
+        }
+        
     }
 
     private void ShowCountdown()

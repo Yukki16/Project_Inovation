@@ -36,7 +36,7 @@ public class GeneralGameManager : MonoBehaviour
         PURPLE
     }
 
-    private const int MAX_POINTS_TO_EARN = 4;
+    private const int MAX_POINTS_TO_EARN = 20;
     private const int MAX_GAME_POINTS = 4;
 
     private ServerStates currentState;
@@ -46,10 +46,6 @@ public class GeneralGameManager : MonoBehaviour
     private Dictionary<CharacterColors, TcpClient> clientsWithTheirCharacterColor;
     private Dictionary<TcpClient, int> clientsWithPoints;
 
-    public Dictionary<TcpClient, int> ReturnClientsPoints()
-    {
-        return clientsWithPoints;
-    }
     private void Awake()
     {
         Instance = this;
@@ -150,8 +146,7 @@ public class GeneralGameManager : MonoBehaviour
             if (previousSelectedMinigame == Minigames.NOT_PLAYABLE || newMinigame != previousSelectedMinigame)
             {
                 previousSelectedMinigame = currentSelectedMinigame;
-                //currentSelectedMinigame = newMinigame;
-                currentSelectedMinigame = Minigames.TOWER_CLIMB;
+                currentSelectedMinigame = newMinigame;
                 currentState = ServerStates.IN_GAME_SELECTING;
                 gameSelected = true;
             }
@@ -186,10 +181,27 @@ public class GeneralGameManager : MonoBehaviour
                 }
             }
         }
+        else if (GetCurrentChosenMinigame() == Minigames.LETSGLIDE)
+        {
+            List<IPlayer> scoreboard = GlidingGameManager.Instance.GetScoreboard();
+            Dictionary<TcpClient, IPlayer> clientsWithAssociatedPlayers = NetworkManager.Instance.GetClientWithAssociatedPlayers();
+            for (int i = 0; i < scoreboard.Count; i++)
+            {
+                foreach (var client in clientsWithAssociatedPlayers.Keys)
+                {
+                    if (clientsWithAssociatedPlayers[client] == scoreboard[i])
+                    {
+                        clientsWithPoints[client] += MAX_POINTS_TO_EARN - i;
+                        break;
+                    }
+                }
+            }
+        }
 
         currentSelectedMinigame = Minigames.NOT_PLAYABLE;
         currentState = ServerStates.IN_SCOREBOARD;
-        Loader.Load(Loader.Scene.Scoreboard);
+        NetworkManager.Instance.NotifyClientsForScoreboard();
+        Loader.Load(Loader.Scene.Scoreboard);    
     }
 
     public void LoadMinigame()
@@ -202,8 +214,7 @@ public class GeneralGameManager : MonoBehaviour
                 NetworkManager.Instance.LoadNetwork(Loader.Scene.TowerClimb);
                 break;
             case Minigames.LETSGLIDE:
-                NetworkManager.Instance.LoadNetwork(Loader.Scene.TowerClimb);
-                //NetworkManager.Instance.LoadNetwork(Loader.Scene.Gliding);
+                NetworkManager.Instance.LoadNetwork(Loader.Scene.Gliding);
                 break;
         }
     }
@@ -247,5 +258,10 @@ public class GeneralGameManager : MonoBehaviour
     {
         currentState = ServerStates.IN_END_SCREEN;
         NetworkManager.Instance.LoadNetwork(Loader.Scene.Ending);
+    }
+
+    public Dictionary<TcpClient, int> ReturnClientsPoints()
+    {
+        return clientsWithPoints;
     }
 }

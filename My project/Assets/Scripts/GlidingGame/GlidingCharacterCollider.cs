@@ -12,6 +12,7 @@ public class GlidingCharacterCollider : MonoBehaviour
         {
             playerCharacter.AddPassedRing(other.transform);
             playerCharacter.BoostPlayer();
+            Debug.Log("Hit");
         }
     }
 }
