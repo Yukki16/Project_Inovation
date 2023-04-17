@@ -1,10 +1,9 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterSelectionUI : NetworkBehaviour
+public class CharacterSelectionUI : MonoBehaviour
 {
     [SerializeField] private Button readyButton;
 
@@ -30,4 +29,4 @@ public class CharacterSelectionUI : NetworkBehaviour
     {
         gameObject.SetActive(true);
     }
-}
+}*/

@@ -1,4 +1,4 @@
-using Unity.Netcode.Components;
+/*using Unity.Netcode.Components;
 using UnityEngine;
 
 namespace Unity.Multiplayer.Samples.Utilities.ClientAuthority
@@ -19,4 +19,4 @@ namespace Unity.Multiplayer.Samples.Utilities.ClientAuthority
             return false;
         }
     }
-}
+}*/

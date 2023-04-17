@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -50,3 +50,4 @@ public class Multiplayer : NetworkBehaviour
         NetworkManager.Singleton.StartClient();
     }
 }
+*/

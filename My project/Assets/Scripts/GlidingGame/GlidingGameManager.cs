@@ -33,6 +33,11 @@ public class GlidingGameManager : MonoBehaviour
         currentGameState = GameState.WAITING;
     }
 
+    public GameState ReturnCurrentGameState()
+    {
+        return currentGameState;
+    }
+
     void Update()
     {
         switch (currentGameState)

@@ -83,6 +83,11 @@ public class NetworkManager : MonoBehaviour
                                 if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == Minigames.TOWER_CLIMB)
                                 {
                                     TCPLayer playerToRemove = (_clients[client] as TCPLayer);
+                                    
+                                    if(ProgressBar.Instance != null)
+                                    {
+                                        ProgressBar.Instance.UpdateProgressBarOnDisconect();
+                                    }
                                     _clients.Remove(client);
                                     CameraManager.Instance.UpdateScreenView(GetAmountOfConnectedPlayers());
                                     Destroy(playerToRemove.gameObject);

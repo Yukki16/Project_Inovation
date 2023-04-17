@@ -46,6 +46,10 @@ public class GeneralGameManager : MonoBehaviour
     private Dictionary<CharacterColors, TcpClient> clientsWithTheirCharacterColor;
     private Dictionary<TcpClient, int> clientsWithPoints;
 
+    public Dictionary<TcpClient, int> ReturnClientsPoints()
+    {
+        return clientsWithPoints;
+    }
     private void Awake()
     {
         Instance = this;

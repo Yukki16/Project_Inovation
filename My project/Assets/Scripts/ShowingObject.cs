@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
@@ -35,7 +35,7 @@ public class ShowingObject : NetworkBehaviour
                 this.gameObject.SetActive(true);
             }
         }
-        /*if(!showOnServer && IsServer)
+        *//*if(!showOnServer && IsServer)
         {
             this.gameObject.SetActive(false);
         }
@@ -46,6 +46,7 @@ public class ShowingObject : NetworkBehaviour
         if(!showOnClient && (IsClient || IsLocalPlayer))
         {
             this.gameObject.SetActive(false);
-        }*/
+        }*//*
     }
 }
+*/

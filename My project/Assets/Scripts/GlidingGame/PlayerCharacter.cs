@@ -57,4 +57,9 @@ public class PlayerCharacter : MonoBehaviour, IPlayer
     {
         return characterColor;
     }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Net;
@@ -66,7 +66,7 @@ public class LocalIP : MonoBehaviour
             ? mostSuitableIp.Address.ToString()
             : "";
     }
-    /*public string GetLocalIPAddress()
+    *//*public string GetLocalIPAddress()
     {
         var host = Dns.GetHostEntry(Dns.GetHostName());
         foreach (var ip in host.AddressList)
@@ -79,5 +79,5 @@ public class LocalIP : MonoBehaviour
         }
         throw new System.Exception("No network adapters with an IPv4 address in the system!");
 
-    }*/
-}
+    }*//*
+}*/

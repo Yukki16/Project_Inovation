@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
@@ -11,3 +11,4 @@ public class Testing : MonoBehaviour
         this.GetComponent<TMPro.TextMeshProUGUI>().text = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address;
     }
 }
+*/

@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -139,14 +139,14 @@ public class Player : NetworkBehaviour
             phoneUI.SetActive(true);
         }
 
-        /*if(SystemInfo.supportsGyroscope)
+        *//*if(SystemInfo.supportsGyroscope)
         {
             hasGyroScope = true;
         }
         else
         {
             hasGyroScope = false;
-        }*/
+        }*//*
         //GameObject.FindGameObjectWithTag("PhoneUI").gameObject.GetComponent<Canvas>().worldCamera = this.GetComponentInChildren<Camera>();
     }
 
@@ -193,10 +193,10 @@ public class Player : NetworkBehaviour
             this.gameObject.GetComponentInChildren<Camera>().enabled = false;
         }
 
-        /*if (!IsOwner)
+        *//*if (!IsOwner)
         {
             return;
-        }*/
+        }*//*
         
 
         if (TCMiniGameStateManager.Instance.GameIsPlaying()) 
@@ -448,3 +448,4 @@ public class Player : NetworkBehaviour
         return playerBody.transform;
     }
 }
+*/
