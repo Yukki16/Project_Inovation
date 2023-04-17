@@ -1,0 +1,456 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed5864476f84ce4b85454db09ca4eaa, type: 3}
+  m_Name: graph_0
+  m_EditorClassIdentifier: 
+  AssetPath: Assets/Art/GliderGame/Trees/Project_Innovation_Tree_Leaves_Gen.sbsar
+  OutputPath: Assets\Art\GliderGame\Trees\Project_Innovation_Tree_Leaves_Gen_graph_0
+  RawData: {fileID: -244192453324840774, guid: 48ef796bb71a1524aa6e68cfb08e43b0, type: 3}
+  Name: graph_0
+  IsRoot: 1
+  FlagedForDelete: 0
+  GUID: 23190982-2db8-45e0-8649-d2895077f85f
+  Index: 0
+  Input:
+  - rid: 8060649587791364146
+  - rid: 8060649587791364147
+  - rid: 8060649587791364148
+  - rid: 8060649587791364149
+  - rid: 8060649587791364150
+  - rid: 8060649587791364151
+  - rid: 8060649587791364152
+  - rid: 8060649587791364153
+  - rid: 8060649587791364154
+  - rid: 8060649587791364155
+  - rid: 8060649587791364156
+  - rid: 8060649587791364157
+  - rid: 8060649587791364158
+  - rid: 8060649587791364159
+  Output:
+  - Index: 0
+    VirtualOutputIndex: 7
+    Description:
+      Identifier: basecolor
+      Label: basecolor
+      Index: 0
+      Type: 8
+      Channel: baseColor
+    OutputTexture: {fileID: 2800000, guid: 1bf9a67a070030844a1e486795e6fbae, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: opacity
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BaseMap
+  - Index: 1
+    VirtualOutputIndex: 8
+    Description:
+      Identifier: normal
+      Label: normal
+      Index: 1
+      Type: 8
+      Channel: normal
+    OutputTexture: {fileID: 2800000, guid: 4e297504a1150074ebb19c8744fd04c7, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 0
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BumpMap
+  - Index: 2
+    VirtualOutputIndex: 9
+    Description:
+      Identifier: roughness
+      Label: roughness
+      Index: 2
+      Type: 8
+      Channel: roughness
+    OutputTexture: {fileID: 0}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _RoughnessMap
+  - Index: 3
+    VirtualOutputIndex: 10
+    Description:
+      Identifier: metallic
+      Label: metallic
+      Index: 3
+      Type: 8
+      Channel: metallic
+    OutputTexture: {fileID: 2800000, guid: 6fed719bb9195b04bb61f18f3a0e0319, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: roughness
+    InvertAssignedAlpha: 1
+    Flags: 0
+    MaterialTextureTarget: _MetallicGlossMap
+  - Index: 4
+    VirtualOutputIndex: 11
+    Description:
+      Identifier: height
+      Label: height
+      Index: 4
+      Type: 8
+      Channel: height
+    OutputTexture: {fileID: 2800000, guid: ab175f35f433e1640bb51110e3d6be8f, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _ParallaxMap
+  - Index: 5
+    VirtualOutputIndex: 12
+    Description:
+      Identifier: ambientocclusion
+      Label: ambientocclusion
+      Index: 5
+      Type: 8
+      Channel: ambientOcclusion
+    OutputTexture: {fileID: 2800000, guid: f6801853da4c2834a875b29acf31812e, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _OcclusionMap
+  - Index: 6
+    VirtualOutputIndex: 13
+    Description:
+      Identifier: opacity
+      Label: opacity
+      Index: 6
+      Type: 8
+      Channel: opacity
+    OutputTexture: {fileID: 0}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _OpacityMap
+  HasPhysicalSize: 0
+  PhysicalSize: {x: 0, y: 0, z: 0}
+  EnablePhysicalSize: 0
+  Thumbnail: 
+  HasThumbnail: 0
+  CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Project_Innovation_Tree_Leaves_Gen\"
+    label=\"\" >\n  <presetinput identifier=\"$outputsize\" uid=\"2952314206\" type=\"8\"
+    value=\"10,10\" />\n  <presetinput identifier=\"$randomseed\" uid=\"4169837324\"
+    type=\"4\" value=\"8171\" />\n </sbspreset>\n"
+  IsRuntimeOnly: 0
+  GenerateAllOutputs: 0
+  GenerateAllMipmaps: 1
+  OutputMaterial: {fileID: 2100000, guid: dda241e8411667047af73f3247027574, type: 2}
+  DefaultPreset: " <sbspreset pkgurl=\"pkg://Project_Innovation_Tree_Leaves_Gen\"
+    label=\"\" >\n  <presetinput identifier=\"$outputsize\" uid=\"2952314206\" type=\"8\"
+    value=\"10,10\" />\n </sbspreset>\n"
+  MaterialShader: Universal Render Pipeline/Lit
+  RenderTextures: 0
+  OutputRemaped: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 8060649587791364146
+      type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 0
+        Description:
+          Identifier: $outputsize
+          Label: $outputsize
+          GuiGroup: 
+          GuiDescription: 
+          Type: 5
+          WidgetType: 0
+        Data: {x: 10, y: 10}
+        NumericalDescription:
+          DefaultValue: {x: 8, y: 8}
+          MinValue: {x: 0, y: 0}
+          MaxValue: {x: 1, y: 1}
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364147
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 1
+        Description:
+          Identifier: $randomseed
+          Label: $randomseed
+          GuiGroup: 
+          GuiDescription: 
+          Type: 4
+          WidgetType: 0
+        Data: 8171
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364148
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 2
+        Description:
+          Identifier: pattern_rotation_random
+          Label: Rotation Random
+          GuiGroup: Pattern
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364149
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 3
+        Description:
+          Identifier: pattern_symmetry_random
+          Label: Symmetry Random
+          GuiGroup: Pattern
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364150
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 4
+        Description:
+          Identifier: scale
+          Label: Leafscale
+          GuiGroup: Size
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 4.4
+        NumericalDescription:
+          DefaultValue: 4.4
+          MinValue: 0
+          MaxValue: 10
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364151
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 5
+        Description:
+          Identifier: scale_random
+          Label: Leaf Scale Random
+          GuiGroup: Size
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.39
+        NumericalDescription:
+          DefaultValue: 0.39
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364152
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 6
+        Description:
+          Identifier: offset
+          Label: Offset
+          GuiGroup: Position
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364153
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 7
+        Description:
+          Identifier: vector_map_displacement
+          Label: Random Shape
+          GuiGroup: Pattern
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364154
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 8
+        Description:
+          Identifier: rotation_random
+          Label: Leaf Rotation Random
+          GuiGroup: Rotation
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364155
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 9
+        Description:
+          Identifier: color_random
+          Label: Color Random
+          GuiGroup: Color
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.38
+        NumericalDescription:
+          DefaultValue: 0.38
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364156
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 10
+        Description:
+          Identifier: coordinate
+          Label: Random Color
+          GuiGroup: Color
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.5
+        NumericalDescription:
+          DefaultValue: 0.5
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364157
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 11
+        Description:
+          Identifier: hue
+          Label: Hue
+          GuiGroup: Color
+          GuiDescription: The <b>Hue</b> parameter determines the color of the input
+            image
+          Type: 0
+          WidgetType: 1
+        Data: 0.5
+        NumericalDescription:
+          DefaultValue: 0.5
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364158
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 12
+        Description:
+          Identifier: saturation
+          Label: Saturation
+          GuiGroup: Color
+          GuiDescription: The <b>Saturation</b> parameter determines the saturation
+            of the input image's color
+          Type: 0
+          WidgetType: 1
+        Data: 0.5
+        NumericalDescription:
+          DefaultValue: 0.5
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 8060649587791364159
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 13
+        Description:
+          Identifier: luminosity
+          Label: Lightness
+          GuiGroup: Color
+          GuiDescription: The <b>Lightness</b> parameter determines the lightness
+            of the input image
+          Type: 0
+          WidgetType: 1
+        Data: 0.5
+        NumericalDescription:
+          DefaultValue: 0.5
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
