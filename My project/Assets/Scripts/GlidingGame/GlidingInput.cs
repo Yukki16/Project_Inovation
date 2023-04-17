@@ -1,9 +1,10 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Netcode;
 
-public class GlidingInput : MonoBehaviour
+public class GlidingInput : NetworkBehaviour
 {
     Rigidbody rg;
     public Quaternion offset = Quaternion.identity;
@@ -52,4 +53,4 @@ public class GlidingInput : MonoBehaviour
         //Debug.Log(q);
         return new Quaternion(q.x, q.y, -q.z, -q.w);
     }
-}
+}*/

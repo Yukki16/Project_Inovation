@@ -106,16 +106,16 @@ public class ProgressBar : MonoBehaviour
                     switch(player.Key)
                     {
                         case GeneralGameManager.CharacterColors.BLACK:
-                            blackCat.value = new Vector3(1f, GameManager.Instance.GetMaxGameLength() - player.Value.position.y, 1f).normalized.y;
+                            blackCat.value = player.Value.position.y / GameManager.Instance.GetMaxGameLength();
                             break;
                         case GeneralGameManager.CharacterColors.WHITE:
-                            whiteCat.value = new Vector3(1f, GameManager.Instance.GetMaxGameLength() - player.Value.position.y, 1f).normalized.y;
+                            whiteCat.value = player.Value.position.y / GameManager.Instance.GetMaxGameLength();
                             break;
                         case GeneralGameManager.CharacterColors.ORANGE:
-                            orangeCat.value = new Vector3(1f, GameManager.Instance.GetMaxGameLength() - player.Value.position.y, 1f).normalized.y;
+                            orangeCat.value = player.Value.position.y / GameManager.Instance.GetMaxGameLength();
                             break;
                         case GeneralGameManager.CharacterColors.PURPLE:
-                            noHairCat.value = new Vector3(1f, GameManager.Instance.GetMaxGameLength() - player.Value.position.y, 1f).normalized.y;
+                            noHairCat.value = player.Value.position.y / GameManager.Instance.GetMaxGameLength();
                             break;
                     }
                 }
@@ -133,16 +133,16 @@ public class ProgressBar : MonoBehaviour
                     switch (player.Key)
                     {
                         case GeneralGameManager.CharacterColors.BLACK:
-                            blackCat.value = new Vector3(1f, GlidingGameManager.Instance.GetGameLengthInMeters() - player.Value.position.y, 1f).normalized.y;
+                            blackCat.value = player.Value.position.y / GlidingGameManager.Instance.GetGameLengthInMeters();
                             break;
                         case GeneralGameManager.CharacterColors.WHITE:
-                            whiteCat.value = new Vector3(1f, GlidingGameManager.Instance.GetGameLengthInMeters() - player.Value.position.y, 1f).normalized.y;
+                            whiteCat.value = player.Value.position.y / GlidingGameManager.Instance.GetGameLengthInMeters();
                             break;
                         case GeneralGameManager.CharacterColors.ORANGE:
-                            orangeCat.value = new Vector3(1f, GlidingGameManager.Instance.GetGameLengthInMeters() - player.Value.position.y, 1f).normalized.y;
+                            orangeCat.value = player.Value.position.y / GlidingGameManager.Instance.GetGameLengthInMeters();
                             break;
                         case GeneralGameManager.CharacterColors.PURPLE:
-                            noHairCat.value = new Vector3(1f, GlidingGameManager.Instance.GetGameLengthInMeters() - player.Value.position.y, 1f).normalized.y;
+                            noHairCat.value = player.Value.position.y / GlidingGameManager.Instance.GetGameLengthInMeters();
                             break;
                     }
                 }

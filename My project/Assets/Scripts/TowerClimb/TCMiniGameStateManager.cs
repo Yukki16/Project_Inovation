@@ -29,7 +29,7 @@ public class TCMiniGameStateManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        currentGameState = GameState.WAITING;
+        currentGameState = GameState.PLAYING;
     }
 
     void Update()

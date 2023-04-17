@@ -1,17 +1,12 @@
 using Assets.Scripts;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using UnityEditor;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
 using static GeneralGameManager;
 
 public class NetworkManager : MonoBehaviour
@@ -168,6 +163,16 @@ public class NetworkManager : MonoBehaviour
             {
                 if (GeneralGameManager.Instance.GetCurrentServerState() == ServerStates.IN_GAME)
                 {
+                    /*if(_clients.Count < 2)
+                    {
+                        foreach(var connClient in _clients.Keys)
+                        {
+                            _clients.Remove(connClient);
+                        }    
+                        LoadNetwork(Loader.Scene.MainMenu);
+
+                        break;
+                    }*/
                     if (client.Key.Available == 0) continue;
 
                     string fullMessage = ReadCustomMessage(client);

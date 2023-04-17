@@ -52,25 +52,25 @@ public class ScoreBoard : MonoBehaviour
                     switch(client.Key)
                     {
                         case GeneralGameManager.CharacterColors.BLACK:
-                            for(int i = 0; i < connectedClients.Value; i++)
+                            for(int i = 0; i < Mathf.Clamp(connectedClients.Value, 0, 20); i++)
                             {
                                 blackScore[i].isOn = true;
                             }
                             break;
                         case GeneralGameManager.CharacterColors.WHITE:
-                            for (int i = 0; i < connectedClients.Value; i++)
+                            for (int i = 0; i < Mathf.Clamp(connectedClients.Value, 0, 20); i++)
                             {
                                 whiteScore[i].isOn = true;
                             }
                             break;
                         case GeneralGameManager.CharacterColors.ORANGE:
-                            for (int i = 0; i < connectedClients.Value; i++)
+                            for (int i = 0; i < Mathf.Clamp(connectedClients.Value, 0, 20); i++)
                             {
                                 orangeScore[i].isOn = true;
                             }
                             break;
                         case GeneralGameManager.CharacterColors.PURPLE:
-                            for (int i = 0; i < connectedClients.Value; i++)
+                            for (int i = 0; i < Mathf.Clamp(connectedClients.Value, 0, 20); i++)
                             {
                                 purpleScore[i].isOn = true;
                             }
