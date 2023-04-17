@@ -1,14 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 
-public class TCMiniGameStateManager : NetworkBehaviour
+public class TCMiniGameStateManager : MonoBehaviour
 {
-    [SerializeField] private Transform playerPrefab;
     public static TCMiniGameStateManager Instance { get; private set; }
-    public event EventHandler OnAllPlayersJoined;
     public class GameStateChangedArgs
     {
         public GameState gameState;
@@ -17,87 +14,57 @@ public class TCMiniGameStateManager : NetworkBehaviour
     public enum GameState
     {
         WAITING,
+        SHOWING_TUTORIAL,
         IN_COUNTDOWN,
         PLAYING,
         STOPPED,
-        SHOWING_SCORE
     }
 
-    private NetworkVariable<GameState> currentGameState = new NetworkVariable<GameState>(GameState.WAITING);
-
-    private NetworkVariable<float> countdownTimer = new NetworkVariable<float>(5);
-    private NetworkVariable<float> playingTime = new NetworkVariable<float>(120);
-    private NetworkVariable<float> stoppedWaitTime = new NetworkVariable<float>(5);
-    private NetworkVariable<float> showingScoreWaitTime = new NetworkVariable<float>(20);
-
-    private Dictionary<ulong, bool> playerReadyDictionary;
+    private GameState currentGameState;
+    private float showingTutorialTimer = 8;
+    private float countdownTimer = 5;
+    private float playingTime = 20;
+    private float stoppedWaitTime = 7;
 
     private void Awake()
     {
         Instance = this;
-        playerReadyDictionary = new Dictionary<ulong, bool>();
-    }
-
-    public override void OnNetworkSpawn()
-    {
-        currentGameState.OnValueChanged += CurrentGameState_OnValueChanged;
-        if (IsServer)
-        {
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
-        }
-    }
-
-    private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
-    {
-        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
-        {
-            Transform playerTransform = Instantiate(playerPrefab);
-            
-            playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);  
-        }
-        OnAllPlayersJoined?.Invoke(this, EventArgs.Empty);
-        currentGameState.Value = GameState.IN_COUNTDOWN;
-    }
-
-    private void CurrentGameState_OnValueChanged(GameState previousValue, GameState newValue)
-    {
-        GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState.Value });
+        currentGameState = GameState.WAITING;
     }
 
     void Update()
     {
-        if (!IsServer)
+        switch (currentGameState)
         {
-            return;
-        }
-        switch (currentGameState.Value)
-        {
-            case GameState.IN_COUNTDOWN:
-                countdownTimer.Value -= Time.deltaTime;
-                if (countdownTimer.Value <= 0)
+            case GameState.SHOWING_TUTORIAL:
+                showingTutorialTimer -= Time.deltaTime;
+                if (showingTutorialTimer <= 0)
                 {
-                    currentGameState.Value = GameState.PLAYING;
+                    currentGameState = GameState.IN_COUNTDOWN;
+                    GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
+                }
+                break;
+            case GameState.IN_COUNTDOWN:
+                countdownTimer -= Time.deltaTime;
+                if (countdownTimer <= 0)
+                {
+                    NetworkManager.Instance.NotifyClientsForGameStart();
+                    currentGameState = GameState.PLAYING;
+                    GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });
                 }
                 break;
             case GameState.PLAYING:
-                playingTime.Value -= Time.deltaTime;
-                if (playingTime.Value <= 0)
+                playingTime -= Time.deltaTime;
+                if (playingTime <= 0)
                 {
                     EndGame();
                 }
                 break;
             case GameState.STOPPED:
-                stoppedWaitTime.Value -= Time.deltaTime;
-                if (stoppedWaitTime.Value <= 0)
+                stoppedWaitTime -= Time.deltaTime;
+                if (stoppedWaitTime <= 0)
                 {
-                    currentGameState.Value = GameState.SHOWING_SCORE; 
-                }
-                break;
-            case GameState.SHOWING_SCORE:
-                showingScoreWaitTime.Value -= Time.deltaTime;
-                if (showingScoreWaitTime.Value <= 0)
-                {
-                    //TODO
+                    GeneralGameManager.Instance.EndMinigame();    
                 }
                 break;
         }
@@ -105,30 +72,41 @@ public class TCMiniGameStateManager : NetworkBehaviour
 
     public bool GameIsWaiting()
     {
-        return currentGameState.Value == GameState.WAITING;
+        return currentGameState == GameState.WAITING;
     }
 
     public bool GameIsInCountdown()
     {
-        return currentGameState.Value == GameState.IN_COUNTDOWN;
+        return currentGameState == GameState.IN_COUNTDOWN;
     }
     public float GetCountdown()
     {
-        return countdownTimer.Value;
+        return countdownTimer;
     }
     public bool GameIsPlaying()
     {
-        return currentGameState.Value == GameState.PLAYING;
+        return currentGameState == GameState.PLAYING;
     }
     public bool GameIsFinished()
     {
-        return currentGameState.Value == GameState.STOPPED;
+        return currentGameState == GameState.STOPPED;
     }
+
+    public void StartGame()
+    {
+        if (GameIsWaiting())
+        {
+            currentGameState = GameState.SHOWING_TUTORIAL;
+            GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });       
+        }
+    }
+
     public void EndGame()
     {
         if (GameIsPlaying())
         {
-            currentGameState.Value = GameState.STOPPED;
+            currentGameState = GameState.STOPPED;
+            GameStateChanged?.Invoke(this, new GameStateChangedArgs { gameState = currentGameState });      
         }
     }
 }

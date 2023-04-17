@@ -11,14 +11,10 @@ public class RingsPassedUI : MonoBehaviour
     private void Start()
     {
         //TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
-        player.RingsCompletedUpdated += PlayerCharacter_RingsCompletedUpdated;
         playerRingsPassed.text = "0 / " + RingSpawner.Instance.CalculateAmountOfRings().ToString();
     }
 
-    private void PlayerCharacter_RingsCompletedUpdated(object sender, PlayerCharacter.RingsCompletedArgs e)
-    {
-        playerRingsPassed.text = $"{player.GetRingsAmountCompleted()} / {RingSpawner.Instance.CalculateAmountOfRings()}";
-    }
+    
 
     private void Instance_GameStateChanged(object sender, TCMiniGameStateManager.GameStateChangedArgs e)
     {

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,9 +11,12 @@ public static class Loader
         MainMenu,
         Loading,
         Lobby,
+        Waiting,
+        GameSelecting,
         TowerClimb,
         Gliding,
-        CharacterCreation
+        Scoreboard,
+        Ending
     }
 
     public static Scene targetScene;
@@ -23,12 +25,15 @@ public static class Loader
     {
         Loader.targetScene = targetScene;
 
-        SceneManager.LoadScene(Scene.Loading.ToString());
-    }
-
-    public static void LoadNetwork(Scene targetScene)
-    {
-        NetworkManager.Singleton.SceneManager.LoadScene(targetScene.ToString(), LoadSceneMode.Single);
+        if (targetScene != Scene.TowerClimb && targetScene != Scene.Gliding)
+        {
+            SceneManager.LoadScene(Scene.Loading.ToString());
+        }
+        else
+        {
+            SceneManager.LoadScene(targetScene.ToString());
+        }
+        
     }
 
     public static void LoaderCallBack()

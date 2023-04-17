@@ -1,18 +1,16 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharacter : MonoBehaviour
+public class PlayerCharacter : MonoBehaviour, IPlayer
 {
-    public class RingsCompletedArgs
-    {
-        public PlayerCharacter character;
-    }
-    public event EventHandler<RingsCompletedArgs> RingsCompletedUpdated;
-
-    [SerializeField] private Transform spawnPosition;
     [SerializeField] private string nickname;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private GeneralGameManager.CharacterColors characterColor;
+
+    private float booster = 0.5f;
     private int ringsCompleted;
     private List<Transform> passedRings;
 
@@ -21,19 +19,42 @@ public class PlayerCharacter : MonoBehaviour
         passedRings= new List<Transform>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (!passedRings.Contains(other.transform))
-        {
-            passedRings.Add(other.transform);
-            ringsCompleted++;
-            RingsCompletedUpdated?.Invoke(this,new RingsCompletedArgs { character = this});
-            Debug.Log(ringsCompleted);
-        }
+        //if (GlidingGameManager.Instance.GameIsPlaying())
+        //{
+            MoveForward();
+        //}
+    }
+
+    private void MoveForward()
+    {
+        transform.position += Vector3.right * Time.deltaTime * moveSpeed;
     }
 
     public int GetRingsAmountCompleted()
     {
         return ringsCompleted;
+    }
+
+    public List<Transform> GetPassedRings()
+    {
+        return passedRings;
+    }
+
+    public void AddPassedRing(Transform ring)
+    {
+        passedRings.Add(ring);
+        ringsCompleted++;
+    }
+
+    public void BoostPlayer()
+    {
+        moveSpeed += booster;
+    }
+
+    public GeneralGameManager.CharacterColors GetCharacterColor()
+    {
+        return characterColor;
     }
 }

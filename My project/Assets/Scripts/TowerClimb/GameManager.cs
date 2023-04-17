@@ -1,15 +1,18 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
+using System.Linq;
+using System.Net.Sockets;
 using UnityEngine;
+using static GeneralGameManager;
 using static TCMiniGameStateManager;
 
-public class GameManager : NetworkBehaviour
+public class GameManager : MonoBehaviour
 {
     public class SlowDownPlayerArgs
     {
-        public Player player;
+        public TCPLayer player;
     }
     public event EventHandler<SlowDownPlayerArgs> SlowDownPlayer;
     public static GameManager Instance { get; private set; }
@@ -17,28 +20,32 @@ public class GameManager : NetworkBehaviour
     private List<Transform> players;
     [SerializeField] private Transform cameraPrefab;
 
-    private const float MAXGAMELENGTH = 900;
+    private const float MAXGAMELENGTH = 766;
     private const float DIFFERENCEHEIGHTFORPOWERUP = 5;
 
     //Spawn
-    private const float MINSPAWNRATE = 1f;
-    private const float MAXSPAWNMODIFIERTIME = 10;
+    private const float MINSPAWNRATE = 0.4f;
+    private const float MAXSPAWNMODIFIERTIME = 15;
     private const float MAXPOWERUPTIMER = 10;
     private const float SPAWNRATEDECREASE = 0.2f;
     private float spawnModifierTimer;
     private float maxSpawnRate = 1f;
-    private float spawnRate = 1.5f;
+    private float spawnRate = 1f;
     private float powerUpTimer;
-
-    bool isSpawningObjects = false;
 
     private void Awake()
     {
         Instance = this;
         spawnModifierTimer = MAXSPAWNMODIFIERTIME;
-        //spawnRate = maxSpawnRate;
+        spawnRate = maxSpawnRate;
         powerUpTimer = MAXPOWERUPTIMER;
         players = new List<Transform>();
+        NetworkManager.Instance.OnAllPlayersJoined += Instance_OnAllPlayersJoined;
+    }
+
+    private void Instance_OnAllPlayersJoined(object sender, EventArgs e)
+    {
+        TCMiniGameStateManager.Instance.StartGame();
     }
 
     public float GetLowestHeightOfAllPlayers()
@@ -84,17 +91,17 @@ public class GameManager : NetworkBehaviour
         return highestHeight;
     }
 
-    public Player GetHightestHeightPlayer()
+    public TCPLayer GetHightestHeightPlayer()
     {
         GetAndUpdatePlayers();
         float highestHeight = players[0].position.y;
-        Player playerWithHighestHeight = players[0].GetComponentInParent<Player>();
+        TCPLayer playerWithHighestHeight = players[0].GetComponentInParent<TCPLayer>();
         foreach (Transform player in players)
         {
             if (player.position.y >= highestHeight)
             {
                 highestHeight = player.position.y;
-                playerWithHighestHeight = player.GetComponentInParent<Player>();
+                playerWithHighestHeight = player.GetComponentInParent<TCPLayer>();
             }
         }
         return playerWithHighestHeight;
@@ -107,21 +114,13 @@ public class GameManager : NetworkBehaviour
 
     private void Update()
     {
-        if (IsServer)
+        if (TCMiniGameStateManager.Instance.GameIsPlaying())
         {
-            if (TCMiniGameStateManager.Instance.GameIsPlaying())
+            HandleSpawningOfItems();
+            HandlePowerUps();
+            if (GetHighestHeightOfAllPlayers() >= GetMaxGameLength())
             {
-                if(!isSpawningObjects)
-                {
-                    StartCoroutine(HandleSpawningOfItems());
-                    isSpawningObjects = true;
-                }
-                //HandleSpawningOfItems();
-                HandlePowerUps();
-                if (GetHighestHeightOfAllPlayers() >= GetMaxGameLength())
-                {
-                    TCMiniGameStateManager.Instance.EndGame();
-                }
+                TCMiniGameStateManager.Instance.EndGame();
             }
         }
     }
@@ -154,18 +153,7 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    IEnumerator HandleSpawningOfItems()
-    {
-        yield return new WaitForSeconds(spawnRate);
-        if(spawnModifierTimer > MINSPAWNRATE)
-        {
-            spawnModifierTimer -= 0.05f;
-        }
-        SpawnFallingItems();
-        StartCoroutine(HandleSpawningOfItems());
-        yield return null;
-    }
-/*    private void HandleSpawningOfItems()
+    private void HandleSpawningOfItems()
     {
         spawnRate -= Time.deltaTime;
         if (spawnRate <= 0)
@@ -182,18 +170,18 @@ public class GameManager : NetworkBehaviour
                 spawnModifierTimer = MAXSPAWNMODIFIERTIME;
             }
         }
-    }*/
+    }
 
-    public Dictionary<string,int> GetScoreboard()
+    public List<IPlayer> GetScoreboard()
     {
         GetAndUpdatePlayers();
-        Dictionary<string, int> scoreboardResults = new Dictionary<string,int>();
-        foreach (Transform player in players)
+        var winners = players.OrderByDescending(player => player.transform.position.y).ToList();
+        List<IPlayer> playerWinners = new List<IPlayer>();
+        foreach (var winner in winners)
         {
-            Player currentPlayer = player.GetComponentInParent<Player>();
-            scoreboardResults.Add(currentPlayer.GetNickname(), currentPlayer.GetScore());
+            playerWinners.Add(winner.GetComponentInParent<IPlayer>());
         }
-        return scoreboardResults;
+        return playerWinners;
     }
 
     public void SlowDownTopPlayer()
@@ -206,14 +194,11 @@ public class GameManager : NetworkBehaviour
 
     public void GetAndUpdatePlayers()
     {
-        if (IsServer)
+        List<Transform> newPlayerList = new List<Transform>();
+        foreach (var client in NetworkManager.Instance.GetAllPlayers())
         {
-            List<Transform> newPlayerList = new List<Transform>();
-            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
-            {
-                newPlayerList.Add(client.PlayerObject.GetComponent<Player>().GetPlayerBody());
-            }
-            players = newPlayerList;
+            newPlayerList.Add((client as TCPLayer).GetPlayerBody());
         }
+        players = newPlayerList;
     }
 }

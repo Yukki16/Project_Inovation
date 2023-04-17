@@ -11,7 +11,28 @@ public class CountdownUI : MonoBehaviour
     private void Start()
     {
         HideCountdown();
-        TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
+        if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.TOWER_CLIMB)
+        {
+            TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
+        }
+        else if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.LETSGLIDE)
+        {
+            GlidingGameManager.Instance.GameStateChanged += Instance_GameStateChanged1;
+        }
+        
+        
+    }
+
+    private void Instance_GameStateChanged1(object sender, GlidingGameManager.GameStateChangedArgs e)
+    {
+        if (e.gameState != GlidingGameManager.GameState.IN_COUNTDOWN)
+        {
+            HideCountdown();
+        }
+        else
+        {
+            ShowCountdown();
+        }
     }
 
     private void Instance_GameStateChanged(object sender, TCMiniGameStateManager.GameStateChangedArgs e)

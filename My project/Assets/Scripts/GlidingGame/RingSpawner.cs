@@ -20,7 +20,7 @@ public class RingSpawner : MonoBehaviour
         for (int i = 0; i < CalculateAmountOfRings(); i++)
         {
             Transform newRing = Instantiate(ringObject.GetRingObjectSO().prefab, transform);
-            int randomXPos = previousRingX < 0 ? Random.Range(previousRingX, previousRingX + 51) : Random.Range(previousRingX - 51, previousRingX);
+            int randomXPos = previousRingX < 0 ? Random.Range(previousRingX, previousRingX + 100) : Random.Range(previousRingX - 100, previousRingX);
             newRing.localPosition = new Vector3(randomXPos, Random.Range(75, 120), i * distanceBetweenRings);
             previousRingX = (int)newRing.localPosition.x;
         }

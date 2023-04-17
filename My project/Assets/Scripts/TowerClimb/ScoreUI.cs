@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,7 +9,7 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerScore;
     [SerializeField] private TextMeshProUGUI increaseAmountText;
     [SerializeField] private TextMeshProUGUI decreaseAmountText;
-    [SerializeField] private Player player;
+    [SerializeField] private IPlayer player;
 
     private const float INCREASEAMOUNTSHOWEDTIMERMAX = 2;
     private const float DECREASEAMOUNTSHOWEDTIMERMAX = 2;
@@ -18,7 +19,7 @@ public class ScoreUI : MonoBehaviour
     private void Start()
     {
         TCMiniGameStateManager.Instance.GameStateChanged += Instance_GameStateChanged;
-        player.PointsUpdated += Player_PointsUpdated;
+        //player.PointsUpdated += Player_PointsUpdated;
 
         playerScore.text = "0";
         ResetTextUpdates();
@@ -29,20 +30,20 @@ public class ScoreUI : MonoBehaviour
         HidePlayerScore();
     }
 
-    private void Player_PointsUpdated(object sender, Player.PointsUpdateArgs e)
-    {
-        ResetTextUpdates();
-        if (e.type == Player.PointsUpdateArgs.UpdateTypes.POINTDECREASE) 
-        {
-            decreaseAmountShowedTimer = DECREASEAMOUNTSHOWEDTIMERMAX - Time.deltaTime;
-            decreaseAmountText.text = $"-{e.pointAmount}";
-        }
-        else if (e.type == Player.PointsUpdateArgs.UpdateTypes.POINTINCREASE)
-        {
-            increaseAmountShowedTimer = INCREASEAMOUNTSHOWEDTIMERMAX - Time.deltaTime;
-            increaseAmountText.text = $"+{e.pointAmount}";
-        }
-    }
+    //private void Player_PointsUpdated(object sender, Player.PointsUpdateArgs e)
+    //{
+    //    ResetTextUpdates();
+    //    //if (e.type == Player.PointsUpdateArgs.UpdateTypes.POINTDECREASE) 
+    //    //{
+    //    //    decreaseAmountShowedTimer = DECREASEAMOUNTSHOWEDTIMERMAX - Time.deltaTime;
+    //    //    decreaseAmountText.text = $"-{e.pointAmount}";
+    //    //}
+    //    //else if (e.type == Player.PointsUpdateArgs.UpdateTypes.POINTINCREASE)
+    //    //{
+    //    //    increaseAmountShowedTimer = INCREASEAMOUNTSHOWEDTIMERMAX - Time.deltaTime;
+    //    //    increaseAmountText.text = $"+{e.pointAmount}";
+    //    //}
+    //}
 
     private void Instance_GameStateChanged(object sender, TCMiniGameStateManager.GameStateChangedArgs e)
     {
@@ -60,7 +61,7 @@ public class ScoreUI : MonoBehaviour
     {
         if (TCMiniGameStateManager.Instance.GameIsPlaying())
         {
-            playerScore.text = $"{player.GetScore()}";
+            //playerScore.text = $"{player.GetScore()}";
             CheckIncreaseAmount();
             CheckDecreaseAmount();
         }
