@@ -1,18 +1,17 @@
-/*using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using Mirror;
 
 public class NetworkLocalHost : MonoBehaviour
 {
     [SerializeField] NetworkManager manager;
     private void Start()
     {
-        manager.networkAddress = GetLocalIPAddress();
-        
+        //manager.networkAddress = GetLocalIPAddress();
+
     }
     public string GetLocalIPAddress()
     {
@@ -31,5 +30,6 @@ public class NetworkLocalHost : MonoBehaviour
     public void ConnectClient()
     {
 
-    }*/
+    }
+}
 

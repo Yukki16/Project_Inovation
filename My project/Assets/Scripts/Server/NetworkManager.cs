@@ -137,7 +137,7 @@ public class NetworkManager : MonoBehaviour
                 {
                     TcpClient client = _listener.AcceptTcpClient();
                     _clients.Add(client, null);
-                    string nickname = GeneralGameManager.Instance.AddClient(client);
+                    GeneralGameManager.Instance.AddClient(client);
                     CharacterWaiting.Instance.UpdateCharacterWaitingView();
                     Debug.Log("Accepted new client.");
                 }

@@ -81,7 +81,7 @@ public class GeneralGameManager : MonoBehaviour
         }
     }
 
-    public string AddClient(TcpClient client)
+    public void AddClient(TcpClient client)
     {
         clientsWithPoints.Add(client, 0);
         CharacterColors colorToUse = CharacterColors.NONE;
@@ -97,23 +97,7 @@ public class GeneralGameManager : MonoBehaviour
         if (colorToUse != CharacterColors.NONE)
         {
             clientsWithTheirCharacterColor[colorToUse] = client;
-            switch (colorToUse)
-            {
-                case CharacterColors.BLACK:
-                    return "Miika";
-                    break;
-                case CharacterColors.ORANGE:
-                    return "Jerr";
-                    break;
-                case CharacterColors.WHITE:
-                    return "Salvi";
-                    break;
-                case CharacterColors.PURPLE:
-                    return "Meow";
-                    break;
-            }
         }
-        return null;
     }
 
     public void RemoveClient(TcpClient client)
