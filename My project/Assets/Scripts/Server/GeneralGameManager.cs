@@ -81,7 +81,7 @@ public class GeneralGameManager : MonoBehaviour
         }
     }
 
-    public void AddClient(TcpClient client)
+    public string AddClient(TcpClient client)
     {
         clientsWithPoints.Add(client, 0);
         CharacterColors colorToUse = CharacterColors.NONE;
@@ -97,7 +97,24 @@ public class GeneralGameManager : MonoBehaviour
         if (colorToUse != CharacterColors.NONE)
         {
             clientsWithTheirCharacterColor[colorToUse] = client;
+            if (colorToUse == CharacterColors.BLACK)
+            {
+                return "MIKKI";
+            }
+            else if (colorToUse == CharacterColors.ORANGE)
+            {
+                return "JERR";
+            }
+            else if (colorToUse == CharacterColors.WHITE)
+            {
+                return "SALVI";
+            }
+            else if (colorToUse == CharacterColors.PURPLE)
+            {
+                return "MEOW";
+            }
         }
+        return null;
     }
 
     public void RemoveClient(TcpClient client)
@@ -256,6 +273,7 @@ public class GeneralGameManager : MonoBehaviour
     {
         currentState = ServerStates.IN_END_SCREEN;
         NetworkManager.Instance.LoadNetwork(Loader.Scene.Ending);
+        NetworkManager.Instance.NotifyClientsForGameEnd();
     }
 
     public Dictionary<TcpClient, int> ReturnClientsPoints()

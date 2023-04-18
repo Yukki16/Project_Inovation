@@ -137,7 +137,11 @@ public class NetworkManager : MonoBehaviour
                 {
                     TcpClient client = _listener.AcceptTcpClient();
                     _clients.Add(client, null);
-                    GeneralGameManager.Instance.AddClient(client);
+                    string nickname = GeneralGameManager.Instance.AddClient(client);
+                    if (nickname != null)
+                    {
+                        SendCustomMessage(client, "/loadplayer:" + nickname);
+                    }
                     CharacterWaiting.Instance.UpdateCharacterWaitingView();
                     Debug.Log("Accepted new client.");
                 }
@@ -448,6 +452,12 @@ public class NetworkManager : MonoBehaviour
     {
         SendToAllClients("/startgame");
     }
+
+    public void NotifyClientsForGameEnd()
+    {
+        SendToAllClients("/endgame");
+    }
+
 
     public void NotifyClientsForScoreboard()
     {
