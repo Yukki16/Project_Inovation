@@ -16,7 +16,7 @@ public class TutorialUI : MonoBehaviour
         }
         else if (GeneralGameManager.Instance.GetCurrentChosenMinigame() == GeneralGameManager.Minigames.LETSGLIDE)
         {
-            GlidingGameManager.Instance.GameStateChanged += Instance_GameStateChanged1; ;
+            GlidingGameManager.Instance.GameStateChanged += Instance_GameStateChanged1; 
         }
     }
 

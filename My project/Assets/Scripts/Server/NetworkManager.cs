@@ -163,16 +163,17 @@ public class NetworkManager : MonoBehaviour
             {
                 if (GeneralGameManager.Instance.GetCurrentServerState() == ServerStates.IN_GAME)
                 {
-                    /*if(_clients.Count < 2)
+                    if (_clients.Count < 2)
                     {
-                        foreach(var connClient in _clients.Keys)
+                        foreach (var connClient in _clients.Keys)
                         {
+                            
                             _clients.Remove(connClient);
-                        }    
+                        }
                         LoadNetwork(Loader.Scene.MainMenu);
 
                         break;
-                    }*/
+                    }
                     if (client.Key.Available == 0) continue;
 
                     string fullMessage = ReadCustomMessage(client);

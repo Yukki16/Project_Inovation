@@ -34,8 +34,8 @@ public class GeneralGameManager : MonoBehaviour
         PURPLE
     }
 
-    private const int MAX_POINTS_TO_EARN = 20;
-    private const int MAX_GAME_POINTS = 4;
+    private const int MAX_POINTS_TO_EARN = 4;
+    private const int MAX_GAME_POINTS = 20;
 
     private ServerStates currentState;
     private Minigames previousSelectedMinigame = Minigames.NOT_PLAYABLE;
