@@ -133,16 +133,16 @@ public class ProgressBar : MonoBehaviour
                     switch (player.Key)
                     {
                         case GeneralGameManager.CharacterColors.BLACK:
-                            blackCat.value = Mathf.Abs(player.Value.position.x + 2000 / GlidingGameManager.Instance.GetGameLengthInMeters());
+                            blackCat.value = Mathf.Abs((player.Value.position.x + 2000) / GlidingGameManager.Instance.GetGameLengthInMeters());
                             break;
                         case GeneralGameManager.CharacterColors.WHITE:
-                            whiteCat.value = Mathf.Abs(player.Value.position.x + 2000/ GlidingGameManager.Instance.GetGameLengthInMeters());
+                            whiteCat.value = Mathf.Abs((player.Value.position.x + 2000) / GlidingGameManager.Instance.GetGameLengthInMeters());
                             break;
                         case GeneralGameManager.CharacterColors.ORANGE:
-                            orangeCat.value = Mathf.Abs(player.Value.position.x + 2000 / GlidingGameManager.Instance.GetGameLengthInMeters());
+                            orangeCat.value = Mathf.Abs((player.Value.position.x + 2000) / GlidingGameManager.Instance.GetGameLengthInMeters());
                             break;
                         case GeneralGameManager.CharacterColors.PURPLE:
-                            noHairCat.value = Mathf.Abs(player.Value.position.x + 2000 / GlidingGameManager.Instance.GetGameLengthInMeters());
+                            noHairCat.value = Mathf.Abs((player.Value.position.x + 2000) / GlidingGameManager.Instance.GetGameLengthInMeters());
                             break;
                     }
                 }

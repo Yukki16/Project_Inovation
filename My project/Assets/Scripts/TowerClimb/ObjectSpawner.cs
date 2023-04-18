@@ -17,7 +17,7 @@ public class ObjectSpawner: MonoBehaviour
     {
         GameObject objToSpawn = new GameObject("SpawnedFallingItem");
         Transform newObject = Instantiate(fallingObject[Random.Range(0, fallingObject.Length)].transform, objToSpawn.transform);
-        newObject.localPosition += position + new Vector3(0, GameManager.Instance.GetHighestHeightOfAllPlayers() + 30, 0);
+        newObject.localPosition += position + new Vector3(0, 30, 0);
 
         int randomNr = Random.Range(1, 10);
         if (randomNr > 5)

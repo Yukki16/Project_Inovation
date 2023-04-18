@@ -27,7 +27,7 @@ public class GlidingGameManager : MonoBehaviour
     private GameState currentGameState;
     private float showingTutorialTimer = 8;
     private float countdownTimer = 5;
-    private float playingTime = 20;
+    private float playingTime = 120;
     private float stoppedWaitTime = 7;
 
     private void Awake()
