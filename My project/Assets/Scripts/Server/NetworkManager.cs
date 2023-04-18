@@ -82,6 +82,13 @@ public class NetworkManager : MonoBehaviour
                                     CameraManager.Instance.UpdateScreenView(GetAmountOfConnectedPlayers());
                                     Destroy(playerToRemove.gameObject);
                                 }
+                                else if(GeneralGameManager.Instance.GetCurrentChosenMinigame() == Minigames.LETSGLIDE)
+                                {
+                                    PlayerCharacter playerToRemove = (_clients[client] as PlayerCharacter);
+                                    _clients.Remove(client);
+                                    CameraManager.Instance.UpdateScreenView(GetAmountOfConnectedPlayers());
+                                    Destroy(playerToRemove.gameObject);
+                                }
                             }
                             else
                             {

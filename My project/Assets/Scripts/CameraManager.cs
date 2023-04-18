@@ -80,7 +80,7 @@ public class CameraManager : MonoBehaviour
                                 PlayerCharacter connectedGlidingPlayer = connectedPlayer as PlayerCharacter;
                                 CameraScript currentCamera = threePlScreen.GetComponentsInChildren<CameraScript>()[0];
                                 currentCamera.transform.Rotate(0, connectedGlidingPlayer.transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
-                                Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedGlidingPlayer.transform.position.y, currentCamera.transform.position.z);
+                                Vector3 newPosition = new Vector3(connectedGlidingPlayer.transform.position.x, connectedGlidingPlayer.transform.position.y, connectedGlidingPlayer.transform.position.z);
                                 currentCamera.transform.SetPositionAndRotation(newPosition, currentCamera.transform.rotation);
                                 currentCamera.transform.SetParent(connectedGlidingPlayer.transform);
                             }
@@ -105,7 +105,7 @@ public class CameraManager : MonoBehaviour
                                 PlayerCharacter connectedGlidingPlayer = connectedPlayer as PlayerCharacter;
                                 CameraScript currentCamera = fourPlScreen.GetComponentsInChildren<CameraScript>()[0];
                                 currentCamera.transform.Rotate(0, connectedGlidingPlayer.transform.eulerAngles.y - currentCamera.transform.eulerAngles.y, 0);
-                                Vector3 newPosition = new Vector3(currentCamera.transform.position.x, connectedGlidingPlayer.transform.position.y, currentCamera.transform.position.z);
+                                Vector3 newPosition = new Vector3(connectedGlidingPlayer.transform.position.x, connectedGlidingPlayer.transform.position.y, connectedGlidingPlayer.transform.position.z);
                                 currentCamera.transform.SetPositionAndRotation(newPosition, currentCamera.transform.rotation);
                                 currentCamera.transform.SetParent(connectedGlidingPlayer.transform);
                             }

@@ -161,7 +161,8 @@ public class GeneralGameManager : MonoBehaviour
             if (previousSelectedMinigame == Minigames.NOT_PLAYABLE || newMinigame != previousSelectedMinigame)
             {
                 previousSelectedMinigame = currentSelectedMinigame;
-                currentSelectedMinigame = newMinigame;
+                //currentSelectedMinigame = newMinigame;
+                currentSelectedMinigame = Minigames.LETSGLIDE;
                 currentState = ServerStates.IN_GAME_SELECTING;
                 gameSelected = true;
             }
