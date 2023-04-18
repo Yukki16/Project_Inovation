@@ -117,16 +117,16 @@ public class CameraManager : MonoBehaviour
 
     private void DeleteExistingScreens(int amountOfPlayersConnected)
     {
-        /*if (amountOfPlayersConnected >= 2)
+        if (amountOfPlayersConnected >= 2)
         {
             defaultCamera.gameObject.SetActive(false);
         }
         else
         {
             defaultCamera.gameObject.SetActive(true);
-        }*/
+        }
 
-        /*foreach (TCPLayer player in GameObject.FindObjectsOfType<TCPLayer>())
+        foreach (TCPLayer player in GameObject.FindObjectsOfType<TCPLayer>())
         {
             CameraScript[] playerCameras = player.GetComponentsInChildren<CameraScript>();
             if (playerCameras.Length >= 1)
@@ -135,18 +135,18 @@ public class CameraManager : MonoBehaviour
                 {
                     Destroy(playerCamera.gameObject);
                 }
-            }       
+            }
         }
 
         GameObject[] twoPlayerScreenGO = GameObject.FindGameObjectsWithTag("TwoPlayerScreen");
-        
+
         if (twoPlayerScreenGO != default)
         {
             foreach (var twoPlScreen in twoPlayerScreenGO)
             {
                 Destroy(twoPlScreen);
             }
-            
+
         }
 
         GameObject[] threePlayerScreenGO = GameObject.FindGameObjectsWithTag("ThreePlayerScreen");
@@ -165,6 +165,6 @@ public class CameraManager : MonoBehaviour
             {
                 Destroy(fourPLS);
             }
-        }*/
+        }
     }
 }
